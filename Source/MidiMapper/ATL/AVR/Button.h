@@ -1,0 +1,103 @@
+/*
+Arduino Template Library http://atl.codeplex.com
+Written by Marc Jacobi
+Copyright 2012-2015 All Rights Reserved
+
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Lesser General Public
+License as published by the Free Software Foundation; either
+version 2.1 of the License, or (at your option) any later version.
+
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public
+License along with this library; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+
+#ifndef __BUTTON_H__
+#define __BUTTON_H__
+
+#include <stdint.h>
+#include "../BitArray.h"
+
+namespace ATL {
+namespace MCU {
+
+
+template <class BaseT, const bool InverseValue=false>
+class Button : public BaseT
+{
+    // bit array indexes
+    #define CurrentStateIndex 0
+    #define PrevStateIndex 3
+    #define ButtonStateLength 3
+
+public:
+    /*
+        Returns the current state of the push button.
+     */
+    inline ButtonStates getButtonState() const
+    {
+        return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
+    }
+
+    inline void SetButtonValue()
+    {
+        SetButtonValue(BaseT::Read());
+    }
+
+protected:
+    inline ButtonStates getPrevState() const
+    {
+        return (ButtonStates)_states.Get(PrevStateIndex, ButtonStateLength);
+    }
+
+    inline void setPrevState(ButtonStates state)
+    {
+        _states.Set(PrevStateIndex, state, ButtonStateLength);
+    }
+
+    inline void setState(ButtonStates state)
+    {
+        _states.Set(CurrentStateIndex, state, ButtonStateLength);
+    }
+
+    inline static ButtonStates ConvertToButtonState(bool value)
+    {
+        return ATL::Implementation::ConvertBoolToButtonState<InverseValue>::Convert(value);
+    }
+
+    inline void SetButtonValue(bool newValue)
+    {
+        SetButtonState(ConvertToButtonState(newValue));
+    }
+
+    inline bool SetButtonState(ButtonStates newState)
+    {
+        ButtonStates state = getButtonState();
+
+        // new state, but not in hold
+        if (state != newState &&
+        !(newState == stateClosed && state == stateHold))
+        {
+            setPrevState(state);
+            setState(newState);
+
+            return true;
+        }
+
+        return false;
+    }
+
+private:
+    BitArray<uint8_t> _states;
+};
+
+}} // ATL::MCU
+
+#endif /* __BUTTON_H__ */
