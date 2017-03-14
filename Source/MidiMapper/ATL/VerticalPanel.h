@@ -47,9 +47,8 @@ namespace ATL {
             : BaseT(pos)
         { }
 
-        /** Routes the command to its BaseT and implements Panel navigation.
-         *  If the navCmd is not handled by BaseT the Panel adjusts the current (selected) control
-         *  on the `Up` and `Down` commands.
+        /** The Panel adjusts the current (selected) control on the `Up` and `Down` commands,
+		 *  otherwise routed to the BaseT navigation handler.
          *  \param navCmd is the navigation command.
          *  \return Returns true when the command was handled, otherwise false.
          */

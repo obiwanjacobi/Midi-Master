@@ -50,7 +50,7 @@ namespace ATL {
          *  \param output is used to output text and position the cursor.
          *  \mode indicates what to display.
          */
-        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
+        void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
         {
             if (mode == ControlDisplayMode::Normal)
             {
@@ -62,7 +62,7 @@ namespace ATL {
          *  \param navCmd is the navigation command.
          *  \return Returns true if the command was handled.
          */
-        virtual bool OnNavigationCommand(NavigationCommands navCmd)
+        bool OnNavigationCommand(NavigationCommands navCmd) override
         {
             bool handled = false;
 

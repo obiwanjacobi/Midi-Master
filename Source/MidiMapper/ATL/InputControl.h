@@ -88,10 +88,8 @@ namespace ATL {
          *  \param type indicates the requested type.
          *  \return Returns true if the type flag matches the class hierarchy.
          */
-        inline virtual bool IsOfType(ControlTypes type) const
+        inline bool IsOfType(ControlTypes type) const override
         {
-            //return ((ControlTypes::InputControl & type.value) == ControlTypes::InputControl) ||
-                //Control::IsOfType(type);
             return type.HasFlag(ControlTypes::InputControl) || Control::IsOfType(type);
         }
 
@@ -106,7 +104,7 @@ namespace ATL {
         /** Overridden to disallow going to the `Focused` state when not enabled.
          *  \param newState is the proposed state.
          */
-        inline virtual bool BeforeChangeState(ControlState newState)
+        inline bool BeforeChangeState(ControlState newState) override
         {
             if (!Control::BeforeChangeState(newState)) return false;
 

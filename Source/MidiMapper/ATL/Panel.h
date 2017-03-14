@@ -68,7 +68,7 @@ namespace ATL {
          *  \param output is used to output text and set the cursor position.
          *  \param mode indicates what is to be displayed.
          */
-        virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
+        void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
         {
             if (_currentControl != NULL)
             {
@@ -79,7 +79,7 @@ namespace ATL {
         /** Forwards the call unchanged to the current control (if any).
          *  \param navCmd is the navigation command.
          */
-        virtual bool OnNavigationCommand(NavigationCommands navCmd)
+        bool OnNavigationCommand(NavigationCommands navCmd) override
         {
             if (_currentControl != NULL)
             {
@@ -93,7 +93,7 @@ namespace ATL {
          *  \param type the requested type.
          *  \return Returns true if the type is part of the class hierarchy.
          */
-        virtual bool IsOfType(ControlTypes type) const
+        bool IsOfType(ControlTypes type) const override
         {
             //return ((ControlTypes::Panel & type.value) == ControlTypes::Panel) || InputControl::IsOfType(type);
             return type.HasFlag(ControlTypes::Panel) || InputControl::IsOfType(type);

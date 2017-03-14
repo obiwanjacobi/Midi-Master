@@ -7,16 +7,18 @@
 
 using namespace ATL;
 
+#define NumberOfPages	2
+
 class PageManager : public Singleton<PageManager>, 
-                    public PageController<LcdLines, 2>
+                    public PageController<LcdLines, NumberOfPages>
 {
-    typedef PageController<LcdLines, 2> BaseT;
+    typedef PageController<LcdLines, NumberOfPages> BaseT;
 
 public:
     typedef Page<LcdLines> PageT;
     
     PageManager()
-    :   _nextPage(NULL)
+		: _nextPage(NULL)
     {
         BaseT::Add(&RealtimeScreen);
     }
@@ -33,8 +35,6 @@ public:
     inline bool EnterEditOutputMap(int outIndex)
     {
         // queue navigation and execute on display.
-        
-        
         _nextPage = &RealtimeScreen;    // test
         
         return false;
@@ -43,9 +43,6 @@ public:
     inline virtual bool OnNavigationCommand(NavigationCommands navCmd)
     {
         bool handled = BaseT::OnNavigationCommand(navCmd);
-        
-        
-        
         return handled;
     }
     

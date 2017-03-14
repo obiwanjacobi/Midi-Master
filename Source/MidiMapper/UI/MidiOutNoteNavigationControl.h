@@ -8,28 +8,30 @@
 using namespace ATL;
 
 static const char* ActivityChar = "!";
+static const char* OutText = "Out";
 
-
-template<typename PageManagerT>
+template<typename PageManagerT, const uint8_t OutputIndex>
 class MidiOutNoteNavigationControl : public InputControl
 {
 public:
-    MidiOutNoteNavigationControl(uint8_t outIndex, uint8_t pos = 0)
-        : InputControl(pos), _outIndex(outIndex)
+    MidiOutNoteNavigationControl(uint8_t pos = 0)
+        : InputControl(pos)
     { }
         
     inline virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
     {
         if (mode == ControlDisplayMode::Cursor) return;
-        
-        if (MidiStatus::getCurrent()->getMidiOutIsActive(_outIndex))
+
+		output->Display(OutText);
+
+        if (MidiStatus::getCurrent()->getMidiOutIsActive(OutputIndex))
         {
             output->Display(ActivityChar);
         }
         else
         {
             StringWriter<1> str;
-            str.Write(_outIndex + 1);
+            str.Write(OutputIndex + 1);
             output->Display(str);
         }        
     }
@@ -38,12 +40,10 @@ public:
     {
         if (navCmd == NavigationCommands::Enter)
         {
-            return PageManagerT::getCurrent()->EnterEditOutputMap(_outIndex);
+            return PageManagerT::getCurrent()->EnterEditOutputMap(OutputIndex);
         }
         return false;
     }
-private:
-    uint8_t _outIndex;
 };
 
 

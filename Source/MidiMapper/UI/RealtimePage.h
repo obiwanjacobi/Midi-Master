@@ -11,93 +11,62 @@
 #include "../PresetManager.h"
 #include "MidiOutNoteNavigationControl.h"
 #include "MidiInNoteControl.h"
+#include "PatchSelectControl.h"
 
 using namespace ATL;
-
-static const char* OutText = "Out";
 
 template<typename PageManagerT>
 class RealtimeLine1 : public Line<7>
 {
     typedef Line<7> BaseT;
-    typedef MidiOutNoteNavigationControl<PageManagerT> MidiOutNoteControl;
-    
+
 public:
     RealtimeLine1()
-        : PresetLabel("Preset"), 
-        PresetNumber(this, 7), InNoteLabel(9),
-        Out1Label(OutText, 12), Out1NoteLabel(0, 16),
-        Out2Label(OutText, 19), Out2NoteLabel(1, 23)
+        : PatchNumber(0), PatchNameText(3), InNoteLabel(21)
     {
-        Add(&PresetLabel);
-        Add(&PresetNumber);
+        Add(&PatchNumber);
+		Add(&PatchNameText);
         Add(&InNoteLabel);
-        Add(&Out1Label);
-        Add(&Out1NoteLabel);
-        Add(&Out2Label);
-        Add(&Out2NoteLabel);
     }
     
-    LabelControl PresetLabel;
-    UpDownControl<RealtimeLine1> PresetNumber;
+    PatchSelectControl PatchNumber;
+	// TODO: change into TextControl
+	LabelControl PatchNameText;
     MidiInNoteControl InNoteLabel;
-    LabelControl Out1Label;
-    MidiOutNoteControl Out1NoteLabel;
-    LabelControl Out2Label;
-    MidiOutNoteControl Out2NoteLabel;
-    
-    inline const char* ToString()
-    {
-        return "01";
-    }
-    
-    inline void IncrementValue()
-    {
-        
-    }
-    
-    inline void DecrementValue()
-    {
-        
-    }
+
+	inline void Display(DisplayWriter* output, ControlDisplayMode mode) override
+	{
+		Refresh();
+		BaseT::Display(output, mode);
+	}
+	
+private:
+	inline void Refresh()
+	{
+		PatchNameText.setText(PresetManager::getCurrent()->getCurrentPresetName());
+	}
 };
 
 template<typename PageManagerT>
 class RealtimeLine2 : public Line<5>
 {
     typedef Line<5> BaseT;
-    typedef MidiOutNoteNavigationControl<PageManagerT> MidiOutNoteControl;
     
 public:
     RealtimeLine2()
         : BaseT(1), 
-        Out3Label(OutText, 12), Out3NoteLabel(2, 16),
-        Out4Label(OutText, 19), Out4NoteLabel(3, 23)
+        Out1NoteLabel(0), Out2NoteLabel(6), Out3NoteLabel(12), Out4NoteLabel(18)
     {
-        Add(&PresetNameLabel);
-        Add(&Out3Label);
+		Add(&Out1NoteLabel);
+		Add(&Out2NoteLabel);
         Add(&Out3NoteLabel);
-        Add(&Out4Label);
         Add(&Out4NoteLabel);
     }
 
-    LabelControl PresetNameLabel;
-    LabelControl Out3Label;
-    MidiOutNoteControl Out3NoteLabel;
-    LabelControl Out4Label;
-    MidiOutNoteControl Out4NoteLabel;
-    
-    inline virtual void Display(DisplayWriter* output, ControlDisplayMode mode)
-    {
-        Refresh();
-        BaseT::Display(output, mode);
-    }
-    
-private:
-    inline void Refresh()
-    {
-        PresetNameLabel.setText(PresetManager::getCurrent()->getCurrentPresetName());
-    }
+	MidiOutNoteNavigationControl<PageManagerT, 0> Out1NoteLabel;
+	MidiOutNoteNavigationControl<PageManagerT, 1> Out2NoteLabel;
+    MidiOutNoteNavigationControl<PageManagerT, 2> Out3NoteLabel;
+    MidiOutNoteNavigationControl<PageManagerT, 3> Out4NoteLabel;
 };
 
 template<typename PageManagerT>
@@ -117,30 +86,16 @@ public:
     
     void PartialDisplay(DisplayWriter* output)
     {
-        output->GoTo(0, Line1.InNoteLabel.getPosition());
-        Line1.InNoteLabel.Display(output);
-        
-        output->GoTo(0, Line1.Out1NoteLabel.getPosition());
-        Line1.Out1NoteLabel.Display(output);
-        output->GoTo(0, Line1.Out2NoteLabel.getPosition());
-        Line1.Out2NoteLabel.Display(output);
-        
-        output->GoTo(1, Line2.Out3NoteLabel.getPosition());
-        Line2.Out3NoteLabel.Display(output);
-        output->GoTo(1, Line2.Out4NoteLabel.getPosition());
-        Line2.Out4NoteLabel.Display(output);
+		// TODO:
     }
     
     Task_BeginWithParams(DisplayActivity, DisplayWriter* output)
     {
+		PartialDisplay(output);
+
         if (MidiStatus::getCurrent()->getMidiIsActive())
         {
-            PartialDisplay(output);
             Task_YieldUntil(TaskScheduler::Wait(getId(), 30));
-        }
-        else
-        {
-            PartialDisplay(output);
         }
     }
     Task_End

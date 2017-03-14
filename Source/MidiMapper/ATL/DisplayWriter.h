@@ -34,7 +34,7 @@ namespace ATL {
     class DisplayWriter
     {
     public:
-        /** This value can be passed to the `GoTo()` and `SetCursor()` methods. */
+        /** This value can be passed to the `GoTo()` and `EnableCursor()` methods. */
         static const uint8_t DontCare = 0xFF;
 
         /** Writes the text to the current (cursor) position on the display.

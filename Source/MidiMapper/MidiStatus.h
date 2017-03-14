@@ -11,8 +11,6 @@ using namespace ATL;
 
 class MidiStatus : public Singleton<MidiStatus>
 {
-
-    
 public:
     inline void UpdateStatus()
     {

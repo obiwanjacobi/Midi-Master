@@ -36,7 +36,8 @@ namespace ATL {
         AtlReservedStart = 0x00,
         AtlReservedEnd = 0x7F,
         AtlUserStart = 0x80,
-        AtlUserEnd = 0xFF,
+        AtlUserEnd = 0xFE,
+		AtlAnonymous = 0xFF,
     }
     EndEnum(AtlComponentIds)
 
@@ -61,7 +62,7 @@ namespace ATL {
     EndEnum(DebugLevel)
 
 
-#if defined(DEBUG) || defined(_DEBUG)
+#ifdef DEBUG
 
     // Implement this method in your own code and route the message to the desired output.
     void AtlDebugWrite(const char* message) __attribute__((weak));
@@ -73,7 +74,7 @@ namespace ATL {
      *  The Debug class is a static class and cannot be instantiated.
      *  \tparam ComponentId is used as a component id for filtering debug log writes.
      */
-    template<const uint8_t ComponentId>
+    template<const uint8_t ComponentId = AtlComponentIds::AtlAnonymous>
     class Debug
     {
     public:
@@ -106,7 +107,7 @@ namespace ATL {
         Debug() { }
     };
 
-#else
+#else	//DEBUG
 
     /** The Debug class for release builds is an empty class.
      *  The Debug class is a static class and cannot be instantiated.
@@ -136,7 +137,7 @@ namespace ATL {
         Debug() { }
     };
 
-#endif  //DEBUG|_DEBUG
+#endif  //DEBUG
 
 } // ATL
 

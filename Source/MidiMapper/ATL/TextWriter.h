@@ -44,10 +44,11 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
+		 *  \param fixedLength is the number of total characters to display (leading zeros).
          */
-        inline void Write(const uint8_t value)
+        inline void Write(const uint8_t value, const uint8_t fixedLength = 0)
         {
-            Write((uint16_t)value);
+            Write((uint16_t)value, fixedLength);
         }
 
         /** Writes a string to the out stream as is.
@@ -67,8 +68,9 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
+		 *  \param fixedLength is the number of total characters to display (leading zeros).
          */
-        inline void Write(const int16_t value)
+        inline void Write(const int16_t value, const uint8_t fixedLength = 0)
         {
             // test for negative with decimals
             if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -76,31 +78,32 @@ namespace ATL {
                 if (value < 0)
                 {
                     BaseT::Write(FormatInfoT::NegativeSign);
-                    WriteInt(-value, FormatInfoT::DefaultBase);
+                    WriteInt(-value, FormatInfoT::DefaultBase, fixedLength);
                 }
                 else
                 {
-                    WriteInt(value, FormatInfoT::DefaultBase);
+                    WriteInt(value, FormatInfoT::DefaultBase, fixedLength);
                 }
             }
             else
             {
-                return WriteInt(value, FormatInfoT::DefaultBase);
+                return WriteInt(value, FormatInfoT::DefaultBase, fixedLength);
             }
         }
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
+		 *  \param fixedLength is the number of total characters to display (leading zeros).
          */
-        inline void Write(const uint16_t value)
+        inline void Write(const uint16_t value, const uint8_t fixedLength = 0)
         {
-            WriteInt(value, FormatInfoT::DefaultBase);
+            WriteInt(value, FormatInfoT::DefaultBase, fixedLength);
         }
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
          */
-        void Write(const int32_t value)
+        void Write(const int32_t value, const uint8_t fixedLength = 0)
         {
             // test for negative with decimals
             if (FormatInfoT::DefaultBase == TextFormatInfo::baseDecimal)
@@ -108,25 +111,26 @@ namespace ATL {
                 if (value < 0)
                 {
                     BaseT::Write(FormatInfoT::NegativeSign);
-                    WriteLong(-value, FormatInfoT::DefaultBase);
+                    WriteLong(-value, FormatInfoT::DefaultBase, fixedLength);
                 }
                 else
                 {
-                    WriteLong(value, FormatInfoT::DefaultBase);
+                    WriteLong(value, FormatInfoT::DefaultBase, fixedLength);
                 }
             }
             else
             {
-                return WriteLong(value, FormatInfoT::DefaultBase);
+                return WriteLong(value, FormatInfoT::DefaultBase, fixedLength);
             }
         }
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
+		 *  \param fixedLength is the number of total characters to display (leading zeros).
          */
-        inline void Write(const uint32_t value)
+        inline void Write(const uint32_t value, const uint8_t fixedLength = 0)
         {
-            WriteLong(value, FormatInfoT::DefaultBase);
+            WriteLong(value, FormatInfoT::DefaultBase, fixedLength);
         }
 
         /** Writes a textual representation for the value.
@@ -226,23 +230,24 @@ namespace ATL {
         }
 
     private:
-        inline void WriteInt(uint16_t integer, uint8_t base)
+        inline void WriteInt(uint16_t integer, uint8_t base, const uint8_t fixedLength = 0)
         {
             // an int is 2^32 and has 10 digits + terminating 0
-            WriteInternal<unsigned int, 11>(integer, base);
+            WriteInternal<unsigned int, 11>(integer, base, fixedLength);
         }
 
-        inline void WriteLong(uint32_t integer, uint8_t base)
+        inline void WriteLong(uint32_t integer, uint8_t base, const uint8_t fixedLength = 0)
         {
             // a long is 2^64 and has 20 digits + terminating 0
-            WriteInternal<uint32_t, 21>(integer, base);
+            WriteInternal<uint32_t, 21>(integer, base, fixedLength);
         }
 
         template<typename T, const uint8_t bufferSize>
-        void WriteInternal(T integer, uint8_t base)
+        void WriteInternal(T integer, uint8_t base, const uint8_t fixedLength)
         {
             char buffer[bufferSize];
-            char* strPos = &buffer[sizeof(buffer) - 1];
+            char* strPos = &buffer[bufferSize - 1];
+			char* strEnd = strPos;
 
             // we fill the buffer from back to front.
             *strPos = '\0';
@@ -261,6 +266,10 @@ namespace ATL {
                 *--strPos = c < 10 ? c + '0' : c + 'A' - 10;
             }
             while (integer != 0);
+
+			// leading zeros
+			while (fixedLength - (strEnd - strPos) > 0 && strPos > buffer)
+				*--strPos = '0';
 
             Write(strPos);
         }

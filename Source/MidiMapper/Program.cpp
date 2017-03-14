@@ -20,28 +20,35 @@ using namespace ATL::MCU;
 
 // singletons
 Program program;
-PresetManager PresetManagerInstance(&Globals::MemPatch);
+PresetManager PresetManagerInstance(Globals::MemPatch);
 MidiStatus CurrentMidiStatus;
 PageManager Pages;
 
-void AtlDebugWrite(const char* message)
+void ATL::AtlDebugWrite(const char* message)
 {
-    program.Lcd.SetCursor(0, 0);
+	uint8_t c = program.Lcd.getCursorCol();
+	uint8_t r = program.Lcd.getCursorRow();
+
+    program.Lcd.SetCursor(1, 0);
     program.Lcd.Write(message);
+
+	// restore position
+	program.Lcd.SetCursor(r, c);
 }
 
-//bool AtlDebugLevel(uint8_t componentId, DebugLevel level)
+//bool ATL::AtlDebugLevel(uint8_t componentId, DebugLevel level)
 //{
 ////return Bit<7>::IsTrue(componentId);
 //return true;
 //}
 
-static const char SplashLine1[LcdColumns+1] PROGMEM = "    MIDI Master v0.1";
-static const char SplashLine2[LcdColumns+1] PROGMEM = " (C) Canned Bytes 2015";
+static const char SplashLine1[] PROGMEM = "MIDI Master v0.1";
+static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2015";
 
 // char code 246 >
 // char code 247 <
 
+NavigationCommands LastNavCmd = NavigationCommands::None;
 
 void Program::Run()
 {
@@ -59,12 +66,20 @@ void Program::Run()
 
 	if (KeyMatrix.getIsActive())
 	{
-		NavigationCommands navCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
-
-		if (Pages.OnNavigationCommand(navCmd))
+		if (LastNavCmd == NavigationCommands::None)
 		{
-			Pages.Display(&Lcd);
+			LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
+			
+			if (Pages.OnNavigationCommand(LastNavCmd))
+			{
+				//Lcd.ClearDisplay();
+				Pages.Display(&Lcd);
+			}
 		}
+	}
+	else
+	{
+		LastNavCmd = NavigationCommands::None;
 	}
 }
 
@@ -75,8 +90,10 @@ void Program::OpenLcd()
 
 	FixedString<LcdColumns> temp;
 	temp.CopyFromProgMem(SplashLine1);
+	Lcd.SetCursor(0, 4);
 	Lcd.WriteLine(temp);
-	
+
+	Lcd.SetCursor(1, 1);
 	temp.CopyFromProgMem(SplashLine2);
 	Lcd.WriteLine(temp);
 	
@@ -85,7 +102,8 @@ void Program::OpenLcd()
 
  void Program::Initialize()
 {
-	Globals::MemPatch.Clear();
+	Globals::MemPatch[0].Clear();
+	Globals::MemPatch[1].Clear();
     TimerCounter::Start();
     
 	OpenLcd();

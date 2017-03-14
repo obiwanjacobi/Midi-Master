@@ -5,7 +5,7 @@
 using namespace ATL;
 using namespace ATL::MCU;
 
-MidiPatch Globals::MemPatch;
+MidiPatch Globals::MemPatch[];
 MidiInOutPort1T<Globals> Globals::MidiInOutPort1;
 MidiOutPort2T Globals::MidiOutPort2;
 BitArray<uint8_t> Globals::MidiStatus;

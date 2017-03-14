@@ -16,7 +16,7 @@ public:
 #define MidiOut3_Index   3
 #define MidiOut4_Index   4
 
-    static MidiPatch MemPatch;
+    static MidiPatch MemPatch[2];
     static MidiInOutPort1T<Globals> MidiInOutPort1;
     static MidiOutPort2T MidiOutPort2;
     static BitArray<uint8_t> MidiStatus;
@@ -72,19 +72,32 @@ public:
         // TEST
         //
         
-        MemPatch.Name = "NamePreset";
-        MemPatch.Maps[0].Entries[0].Mode = MidiMapEntry::Mode::Normal;
-        MemPatch.Maps[0].Entries[0].Category = Midi::MessageCategory::ControlChange;
-        MemPatch.Maps[0].Entries[0].Channel.SetAny();
-        MemPatch.Maps[0].Entries[0].Identifier.SetAny();
-        MemPatch.Maps[0].Entries[0].Value.SetRange(0, 63);
+        MemPatch[0].Name = "Name Of Patch ";
+        MemPatch[0].Maps[0].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+        MemPatch[0].Maps[0].Entries[0].Category = Midi::MessageCategory::ControlChange;
+        MemPatch[0].Maps[0].Entries[0].Channel.SetAny();
+        MemPatch[0].Maps[0].Entries[0].Identifier.SetAny();
+        MemPatch[0].Maps[0].Entries[0].Value.SetRange(0, 63);
 
-        MemPatch.Maps[1].Entries[0].Mode = MidiMapEntry::Mode::Normal;
-        MemPatch.Maps[1].Entries[0].Category = Midi::MessageCategory::ControlChange;
-        MemPatch.Maps[1].Entries[0].Channel.SetAny();
-        MemPatch.Maps[1].Entries[0].Identifier.SetAny();
-        MemPatch.Maps[1].Entries[0].Value.SetRange(64, 127);
+        MemPatch[0].Maps[1].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+        MemPatch[0].Maps[1].Entries[0].Category = Midi::MessageCategory::ControlChange;
+        MemPatch[0].Maps[1].Entries[0].Channel.SetAny();
+        MemPatch[0].Maps[1].Entries[0].Identifier.SetAny();
+        MemPatch[0].Maps[1].Entries[0].Value.SetRange(64, 127);
         
+
+		MemPatch[1].Name = "My other Patch";
+		MemPatch[1].Maps[0].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+		MemPatch[1].Maps[0].Entries[0].Category = Midi::MessageCategory::ControlChange;
+		MemPatch[1].Maps[0].Entries[0].Channel.SetAny();
+		MemPatch[1].Maps[0].Entries[0].Identifier.SetAny();
+		MemPatch[1].Maps[0].Entries[0].Value.SetRange(0, 63);
+
+		MemPatch[1].Maps[1].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+		MemPatch[1].Maps[1].Entries[0].Category = Midi::MessageCategory::ControlChange;
+		MemPatch[1].Maps[1].Entries[0].Channel.SetAny();
+		MemPatch[1].Maps[1].Entries[0].Identifier.SetAny();
+		MemPatch[1].Maps[1].Entries[0].Value.SetRange(64, 127);
     }
     
 private:

@@ -30,6 +30,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "Panel.h"
 #include "VerticalPanel.h"
 
+#include "Debug.h"
+
 namespace ATL {
 
     /** The Page class manages the Lines that are displayed together as one (page).
@@ -104,7 +106,7 @@ namespace ATL {
          *  \param output is used to output text and position the cursor.
          *  \param mode is not used and is ignored.
          */
-        virtual void Display(DisplayWriter* output, ControlDisplayMode /*mode*/ = ControlDisplayMode::Normal)
+        void Display(DisplayWriter* output, ControlDisplayMode /*mode*/ = ControlDisplayMode::Normal) override
         {
             BaseT::Display(output, ControlDisplayMode::Normal);
             DisplayCursor(output);
@@ -115,7 +117,7 @@ namespace ATL {
          *  the current line.
          *  \param navCmd is the navigation command.
          */
-        virtual bool OnNavigationCommand(NavigationCommands navCmd)
+        bool OnNavigationCommand(NavigationCommands navCmd) override
         {
             bool handled = false;
 
@@ -131,21 +133,38 @@ namespace ATL {
                 break;
             }
 
-            if (handled) return true;
+            if (handled) { return true; }
 
-            // skip VerticalPanel!
-            return PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
+            // Skip VerticalPanel because we reimplemented line navigation (up/down) here.
+            handled = PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
+			return handled;
         }
 
         /** Overridden to implement the typePage type flag.
          *  \param type indicates the requested type.
          *  \return Returns true if the type flag matches the class hierarchy.
          */
-        virtual bool IsOfType(ControlTypes type) const
+        bool IsOfType(ControlTypes type) const override
         {
-            //return ((ControlTypes::Page & type.value) == ControlTypes::Page) || BaseT::IsOfType(type);
             return type.HasFlag(ControlTypes::Page) || BaseT::IsOfType(type);
         }
+
+		/** Selects the first line if no current line is set / if no Control is currently selected.
+         *  \return Returns true if successful.
+         */
+		bool TryUnselectCurrent()
+		{
+			InputControl* currentCtrl = getCurrentInputControl();
+
+			if (currentCtrl != NULL && 
+				currentCtrl->getIsSelected())
+			{
+				BaseT::setCurrentControl(NULL);
+				return true;
+			}
+
+			return false;
+		}
 
         /** Selects the next line -or the first if no current line is set- if no Control is currently selected.
          *  \return Returns true if successful.
@@ -204,7 +223,7 @@ namespace ATL {
 
     protected:
         /** Implements displaying the cursor.
-         *  Calls `Display()` on the current control on the current line with `modeCursor`
+         *  Calls `Display()` on the current control on the current line with `ControlDisplayMode::Cursor`
          *  or turns the cursor of if no current control is available.
          *  \param output is used to set the cursor position.
          */

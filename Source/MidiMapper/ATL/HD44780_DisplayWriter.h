@@ -59,11 +59,7 @@ namespace ATL {
          */
         virtual void GoTo(uint8_t lineIndex, uint8_t columnIndex)
         {
-            if (lineIndex == DontCare)
-                lineIndex = BaseT::getCursorRow();
-            if (columnIndex == DontCare)
-                columnIndex = BaseT::getCursorCol();
-
+            ResolveDontCare(lineIndex, columnIndex);
             BaseT::SetCursor(lineIndex, columnIndex);
         }
 
@@ -86,16 +82,27 @@ namespace ATL {
                 BaseT::setEnableCursor(true);
             }
 
-            if (BaseT::getEnableBlink() != edit)
+            if (BaseT::getEnableBlink() == edit)
             {
-                BaseT::setEnableBlink(edit);
+                BaseT::setEnableBlink(!edit);
             }
 
+			ResolveDontCare(lineIndex, columnIndex);
             BaseT::SetCursor(lineIndex, columnIndex);
         }
         
         using BaseT::SetCursor;
+
+	private:
+		void ResolveDontCare(uint8_t &lineIndex, uint8_t &columnIndex)
+		{
+			if (lineIndex == DontCare)
+				lineIndex = BaseT::getCursorRow();
+			if (columnIndex == DontCare)
+				columnIndex = BaseT::getCursorCol();
+		}
     };
+
 
 
 } // ATL
