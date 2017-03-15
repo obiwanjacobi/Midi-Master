@@ -161,7 +161,7 @@ namespace MidiMapperTests2
         };
 
         [TestMethod]
-        void Write_WrapAround_False()
+        void Write_WrapAround_True()
         {
             RingBufferFast<uint8_t, 5> tested;
             tested.Write(42);

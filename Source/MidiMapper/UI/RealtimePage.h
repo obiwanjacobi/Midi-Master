@@ -54,8 +54,7 @@ class RealtimeLine2 : public Line<5>
     
 public:
     RealtimeLine2()
-        : BaseT(1), 
-        Out1NoteLabel(0), Out2NoteLabel(6), Out3NoteLabel(12), Out4NoteLabel(18)
+        : Out1NoteLabel(0), Out2NoteLabel(6), Out3NoteLabel(12), Out4NoteLabel(18)
     {
 		Add(&Out1NoteLabel);
 		Add(&Out2NoteLabel);

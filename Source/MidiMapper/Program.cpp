@@ -24,13 +24,19 @@ PresetManager PresetManagerInstance(Globals::MemPatch);
 MidiStatus CurrentMidiStatus;
 PageManager Pages;
 
+uint8_t DebugCol = 0;
+
 void ATL::AtlDebugWrite(const char* message)
 {
 	uint8_t c = program.Lcd.getCursorCol();
 	uint8_t r = program.Lcd.getCursorRow();
 
-    program.Lcd.SetCursor(1, 0);
+    program.Lcd.SetCursor(1, DebugCol);
     program.Lcd.Write(message);
+
+	DebugCol = program.Lcd.getCursorCol();
+	if (DebugCol > 24)
+		DebugCol = 0;
 
 	// restore position
 	program.Lcd.SetCursor(r, c);
@@ -72,7 +78,6 @@ void Program::Run()
 			
 			if (Pages.OnNavigationCommand(LastNavCmd))
 			{
-				//Lcd.ClearDisplay();
 				Pages.Display(&Lcd);
 			}
 		}

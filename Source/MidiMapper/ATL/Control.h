@@ -40,7 +40,7 @@ namespace ATL {
         Control = 0x01,
         /** Control type is an input control (navigation). */
         InputControl = 0x02,
-        /** Control type is a control panel (collection). */
+        /** Control type is a control panel (current selection). */
         Panel = 0x03,
         /** Control type is page (lines with controls). */
         Page = 0x04,

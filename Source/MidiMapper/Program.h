@@ -27,8 +27,8 @@ private:
     
     #define KeyLeft 8
     #define KeyRight 128
-    #define KeyUp 64
-    #define KeyDown 4
+    #define KeyUp 4
+    #define KeyDown 64
     #define KeyEnter 32
     #define KeyExit 2
     NavigationCommands TranslateKeyToCommand(uint8_t keyCode);

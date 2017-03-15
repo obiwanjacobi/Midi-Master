@@ -68,10 +68,10 @@ namespace ATL {
 
             switch (navCmd.value)
             {
-            case NavigationCommands::Up:
+            case NavigationCommands::Down:
                 handled = TryValueUp();
                 break;
-            case NavigationCommands::Down:
+            case NavigationCommands::Up:
                 handled = TryValueDown();
                 break;
             default:

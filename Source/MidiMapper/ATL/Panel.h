@@ -43,16 +43,17 @@ namespace ATL {
         }
 
         /** Assigns the current control to ctrl.
-         *  The old current control (if any) will be set to `stateNormal`.
-         *  The new current control (ctrl - if not NULL) will be set to `stateFocused`.
+         *  The old current control (if any) will be set to `Normal`.
+         *  The new current control (ctrl - if not NULL) will be set to `Focused`.
+		 *  The state of the Panel will reflect the state of the current control.
          *  \param ctrl is the control make current. Can be NULL.
          */
-        void setCurrentControl(InputControl* ctrl)
+        inline void setCurrentControl(InputControl* ctrl)
         {
             if (_currentControl != NULL)
             {
                 _currentControl->setState(ControlState::Normal);
-                setState(ControlState::Normal);
+				setState(ControlState::Normal);
             }
 
             _currentControl = ctrl;
@@ -89,13 +90,12 @@ namespace ATL {
             return false;
         }
 
-        /** Overridden to respond to the `typePanel` type.
+        /** Overridden to respond to the `Panel` type.
          *  \param type the requested type.
          *  \return Returns true if the type is part of the class hierarchy.
          */
         bool IsOfType(ControlTypes type) const override
         {
-            //return ((ControlTypes::Panel & type.value) == ControlTypes::Panel) || InputControl::IsOfType(type);
             return type.HasFlag(ControlTypes::Panel) || InputControl::IsOfType(type);
         }
 
@@ -107,11 +107,11 @@ namespace ATL {
             : InputControl(pos), _currentControl(NULL)
         { }
 
-        /** Overridden to disallow `stateSelected`
+        /** Overridden to disallow `Selected`
          *  \param newState is the proposed state.
          *  \return Returns true if the state change may occur.
          */
-        virtual bool BeforeChangeState(ControlState newState)
+        bool BeforeChangeState(ControlState newState) override
         {
             return newState != ControlState::Selected && 
                    InputControl::BeforeChangeState(newState);

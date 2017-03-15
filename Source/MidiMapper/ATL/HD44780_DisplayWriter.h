@@ -22,6 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #define __HD44780_DISPLAYWRITER_H__
 
 #include "DisplayWriter.h"
+#include "Debug.h"
 
 namespace ATL {
 
@@ -44,7 +45,7 @@ namespace ATL {
         /** Calls the `TextWriter::Write` method.
          *  \param text points to a zero-terminated string.
          */
-        virtual void Display(const char* text)
+        void Display(const char* text) override
         {
             BaseT::Write(text);
         }
@@ -57,7 +58,7 @@ namespace ATL {
          *  \param lineIndex indicates the display line.
          *  \param columnIndex indicates the display column (char position).
          */
-        virtual void GoTo(uint8_t lineIndex, uint8_t columnIndex)
+        void GoTo(uint8_t lineIndex, uint8_t columnIndex) override
         {
             ResolveDontCare(lineIndex, columnIndex);
             BaseT::SetCursor(lineIndex, columnIndex);
@@ -69,10 +70,13 @@ namespace ATL {
          *  \param columnIndex indicates the display column (char position).
          *  \param edit indicates if a blinking cursor is displayed.
          */
-        virtual void EnableCursor(uint8_t lineIndex, uint8_t columnIndex, bool edit)
+        void EnableCursor(uint8_t lineIndex, uint8_t columnIndex, bool edit) override
         {
             if (lineIndex == DontCare && columnIndex == DontCare)
             {
+				// This could be more efficient with SetDisplayControl 
+				// but that would also put another requirement on BaseT.
+				BaseT::setEnableBlink(false);
                 BaseT::setEnableCursor(false);
                 return;
             }
@@ -87,8 +91,7 @@ namespace ATL {
                 BaseT::setEnableBlink(!edit);
             }
 
-			ResolveDontCare(lineIndex, columnIndex);
-            BaseT::SetCursor(lineIndex, columnIndex);
+			GoTo(lineIndex, columnIndex);
         }
         
         using BaseT::SetCursor;
