@@ -12,8 +12,11 @@
 #include "MidiOutNoteNavigationControl.h"
 #include "MidiInNoteControl.h"
 #include "PatchSelectControl.h"
+#include "NameTextControl.h"
 
 using namespace ATL;
+
+typedef NameTextControl<PatchNameMaxLength> PatchNameTextControl;
 
 template<typename PageManagerT>
 class RealtimeLine1 : public Line<7>
@@ -22,29 +25,45 @@ class RealtimeLine1 : public Line<7>
 
 public:
     RealtimeLine1()
-        : PatchNumber(0), PatchNameText(3), InNoteLabel(21)
+        : PatchNumber(this, 0), PatchNameText(3), InNoteLabel(21)
     {
         Add(&PatchNumber);
 		Add(&PatchNameText);
         Add(&InNoteLabel);
     }
     
-    PatchSelectControl PatchNumber;
-	// TODO: change into TextControl
-	LabelControl PatchNameText;
+    PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;
+	PatchNameTextControl PatchNameText;
     MidiInNoteControl InNoteLabel;
 
-	inline void Display(DisplayWriter* output, ControlDisplayMode mode) override
+	// PatchSelectControl callbacks
+	inline const char* getText()
 	{
-		Refresh();
-		BaseT::Display(output, mode);
+		uint8_t val = PresetManager::getCurrent()->getCurrentPresetIndex() + 1;
+
+		_str.Clear();
+		_str.Write(val, 2);
+		return (const char*)_str;
 	}
-	
+
+	inline void IncrementValue()
+	{
+		PresetManager* presetMgr = PresetManager::getCurrent();
+		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + 1);
+
+		PatchNameText.RefreshString();
+	}
+
+	inline void DecrementValue()
+	{
+		PresetManager* presetMgr = PresetManager::getCurrent();
+		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() - 1);
+
+		PatchNameText.RefreshString();
+	}
+
 private:
-	inline void Refresh()
-	{
-		PatchNameText.setText(PresetManager::getCurrent()->getCurrentPresetName());
-	}
+	StringWriter<2> _str;
 };
 
 template<typename PageManagerT>

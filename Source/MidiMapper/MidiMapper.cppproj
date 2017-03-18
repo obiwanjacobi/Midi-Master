@@ -300,6 +300,9 @@
     <Compile Include="ATL\DisplayWriter.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ATL\EditControl.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ATL\EnumScope.h">
       <SubType>compile</SubType>
     </Compile>

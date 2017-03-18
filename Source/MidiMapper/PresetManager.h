@@ -15,7 +15,7 @@ public:
 		_firstPatch = memPatch;
         _currentPatch = memPatch;
     }
-        
+
 	inline bool LoadPreset(uint8_t index)
 	{
 		if (index > 1)
@@ -23,9 +23,15 @@ public:
 			return false;
 		}
 
+		// TEMP!
 		_currentPatch = _firstPatch + index;
 		_index = index;
 		return true;
+	}
+
+	inline PatchNameString* getPatchNameString() const
+	{
+		return &_currentPatch->Name;
 	}
 
 	inline uint8_t getCurrentPresetIndex() const
@@ -38,6 +44,11 @@ public:
         return _currentPatch->Name;
     }
     
+	inline void MarkDirty()
+	{
+		_isDirty = true;
+	}
+
     inline bool getIsDirty() const
     {
         return _isDirty;

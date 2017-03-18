@@ -21,6 +21,8 @@ void Globals::OpenMidiPorts()
     
     MidiOutPort2.OpenAsync(config);
     MidiOutPort2.Transmit.setEnable();
+
+	// TODO: MidiOutPort3 and MidiOutPort4
     
     MidiInOutPort1.Receive.setEnableIsCompleteInterrupt();
 }

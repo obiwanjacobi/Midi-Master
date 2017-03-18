@@ -12,6 +12,7 @@ class Registers;
 
 // imitate DoxyGen to get compatible definitions.
 #define __DOXYGEN__
+#define __extension__
 
 #ifdef __ATTR_PURE__
 #undef __ATTR_PURE__

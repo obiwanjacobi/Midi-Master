@@ -12,13 +12,14 @@ public:
         return _instance;
     }
     
-protected:
     Singleton()
     {
         _instance = (T*)this;
     }
     
+private:
     static T* _instance;
+
 };
 
 template<typename T>

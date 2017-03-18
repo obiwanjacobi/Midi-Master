@@ -29,7 +29,7 @@ namespace ATL {
     /** The UpDownControl edits a value with the `Up` and `Down` commands.
      *  Management of the value itself is outside this class.
      *  \tparam ValueT represents the type that controls the value and implements:
-     *  `const char* ToString()`
+     *  `const char* getText()`
      *  `void IncrmentValue()`
      *  `void DecrmentValue()`.
      */
@@ -54,7 +54,11 @@ namespace ATL {
         {
             if (mode == ControlDisplayMode::Normal)
             {
-                output->Display(_value->ToString());
+				const char* text = _value->getText();
+				if (text != NULL)
+				{
+					output->Display(text);
+				}
             }
         }
 

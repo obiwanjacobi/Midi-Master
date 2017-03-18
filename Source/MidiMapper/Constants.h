@@ -7,7 +7,7 @@
 #endif
 
 // string lengths (incl. terminating zero)
-#define MaxPatchNameLength 15
+#define PatchNameMaxLength 15
 
 // memory layout definitions
 #define MaxPatches 32

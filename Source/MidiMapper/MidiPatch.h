@@ -6,10 +6,12 @@
 #include "DataTypes.h"
 #include "MidiMap.h"
 
+typedef FixedString<PatchNameMaxLength> PatchNameString;
+
 class MidiPatch
 {
 public:
-	FixedString<MaxPatchNameLength> Name;
+	PatchNameString Name;
 	FixedArray<MidiMap, MaxMaps> Maps;
 
 	inline void Clear()
