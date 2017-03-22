@@ -50,7 +50,7 @@ namespace ATL {
          */
         void Clear()
         {
-			LockScope lock();
+			LockScope lock;
 			
             _writeIndex = 0;
             _readIndex = 0;
@@ -63,7 +63,7 @@ namespace ATL {
          */
         bool Write(T value)
         {
-			LockScope lock();
+			LockScope lock;
 			
             // check for overrun
             if ((_writeIndex + 1) >= Size)
@@ -90,7 +90,7 @@ namespace ATL {
          */
         T Read()
         {
-			LockScope lock();
+			LockScope lock;
 			
             T result = _buffer[_readIndex];
             _readIndex++;
@@ -108,7 +108,7 @@ namespace ATL {
          */
         inline uint16_t getCount() const
         {
-			LockScope lock();
+			LockScope lock;
 			
             if (_writeIndex >= _readIndex)
             {

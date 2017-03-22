@@ -5,6 +5,11 @@
 
 namespace ATL {
 
+// To be able to remove it for unit tests.
+#ifndef ASM_VOLATILE
+#define  ASM_VOLATILE(s)  __asm__ volatile (s)
+#endif
+
 class LockScope
 {
 public:
@@ -21,13 +26,13 @@ public:
 	inline void Enter()
 	{
 		_sreg = SREG;
-		__asm__ volatile ("cli" ::: "memory");
+		ASM_VOLATILE("cli" ::: "memory");
 	}
 	
 	inline void Exit()
 	{
 		SREG = _sreg;
-		__asm__ volatile ("" ::: "memory");
+		ASM_VOLATILE("" ::: "memory");
 	}
 		
 private:

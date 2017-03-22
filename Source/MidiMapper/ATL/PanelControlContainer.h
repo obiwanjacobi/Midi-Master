@@ -45,8 +45,8 @@ namespace ATL {
          */
         bool SetFirstInputControl()
         {
-            InputControl* ctrl = (InputControl*)BaseT::getNext(NULL, ControlTypes::InputControl);
-            if (ctrl != NULL)
+            InputControl* ctrl = (InputControl*)BaseT::getNext(nullptr, ControlTypes::InputControl);
+            if (ctrl != nullptr)
             {
                 setCurrentControl(ctrl);
                 return true;
@@ -61,7 +61,7 @@ namespace ATL {
         bool SetNextInputControl()
         {
             InputControl* ctrl = (InputControl*)BaseT::getNext(getCurrentControl(), ControlTypes::InputControl);
-            if (ctrl != NULL)
+            if (ctrl != nullptr)
             {
                 setCurrentControl(ctrl);
                 return true;
@@ -76,7 +76,7 @@ namespace ATL {
         bool SetPreviousInputControl()
         {
             InputControl* ctrl = (InputControl*)BaseT::getPrevious(getCurrentControl(), ControlTypes::InputControl);
-            if (ctrl != NULL)
+            if (ctrl != nullptr)
             {
                 setCurrentControl(ctrl);
                 return true;

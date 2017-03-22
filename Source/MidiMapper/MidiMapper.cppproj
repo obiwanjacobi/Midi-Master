@@ -252,9 +252,6 @@
     <Compile Include="ATL\Bit.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="ATL\BitArray.cpp">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="ATL\BitArray.h">
       <SubType>compile</SubType>
     </Compile>

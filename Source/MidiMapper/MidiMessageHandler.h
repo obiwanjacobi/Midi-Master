@@ -24,7 +24,7 @@ public:
     {
         if (!BaseT::getIsEmpty())
         {
-            StateT::MidiStatus.Set(0);
+            StateT::MidiStatus.Set(MidiIn_Index);
         }
         
         return BaseT::Read();
@@ -34,11 +34,11 @@ protected:
 	// MidiReader methods
 	void OnMessage(MidiMessage* midiMsg)
 	{
-		if (midiMsg == NULL) return;
+		if (midiMsg == nullptr) return;
 		
 		for (uint8_t i = 0; i < MaxMaps; i++)
 		{
-			MessageTestResult result = StateT::MemPatch.Maps[i].TestMap(midiMsg);
+			MessageTestResult result = StateT::MemPatch[0].Maps[i].TestMap(midiMsg);
 
 			switch (result.value)
 			{
@@ -77,14 +77,12 @@ protected:
 	}
 
 	void OnSysEx(MidiMessageHandler* unused)
-	{
-		
-	}
+	{ }
 
 private:
 	void ExecuteMap(uint8_t mapIndex, MidiMessage* inputMsg)
 	{
-		MidiMap map = StateT::MemPatch.Maps[mapIndex];
+		MidiMap map = StateT::MemPatch[0].Maps[mapIndex];
 		MidiMessage outputMsg;
 
 		for (uint8_t i = 0; i < MaxMapEntries; i++)

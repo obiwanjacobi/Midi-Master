@@ -123,7 +123,7 @@ namespace ATL {
         /** Constructor for derived classes.
          */
         ArrayRef()
-            : _arr(NULL)
+            : _arr(nullptr)
         { }
 
         /** Initializes the internal reference to the array.

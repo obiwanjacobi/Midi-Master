@@ -7,7 +7,7 @@
 
 using namespace ATL;
 
-static const char* ActivityChar = "!";
+static const char* ActivityChar = "\0x07";
 static const char* OutText = "Out";
 
 template<typename PageManagerT, const uint8_t OutputIndex>

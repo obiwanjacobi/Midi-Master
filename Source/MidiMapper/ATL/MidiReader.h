@@ -27,7 +27,7 @@ namespace ATL {
 
     /** The MidiReader class reads raw bytes from an input stream and notifies when a complete MidiMessage is constructed.
      *  \tparam BaseT is used as a base class and implements:
-     *  `uint16_t getLength() const`
+     *  `bool getIsEmpty() const`
      *  `int16_t Read()`
      *  `void OnMessage(MidiMessage*)` Called when a MidiMessage is available.
      *  `void OnRealTime(Midi::MessageTypes)` Called when a real-time message is available.
@@ -111,7 +111,7 @@ namespace ATL {
 
         void ResetState()
         {
-			_midiMsg.Clear();
+            _midiMsg.Clear();
             _parseState = StatusByte;
             _endState = NotSet;
         }

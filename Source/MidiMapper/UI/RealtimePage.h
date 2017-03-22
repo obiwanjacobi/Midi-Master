@@ -25,11 +25,13 @@ class RealtimeLine1 : public Line<7>
 
 public:
     RealtimeLine1()
-        : PatchNumber(this, 0), PatchNameText(3), InNoteLabel(21)
+        : PatchNumber(this, 0), PatchNameText(3), InNoteLabel(23)
     {
         Add(&PatchNumber);
 		Add(&PatchNameText);
         Add(&InNoteLabel);
+
+		PatchNameText.setString(PresetManager::getCurrent()->getPatchNameString());
     }
     
     PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;
@@ -48,22 +50,24 @@ public:
 
 	inline void IncrementValue()
 	{
-		PresetManager* presetMgr = PresetManager::getCurrent();
-		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + 1);
-
-		PatchNameText.RefreshString();
+		MoveToPatch(1);
 	}
 
 	inline void DecrementValue()
 	{
-		PresetManager* presetMgr = PresetManager::getCurrent();
-		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() - 1);
-
-		PatchNameText.RefreshString();
+		MoveToPatch(-1);
 	}
 
 private:
 	StringWriter<2> _str;
+
+	inline void MoveToPatch(int8_t delta)
+	{
+		PresetManager* presetMgr = PresetManager::getCurrent();
+		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + delta);
+
+		PatchNameText.setString(presetMgr->getPatchNameString());
+	}
 };
 
 template<typename PageManagerT>
@@ -104,16 +108,17 @@ public:
     
     void PartialDisplay(DisplayWriter* output)
     {
-		// TODO:
+		output->GoTo(0, Line1.InNoteLabel.getPosition());
+		Line1.InNoteLabel.Display(output);
     }
     
     Task_BeginWithParams(DisplayActivity, DisplayWriter* output)
     {
-		PartialDisplay(output);
-
         if (MidiStatus::getCurrent()->getMidiIsActive())
         {
+			PartialDisplay(output);
             Task_YieldUntil(TaskScheduler::Wait(getId(), 30));
+			PartialDisplay(output);
         }
     }
     Task_End

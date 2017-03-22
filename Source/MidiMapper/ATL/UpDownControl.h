@@ -55,7 +55,7 @@ namespace ATL {
             if (mode == ControlDisplayMode::Normal)
             {
 				const char* text = _value->getText();
-				if (text != NULL)
+				if (text != nullptr)
 				{
 					output->Display(text);
 				}

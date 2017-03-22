@@ -3,7 +3,7 @@
 
 #include "MessageManager.h"
 #include "MessageField.h"
-#
+
 class MidiTransform
 {
 public:

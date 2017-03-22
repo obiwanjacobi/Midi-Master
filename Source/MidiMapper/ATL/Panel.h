@@ -50,7 +50,7 @@ namespace ATL {
          */
         inline void setCurrentControl(InputControl* ctrl)
         {
-            if (_currentControl != NULL)
+            if (_currentControl != nullptr)
             {
                 _currentControl->setState(ControlState::Normal);
 				setState(ControlState::Normal);
@@ -58,7 +58,7 @@ namespace ATL {
 
             _currentControl = ctrl;
 
-            if (_currentControl != NULL)
+            if (_currentControl != nullptr)
             {
                 _currentControl->setState(ControlState::Focused);
                 setState(ControlState::Focused);
@@ -71,7 +71,7 @@ namespace ATL {
          */
         void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
         {
-            if (_currentControl != NULL)
+            if (_currentControl != nullptr)
             {
                 _currentControl->Display(output, mode);
             }
@@ -82,7 +82,7 @@ namespace ATL {
          */
         bool OnNavigationCommand(NavigationCommands navCmd) override
         {
-            if (_currentControl != NULL)
+            if (_currentControl != nullptr)
             {
                 return _currentControl->OnNavigationCommand(navCmd);
             }
@@ -104,7 +104,7 @@ namespace ATL {
          *  \param pos is the optional control position.
          */
         Panel(uint8_t pos = 0)
-            : InputControl(pos), _currentControl(NULL)
+            : InputControl(pos), _currentControl(nullptr)
         { }
 
         /** Overridden to disallow `Selected`

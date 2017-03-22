@@ -86,7 +86,7 @@ namespace ATL {
         template<const DebugLevel::type debugLevel>
         inline static void Log(const char* message)
         {
-            if (AtlDebugWrite == NULL) return;
+            if (AtlDebugWrite == nullptr) return;
             if (!CanLog<debugLevel>()) return;
             AtlDebugWrite(message);
         }
@@ -99,7 +99,7 @@ namespace ATL {
         template<const DebugLevel::type debugLevel>
         inline static bool CanLog()
         {
-            if (AtlDebugLevel == NULL) return true;
+            if (AtlDebugLevel == nullptr) return true;
             return AtlDebugLevel(ComponentId, debugLevel);
         }
 

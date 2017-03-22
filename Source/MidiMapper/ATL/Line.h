@@ -52,7 +52,7 @@ namespace ATL {
         Line(Control* control1, uint8_t pos = 0)
             : BaseT(pos)
         {
-            if (control1 != NULL) BaseT::Add(control1);
+            if (control1 != nullptr) BaseT::Add(control1);
         }
 
         /** Constructs the instance.
@@ -63,8 +63,8 @@ namespace ATL {
         Line(Control* control1, Control* control2, uint8_t pos = 0)
             : BaseT(pos)
         {
-            if (control1 != NULL) BaseT::Add(control1);
-            if (control2 != NULL) BaseT::Add(control2);
+            if (control1 != nullptr) BaseT::Add(control1);
+            if (control2 != nullptr) BaseT::Add(control2);
         }
 
         /** Constructs the instance.
@@ -76,9 +76,9 @@ namespace ATL {
         Line(Control* control1, Control* control2, Control* control3, uint8_t pos = 0)
             : BaseT(pos)
         {
-            if (control1 != NULL) BaseT::Add(control1);
-            if (control2 != NULL) BaseT::Add(control2);
-            if (control3 != NULL) BaseT::Add(control3);
+            if (control1 != nullptr) BaseT::Add(control1);
+            if (control2 != nullptr) BaseT::Add(control2);
+            if (control3 != nullptr) BaseT::Add(control3);
         }
 
         /** Constructs the instance.
@@ -91,10 +91,10 @@ namespace ATL {
         Line(Control* control1, Control* control2, Control* control3, Control* control4, uint8_t pos = 0)
             : BaseT(pos)
         {
-            if (control1 != NULL) BaseT::Add(control1);
-            if (control2 != NULL) BaseT::Add(control2);
-            if (control3 != NULL) BaseT::Add(control3);
-            if (control4 != NULL) BaseT::Add(control4);
+            if (control1 != nullptr) BaseT::Add(control1);
+            if (control2 != nullptr) BaseT::Add(control2);
+            if (control3 != nullptr) BaseT::Add(control3);
+            if (control4 != nullptr) BaseT::Add(control4);
         }
 
         /** Constructs the instance.
@@ -108,11 +108,11 @@ namespace ATL {
         Line(Control* control1, Control* control2, Control* control3, Control* control4, Control* control5, uint8_t pos = 0)
             : BaseT(pos)
         {
-            if (control1 != NULL) BaseT::Add(control1);
-            if (control2 != NULL) BaseT::Add(control2);
-            if (control3 != NULL) BaseT::Add(control3);
-            if (control4 != NULL) BaseT::Add(control4);
-            if (control5 != NULL) BaseT::Add(control5);
+            if (control1 != nullptr) BaseT::Add(control1);
+            if (control2 != nullptr) BaseT::Add(control2);
+            if (control3 != nullptr) BaseT::Add(control3);
+            if (control4 != nullptr) BaseT::Add(control4);
+            if (control5 != nullptr) BaseT::Add(control5);
         }
     };
 

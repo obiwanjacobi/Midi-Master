@@ -90,7 +90,7 @@ namespace ATL {
          */
         inline void Add(Panel* line)
         {
-            if (line == NULL) return;
+            if (line == nullptr) return;
 
             if (line->getPosition() == 0)
             {
@@ -159,10 +159,10 @@ namespace ATL {
 		{
 			InputControl* currentCtrl = getCurrentInputControl();
 
-			if (currentCtrl != NULL && 
+			if (currentCtrl != nullptr && 
 				currentCtrl->getIsFocussed())
 			{
-				BaseT::setCurrentControl(NULL);
+				BaseT::setCurrentControl(nullptr);
 				return true;
 			}
 
@@ -176,8 +176,8 @@ namespace ATL {
         {
             InputControl* currentCtrl = getCurrentInputControl();
 
-            if (currentCtrl == NULL ||
-				(currentCtrl != NULL && !currentCtrl->getIsSelected()))
+            if (currentCtrl == nullptr ||
+				(currentCtrl != nullptr && !currentCtrl->getIsSelected()))
             {
 	            if (BaseT::SetNextInputControl())
 	            {
@@ -196,8 +196,8 @@ namespace ATL {
         {
             InputControl* currentCtrl = getCurrentInputControl();
 
-            if (currentCtrl == NULL ||
-				(currentCtrl != NULL && !currentCtrl->getIsSelected()))
+            if (currentCtrl == nullptr ||
+				(currentCtrl != nullptr && !currentCtrl->getIsSelected()))
             {
 	            if (BaseT::SetPreviousInputControl())
 	            {
@@ -224,12 +224,12 @@ namespace ATL {
         {
             Panel* currentLine = getCurrentLine();
 
-            if (currentLine != NULL)
+            if (currentLine != nullptr)
             {
                 return currentLine->getCurrentControl();
             }
 
-            return NULL;
+            return nullptr;
         }
 
     protected:
@@ -242,7 +242,7 @@ namespace ATL {
         {
             InputControl* ctrl = getCurrentInputControl();
 
-            if (ctrl != NULL && 
+            if (ctrl != nullptr && 
 				ctrl->getIsActive())
             {
                 Panel* line = getCurrentLine();
@@ -264,8 +264,8 @@ namespace ATL {
 		{
 			Panel* line = getCurrentLine();
 
-			if (line != NULL &&
-				line->getCurrentControl() == NULL)
+			if (line != nullptr &&
+				line->getCurrentControl() == nullptr)
 			{
 				// there is no other way to access the control collection
 				return line->OnNavigationCommand(NavigationCommands::Right);

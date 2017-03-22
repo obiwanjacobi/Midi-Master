@@ -70,7 +70,7 @@ namespace ATL {
          */
         inline int16_t getCount() const
         {
-            return strlen(this);
+            return strlen((const char*)this);
         }
 
         /** Copy's in the specified text.

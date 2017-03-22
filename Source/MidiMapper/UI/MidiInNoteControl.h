@@ -13,13 +13,13 @@ public:
         : Control(pos)
     { }
     
-    inline virtual void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal)
+    inline void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
     {
         if (mode == ControlDisplayMode::Cursor) return;
         
         if (MidiStatus::getCurrent()->getMidiInIsActive())
         {
-            output->Display("*");
+            output->Display("!");
         }
         else
         {

@@ -194,8 +194,8 @@ namespace ATL {
         /** Reverses the order of all bits in the BitArray.
          *  Most significant bits become least significant. Bit0 -> BitX / BitX -> Bit0.
          */
-        void Reverse();
-        /*{
+        void Reverse()
+        {
             T rv = 0;
             for (uint8_t i = 0; i < getMaxBits(); ++i, _bits >>= 1)
             {
@@ -203,7 +203,7 @@ namespace ATL {
             }
 
             _bits = rv;
-        }*/
+        }
 
         /** Returns the maximum number of bits that can be stored.
          *  \return Returns the number of bits that can be stored in T.
@@ -268,7 +268,6 @@ namespace ATL {
             return (index + count) <= getMaxBits();
         }
     };
-
 
 } //ATL
 

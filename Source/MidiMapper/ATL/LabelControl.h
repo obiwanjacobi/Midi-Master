@@ -38,7 +38,7 @@ namespace ATL {
          *  \param pos is the position relative to its siblings.
          */
         LabelControl(uint8_t pos = 0)
-            : Control(pos), _text(NULL)
+            : Control(pos), _text(nullptr)
         { }
 
         /** Constructs an initialized instance with an optional position.
@@ -58,7 +58,7 @@ namespace ATL {
         {
             if (mode == ControlDisplayMode::Cursor) return;
 
-            if (_text != NULL)
+            if (_text != nullptr)
             {
                 output->Display(_text);
             }

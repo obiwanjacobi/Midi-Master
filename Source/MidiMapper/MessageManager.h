@@ -62,6 +62,7 @@ public:
 
 		return 0;
 	}
+
 private:
 	MidiMessage* _midiMsg;
 };

@@ -49,7 +49,7 @@ void ATL::AtlDebugWrite(const char* message)
 //}
 
 static const char SplashLine1[] PROGMEM = "MIDI Master v0.1";
-static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2015";
+static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2017";
 
 // char code 246 >
 // char code 247 <
@@ -61,25 +61,27 @@ void Program::Run()
     uint32_t deltaTime = TaskScheduler::Update();
     
     // while() ensures that all midi bytes are processed as one message - as fast as possible
-	//while(Globals::MidiInOutPort1.Receive.ReadByte());
+	while(Globals::MidiInOutPort1.Receive.ReadByte());
 
-    //if (Pages.IsCurrentScreen(&Pages.RealtimeScreen))
-    //{
-        //Pages.RealtimeScreen.DisplayActivity(&Lcd);
-    //}
+    if (Pages.IsCurrentScreen(&Pages.RealtimeScreen))
+    {
+        Pages.RealtimeScreen.DisplayActivity(&Lcd);
+    }
     
     KeyMatrix.ScanButton();
 
-	if (KeyMatrix.getIsActive())
+	if (KeyMatrix.getIsActive() &&
+		LastNavCmd == NavigationCommands::None)
 	{
-		if (LastNavCmd == NavigationCommands::None)
-		{
-			LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
+		LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
 			
-			if (Pages.OnNavigationCommand(LastNavCmd))
-			{
-				Pages.Display(&Lcd);
-			}
+		if (Pages.OnNavigationCommand(LastNavCmd))
+		{
+			Pages.Display(&Lcd);
+
+			StringWriter<10> str;
+			str.Write(sizeof(Pages));
+			AtlDebugWrite(str);
 		}
 	}
 	else

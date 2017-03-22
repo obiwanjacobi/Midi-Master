@@ -33,7 +33,7 @@ namespace ATL {
     {
     public:
 		StaticString()
-			: _str(NULL)
+			: _str(nullptr)
 		{ }
 			
         // declare PROGMEM string and pass in the var
@@ -51,14 +51,14 @@ namespace ATL {
          */
         inline void Read(char* target, size_t targetLen)
         {
-			if (_str == NULL) return;
+			if (_str == nullptr) return;
             strncpy_P(target, _str, targetLen);
         }
 
 		template<typename ArrayT>
 		inline void Read(ArrayT& target)
 		{
-			if (_str == NULL) return;
+			if (_str == nullptr) return;
 			strncpy_P(target.getBuffer(), _str, target.getCapacity());
 		}
 		

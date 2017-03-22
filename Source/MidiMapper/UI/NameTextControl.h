@@ -40,16 +40,13 @@ class NameTextControl : public EditControl<FixedString<Size>, AplhaNumCharIterat
 
 public:
 	NameTextControl(const uint8_t pos)
-		: BaseT(NULL, &TextIterator, this, pos)
-	{
-		RefreshString();
-	}
+		: BaseT(nullptr, &TextIterator, this, pos)
+	{ }
 
 	/** Called by the EditControl to increment the 'value' - char at edit position.
      */
     inline void IncrementValue()
     {
-		if (BaseT::getText() == NULL) return;
         BaseT::IncrementValue();
 		PresetManager::getCurrent()->MarkDirty();
     }
@@ -58,15 +55,9 @@ public:
      */
     inline void DecrementValue()
     {
-		if (BaseT::getText() == NULL) return;
 		BaseT::DecrementValue();
 		PresetManager::getCurrent()->MarkDirty();
     }
-
-	inline void RefreshString()
-	{
-		BaseT::setString(PresetManager::getCurrent()->getPatchNameString());
-	}
 };
 
 #endif /* __NAMETEXTCONTROL_H__ */

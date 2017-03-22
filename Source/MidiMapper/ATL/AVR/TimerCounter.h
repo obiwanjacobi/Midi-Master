@@ -47,7 +47,7 @@ public:
     
     inline static uint32_t getMilliseconds()
     {
-        LockScope lock();
+        LockScope lock;
         return _milliCount;
     }
     
@@ -57,7 +57,7 @@ public:
         uint8_t count;
         
         {
-            LockScope lock();
+            LockScope lock;
             
             micros = _overflowCount;
             count = TCNT0;
@@ -86,7 +86,7 @@ public:
         }
         
         _milliCount = millis;
-        _fractureCount = fract;
+        _fractureCount = (uint8_t)fract;
         _overflowCount++;
     }
     

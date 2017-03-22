@@ -55,7 +55,7 @@ namespace ATL {
         /** Constructs a new instance.
          */
         HD44780_DriverSerial3Wire()
-            : _dataReg(NULL)
+            : _dataReg(nullptr)
         { }
 
         /** Stores the pointer to the dataReg and initializes the lines to the display (all low except enable).
@@ -63,7 +63,7 @@ namespace ATL {
          */
         inline void setDataRegister(BitArrayT* dataReg)
         {
-            if (dataReg == NULL) return;
+            if (dataReg == nullptr) return;
 
             _dataReg = dataReg;
 
@@ -90,7 +90,7 @@ namespace ATL {
          */
         inline void Initialize()
         {
-            if (_dataReg == NULL) return;
+            if (_dataReg == nullptr) return;
 
             Write4(0x02);
             WriteFunctionSet();
@@ -103,7 +103,7 @@ namespace ATL {
          */
         inline void WriteCommand(uint8_t cmd)
         {
-            if (_dataReg == NULL) return;
+            if (_dataReg == nullptr) return;
 
             _dataReg->Set(RegSetIndex, false);
             Write8(cmd);
@@ -116,7 +116,7 @@ namespace ATL {
          */
         inline void WriteData(uint8_t data)
         {
-            if (_dataReg == NULL) return;
+            if (_dataReg == nullptr) return;
 
             _dataReg->Set(RegSetIndex, true);
             Write8(data);
@@ -142,7 +142,7 @@ namespace ATL {
          */
         inline void Write4(uint8_t data)
         {
-            if (_dataReg == NULL) return;
+            if (_dataReg == nullptr) return;
 
             _dataReg->Set(Data04Index, data & 0x01);
             _dataReg->Set(Data15Index, data & 0x02);

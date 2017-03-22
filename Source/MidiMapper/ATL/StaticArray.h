@@ -125,7 +125,7 @@ namespace ATL {
          *  Call `setBuffer()`.
          */
         StaticArray()
-            : _arr(NULL)
+            : _arr(nullptr)
         { }
 
         /** Assigns the array to the internal buffer.

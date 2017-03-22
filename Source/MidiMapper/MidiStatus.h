@@ -27,25 +27,29 @@ public:
         
     inline bool getMidiInIsActive()
     {
-        bool value = Globals::MidiStatus.Get(MidiIn_Index);
-        // clear on read
-        Globals::MidiStatus.Reset(MidiIn_Index);
-        
-        return value;
+        return ReadAndClear(MidiIn_Index);
     }
      
     inline bool getMidiOutIsActive(uint8_t outIndex)
     {
         if (outIndex < 4)
         {
-            bool value = Globals::MidiStatus.Get(outIndex + 1);
-            // clear on read
-            Globals::MidiStatus.Reset(outIndex + 1);
-            return value;
+            return ReadAndClear(outIndex + 1);
         }
         
         return false;
     }
+
+private:
+	inline bool ReadAndClear(uint8_t index)
+	{
+		 bool value = Globals::MidiStatus.Get(index);
+		 // clear on read
+		 Globals::MidiStatus.Reset(index);
+
+		 return value;
+	}
+
 };
 
 

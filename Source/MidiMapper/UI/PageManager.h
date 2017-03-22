@@ -18,7 +18,7 @@ public:
     typedef Page<LcdLines> PageT;
     
     PageManager()
-		: _nextPage(NULL)
+		: _nextPage(nullptr)
     {
         BaseT::Add(&RealtimeScreen);
     }

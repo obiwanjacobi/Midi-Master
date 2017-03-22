@@ -10,12 +10,6 @@ using namespace ATL;
 class Globals
 {
 public:
-#define MidiIn_Index     0
-#define MidiOut1_Index   1
-#define MidiOut2_Index   2
-#define MidiOut3_Index   3
-#define MidiOut4_Index   4
-
     static MidiPatch MemPatch[2];
     static MidiInOutPort1T<Globals> MidiInOutPort1;
     static MidiOutPort2T MidiOutPort2;

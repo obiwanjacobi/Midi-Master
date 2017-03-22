@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Project</Filter>
+    </ClCompile>
+    <ClCompile Include="RingBufferTest.cpp" />
+    <ClCompile Include="ValueContainerTest.cpp" />
+    <ClCompile Include="MidiMessageTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+    <ClCompile Include="MidiReaderTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferedInputStreamTest.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="MidiWriterTest.cpp">
+      <Filter>Midi</Filter>
+    </ClCompile>
+    <ClCompile Include="TextWriterTest.cpp">
+      <Filter>IO</Filter>
+    </ClCompile>
+    <ClCompile Include="FuncTest.cpp" />
+    <ClCompile Include="DelegateTest.cpp" />
+    <ClCompile Include="TaskTest.cpp" />
+    <ClCompile Include="DelaysTest.cpp">
+      <Filter>Arduino</Filter>
+    </ClCompile>
+    <ClCompile Include="Arduino.cpp">
+      <Filter>Arduino</Filter>
+    </ClCompile>
+    <ClCompile Include="TB6612FNG_ControllerTest.cpp">
+      <Filter>Hardware\Motor</Filter>
+    </ClCompile>
+    <ClCompile Include="URM37V32_ControllerTest.cpp">
+      <Filter>Hardware\Sensor</Filter>
+    </ClCompile>
+    <ClCompile Include="PIDTest.cpp">
+      <Filter>Process</Filter>
+    </ClCompile>
+    <ClCompile Include="BitArrayTest.cpp" />
+    <ClCompile Include="BitTest .cpp" />
+    <ClCompile Include="InputControlTest.cpp" />
+    <ClCompile Include="UpDownControlTest.cpp" />
+    <ClCompile Include="TestControls.cpp" />
+    <ClCompile Include="PageTest.cpp" />
+    <ClCompile Include="CollectionRefTest.cpp" />
+    <ClCompile Include="TextControlTest.cpp" />
+    <ClCompile Include="FixedArrayTest.cpp" />
+    <ClCompile Include="FixedArrayRefTest.cpp" />
+    <ClCompile Include="BitFlagTest.cpp" />
+    <ClCompile Include="CollectionTest.cpp" />
+    <ClCompile Include="ArrayTest.cpp" />
+    <ClCompile Include="HorizontalPanelTest.cpp" />
+    <ClCompile Include="VerticalPanelTest.cpp" />
+    <ClCompile Include="PanelControlContainerTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Project</Filter>
+    </ClInclude>
+    <ClInclude Include="Arduino.h">
+      <Filter>Arduino</Filter>
+    </ClInclude>
+    <ClInclude Include="TestInputStream.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="TestOutputStream.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="TB6612FNG_DriverMock.h">
+      <Filter>Mocks</Filter>
+    </ClInclude>
+    <ClInclude Include="TestControls.h" />
+    <ClInclude Include="avr.h" />
+    <ClInclude Include="Registers.h" />
+    <ClInclude Include="TimeStub.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Project">
+      <UniqueIdentifier>{7655e8f7-f325-464b-86b0-264449f18ce3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arduino">
+      <UniqueIdentifier>{c0f5ce7a-a0f9-47af-8dbc-320c06d55bd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Midi">
+      <UniqueIdentifier>{98803e02-642e-484f-a2f1-a97ab96e1c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mocks">
+      <UniqueIdentifier>{9c47e097-4cc9-434a-9cc1-9d180d6fc8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="IO">
+      <UniqueIdentifier>{33002541-c4e1-4d0d-a1bb-746349a855bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware">
+      <UniqueIdentifier>{2c755c1a-3a87-4cde-9d22-73055c3a83e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Motor">
+      <UniqueIdentifier>{bccd13ed-87aa-4d0c-b74a-37ff940fe8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hardware\Sensor">
+      <UniqueIdentifier>{874a530f-a50d-436f-9f03-f5c99b2e3f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Process">
+      <UniqueIdentifier>{960d1b46-60af-4bfb-bacd-41795a8c48f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -62,12 +62,12 @@ namespace ATL {
             {
                 Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
 
-                if (ctrl != NULL) return ctrl;
+                if (ctrl != nullptr) return ctrl;
 
                 index++;
             }
 
-            return NULL;
+            return nullptr;
         }
 
         /** Retrieves the Control that is before the currentCtrl.
@@ -92,12 +92,12 @@ namespace ATL {
             {
                 Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
 
-                if (ctrl != NULL) return ctrl;
+                if (ctrl != nullptr) return ctrl;
 
                 index--;
             }
 
-            return NULL;
+            return nullptr;
         }
 
         /** Overrides Collection::Add to disallow NULL pointers in the collection.
@@ -105,7 +105,7 @@ namespace ATL {
          */
         inline void Add(Control* control)
         {
-            if (control == NULL) return;
+            if (control == nullptr) return;
 
             BaseT::Add(control);
         }

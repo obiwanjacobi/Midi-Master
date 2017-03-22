@@ -23,7 +23,7 @@ private:
 };
 
 template<typename T>
-T* Singleton<T>::_instance;
+T* Singleton<T>::_instance = nullptr;
 
 } // ATL
 

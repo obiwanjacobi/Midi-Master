@@ -47,7 +47,7 @@ namespace ATL {
         /** Constructs the instance.
          */
         TB6612FNG_DriverSerial3Wire()
-            : _dataReg(NULL)
+            : _dataReg(nullptr)
         { }
 
         /** Stores the pointer to the dataReg and initializes the bit values this driver uses.
@@ -55,7 +55,7 @@ namespace ATL {
          */
         inline void setDataRegister(BitArrayT* dataReg)
         {
-            if (dataReg == NULL) return;
+            if (dataReg == nullptr) return;
 
             _dataReg = dataReg;
 

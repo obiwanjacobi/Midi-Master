@@ -206,9 +206,9 @@ namespace ATL {
          */
         inline static Control* DynamicCast(Control* ctrl, ControlTypes type)
         {
-            if (ctrl == NULL) return NULL;
+			if (ctrl == nullptr) return nullptr;
             if (ctrl->IsOfType(type)) return ctrl;
-            return NULL;
+			return nullptr;
         }
 
     protected:

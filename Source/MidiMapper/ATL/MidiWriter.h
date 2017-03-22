@@ -47,7 +47,7 @@ namespace ATL {
          */
         void Write(MidiMessage* midiMsg)
         {
-            if (midiMsg == NULL) return;
+            if (midiMsg == nullptr) return;
 
             int msgLength = Midi::GetMessageLength(midiMsg->MessageType);
             uint8_t statusByte = midiMsg->GetStatusByte();

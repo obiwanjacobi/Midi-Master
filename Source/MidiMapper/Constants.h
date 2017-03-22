@@ -23,6 +23,12 @@
 #define LcdColumns 24
 #define LcdLines 2
 
+#define MidiIn_Index     0
+#define MidiOut1_Index   1
+#define MidiOut2_Index   2
+#define MidiOut3_Index   3
+#define MidiOut4_Index   4
+
 
 // Debug Component Ids
 #define ProgramId 0x80

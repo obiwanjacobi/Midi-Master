@@ -59,7 +59,7 @@ namespace ATL {
         inline void setString(StringT* str)
         {
             _str = str;
-			_editIndex = _str == NULL ? -1 : 0;
+			_editIndex = _str == nullptr ? -1 : 0;
 			RepositionIterator();
         }
 
@@ -143,26 +143,30 @@ namespace ATL {
          */
         inline void IncrementValue()
         {
-			if (_str == NULL) return;
-            _iterator->MoveNext();
-            _str->SetAt(_editIndex, _iterator->getCurrent());
+            if (_str != nullptr && _iterator->MoveNext())
+			{
+				_str->SetAt(_editIndex, _iterator->getCurrent());
+			}
         }
 
         /** Called by the UpDownControl to decrement the 'value' - char at edit position.
          */
         inline void DecrementValue()
         {
-			if (_str == NULL) return;
-            _iterator->MoveBack();
-            _str->SetAt(_editIndex, _iterator->getCurrent());
+			if (_str != nullptr && _iterator->MoveBack())
+			{
+				_str->SetAt(_editIndex, _iterator->getCurrent());
+			}
         }
 	
         /** Helper method that sets the CharacterIteratorT at the character at the current edit position.
          */
         inline void RepositionIterator()
         {
-			if (_str != NULL && _editIndex >= 0)
+			if (_str != nullptr && _editIndex >= 0)
+			{
 				_iterator->MoveTo(_str->GetAt(_editIndex));
+			}
         }
 
         /** Overridden to manage the character edit position when going in/out of `Focused` and `Selected`.

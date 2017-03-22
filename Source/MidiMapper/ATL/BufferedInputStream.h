@@ -28,19 +28,19 @@ namespace ATL {
     /** The BufferedInputStream implements an abstract InputStream by using a circular buffer (RingBuffer).
      *  This class derives from the BaseT type.
      *	\tparam BaseT is the RingBuffer implementation: 
-     *  `unsigned uint8_t getLength();`
+     *  `unsigned uint8_t getCount();`
      *  `int Read();`
      */
     template<class BaseT>
     class BufferedInputStream : public BaseT
     {
     public:
-        /** Adapts the Read method to always check for length.
+        /** Adapts the Read method to always check for count.
          *  \return Returns -1 if no data is available.
          */
         int16_t Read()
         {
-            if(BaseT::getLength() == 0)
+            if(BaseT::getCount() == 0)
             {
                 return -1;
             }

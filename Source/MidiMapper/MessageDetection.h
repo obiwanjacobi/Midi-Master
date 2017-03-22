@@ -29,7 +29,7 @@ public:
 
 	MessageTestResult TestMessage(MidiMessage* midiMsg)
 	{
-		if (midiMsg == NULL) return MessageTestResult::None;
+		if (midiMsg == nullptr) return MessageTestResult::None;
 
 		if (Category == Midi::MessageCategory::NotSet)
 		{

@@ -58,7 +58,7 @@ namespace ATL {
          */
         MidiMessage() 
         {
-            memset(this, 0, sizeof(MidiMessage));
+            Clear();
         }
 
         /** The Midi message type */
@@ -95,7 +95,7 @@ namespace ATL {
                     };
 
                     /** Pitch bend. */
-                    int Bend;
+                    int16_t Bend;
                 };
             };
 
@@ -292,7 +292,7 @@ namespace ATL {
          */
         void CopyTo(MidiMessage* target) const
         {
-            if (target == NULL) return;
+            if (target == nullptr) return;
 
             memcpy(target, this, sizeof(MidiMessage));
         }
