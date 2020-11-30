@@ -68,7 +68,13 @@ namespace ATL {
          *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          *  \return Returns the item or a default value.
          */
-        inline T GetAt(int16_t index) const
+        inline const T& GetAt(int16_t index) const
+        {
+            if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
+
+            return _arr[index];
+        }
+        inline T GetAt(int16_t index)
         {
             if (!IsValidIndex(index)) return Default<T>::DefaultOfT;
 
@@ -105,7 +111,11 @@ namespace ATL {
          *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          *  \return Returns the item or a default value.
          */
-        inline T operator[](int16_t index) const
+        inline const T& operator[](int16_t index) const
+        {
+            return GetAt(index);
+        }
+        inline T& operator[](int16_t index)
         {
             return GetAt(index);
         }

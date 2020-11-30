@@ -1,18 +1,23 @@
-#ifndef __MIDIPATCH_H__
-#define __MIDIPATCH_H__
+#ifndef MIDIPATCH_H_
+#define MIDIPATCH_H_
 
 #include "ATL/FixedArray.h"
 #include "ATL/FixedString.h"
 #include "DataTypes.h"
-#include "MidiMap.h"
+//#include "MidiStorage.h"
 
 typedef FixedString<PatchNameMaxLength> PatchNameString;
+typedef FixedArray<MidiMap, MaxMaps> MidiMapArray;
+typedef FixedArray<MidiMapEntry, MaxMapEntries> MidiMapEntryArray;
+typedef FixedArray<MidiTransform, MaxTransforms> MidiTransformArray;
 
 class MidiPatch
 {
 public:
 	PatchNameString Name;
-	FixedArray<MidiMap, MaxMaps> Maps;
+    MidiMapArray Maps;
+    MidiMapEntryArray Entries;
+    MidiTransformArray Transforms;
 
 	inline void Clear()
 	{
@@ -20,4 +25,4 @@ public:
 	}
 };
 
-#endif //__MIDIPATCH_H__
+#endif //MIDIPATCH_H_

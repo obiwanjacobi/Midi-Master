@@ -87,7 +87,7 @@ namespace ATL {
             }
             else
             {
-                return WriteInt(value, FormatInfoT::DefaultBase, fixedLength);
+                WriteInt(value, FormatInfoT::DefaultBase, fixedLength);
             }
         }
 
@@ -120,7 +120,7 @@ namespace ATL {
             }
             else
             {
-                return WriteLong(value, FormatInfoT::DefaultBase, fixedLength);
+                WriteLong(value, FormatInfoT::DefaultBase, fixedLength);
             }
         }
 

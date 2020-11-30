@@ -40,6 +40,11 @@ public:
      */
     DigitalInputPin()
     {
+        Initialize();
+    }
+
+    inline static void Initialize()
+    {
         Port<PortId>::SetDirection(PinId, Input);
     }
 

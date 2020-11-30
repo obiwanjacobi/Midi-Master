@@ -32,8 +32,10 @@ namespace ATL {
      *  An Array of T[Size] is allocated.
      *  \tparam T is the data type of the buffer items.
      *  \tparam Size is the number of 'T' items in the buffer.
+     *  \tparam LockScopeT is the type that performs locking atomic multi-byte access.
+     *          Only the constructor and destructor is called.
      */
-    template <typename T, const uint16_t Size>
+    template <typename T, const uint16_t Size, typename LockScopeT = LockScope>
     class RingBuffer
     {
     public:
@@ -50,7 +52,7 @@ namespace ATL {
          */
         void Clear()
         {
-			LockScope lock;
+			LockScopeT lock;
 			
             _writeIndex = 0;
             _readIndex = 0;
@@ -63,7 +65,7 @@ namespace ATL {
          */
         bool Write(T value)
         {
-			LockScope lock;
+			LockScopeT lock;
 			
             // check for overrun
             if ((_writeIndex + 1) >= Size)
@@ -90,7 +92,7 @@ namespace ATL {
          */
         T Read()
         {
-			LockScope lock;
+			LockScopeT lock;
 			
             T result = _buffer[_readIndex];
             _readIndex++;
@@ -108,7 +110,7 @@ namespace ATL {
          */
         inline uint16_t getCount() const
         {
-			LockScope lock;
+			LockScopeT lock;
 			
             if (_writeIndex >= _readIndex)
             {

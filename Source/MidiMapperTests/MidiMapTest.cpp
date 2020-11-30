@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\MidiMapper\MidiPatch.h"
+#include "MidiPatch.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
@@ -16,14 +16,11 @@ namespace MidiMapperTests2
             InitMidiMap(tested);
 
             MidiMessage msg;
-            msg.MessageType = Midi::MessageTypes::ControlChange;
-            msg.Channel = 0;
-            msg.Number = 42;
-            msg.Value = 100;
+            CreateMessage(&msg);
                 
-            MessageTestResult result = tested.TestMap(&msg);
+            MessageMatchResult result = tested.Match(&msg);
 
-            Assert::IsTrue(result == MessageTestResult::Passed);
+            Assert::IsTrue(result == MessageMatchResult::Passed);
         }
 
         [TestMethod]
@@ -34,14 +31,11 @@ namespace MidiMapperTests2
             tested.Entries[0].Category = Midi::MessageCategory::ControlChange;
 
             MidiMessage msg;
-            msg.MessageType = Midi::MessageTypes::ControlChange;
-            msg.Channel = 0;
-            msg.Number = 42;
-            msg.Value = 100;
+            CreateMessage(&msg);
 
-            MessageTestResult result = tested.TestMap(&msg);
+            MessageMatchResult result = tested.Match(&msg);
 
-            Assert::IsTrue(result == MessageTestResult::Passed);
+            Assert::IsTrue(result == MessageMatchResult::Passed);
         }
 
         [TestMethod]
@@ -52,17 +46,22 @@ namespace MidiMapperTests2
             tested.Entries[0].Category = Midi::MessageCategory::Note;
 
             MidiMessage msg;
-            msg.MessageType = Midi::MessageTypes::ControlChange;
-            msg.Channel = 0;
-            msg.Number = 42;
-            msg.Value = 100;
+            CreateMessage(&msg);
 
-            MessageTestResult result = tested.TestMap(&msg);
+            MessageMatchResult result = tested.Match(&msg);
 
-            Assert::IsTrue(result == MessageTestResult::Blocked);
+            Assert::IsTrue(result == MessageMatchResult::Blocked);
         }
 
     private:
+        void CreateMessage(MidiMessage* message)
+        {
+            message->MessageType = Midi::MessageTypes::ControlChange;
+            message->Channel = 0;
+            message->Number = 42;
+            message->Value = 100;
+        }
+
         void InitMidiMap(MidiMap& midiMap)
         {
             midiMap.Entries[0].Mode = MidiMapEntry::Mode::Normal;

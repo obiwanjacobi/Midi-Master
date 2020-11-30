@@ -1,33 +1,36 @@
-#ifndef __MIDIMAP_H__
-#define __MIDIMAP_H__
+#ifndef MIDIMAP_H_
+#define MIDIMAP_H_
 
-#include "ATL/FixedArray.h"
 #include "DataTypes.h"
-#include "MidiMapEntry.h"
+#include "MapDataContext.h"
+
+typedef ValueSequence<MaxMapEntries> MidiMapEntrySequence;
 
 class MidiMap
 {
 public:
-    FixedArray<MidiMapEntry, MaxMapEntries> Entries;
+    //FixedArray<MidiMapEntry, MaxMapEntries> Entries;
+    MidiMapEntrySequence Entries;
 
-    MessageTestResult TestMap(MidiMessage* midiMsg)
+    /*
+    MessageMatchResult Match(MidiMessage* midiMsg)
     {
-        MessageTestResult retVal = MessageTestResult::None;
+        MessageMatchResult retVal = MessageMatchResult::None;
 
         for(uint8_t i = 0; i < Entries.getCount(); i++)
         {
             // break on first entry that is off
             if (Entries[i].Mode == MidiMapEntry::Mode::None) break;
 
-            MessageTestResult result = Entries[i].TestMessage(midiMsg);
+            MessageMatchResult result = Entries[i].MatchMessage(midiMsg);
             
-            if (retVal == MessageTestResult::None)
+            if (retVal == MessageMatchResult::None)
             {
                 retVal = result;
             }
 
             // break on first hit
-            if (result == MessageTestResult::Passed)
+            if (result == MessageMatchResult::Passed)
             {
                 retVal = result;
                 break;
@@ -36,11 +39,12 @@ public:
         
         return retVal;
     }
-    
+    */
+
     inline void Clear()
     {
         memset(this, 0, sizeof(MidiMap));
     }
 };
 
-#endif //__MIDIMAP_H__
+#endif //MIDIMAP_H_

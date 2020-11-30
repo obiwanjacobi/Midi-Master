@@ -53,6 +53,15 @@ public:
         return UsartId;
     }
     
+    inline void Enable(bool enabled)
+    {
+        PowerReduction::setEnableUsart<UsartId>(enabled);
+    }
+    inline bool Enable() const
+    {
+        return PowerReduction::getEnableUsart<UsartId>();
+    }
+
     /// \todo TODO: OpenSync
     
     /** Configures the Usart for asynchronous communication.
@@ -71,7 +80,7 @@ public:
             return false;
         }
         
-        PowerReduction::setEnableUsart<UsartId>(true);
+        Enable(true);
         
         UsartRegisters<UsartId>::getUBRR() = config.getUBRR();
         UsartRegisters<UsartId>::getUCSRA() = config.getUCSRA();
@@ -88,7 +97,7 @@ public:
     {
         Receive.Close();
         Transmit.Close();
-        PowerReduction::setEnableUsart<UsartId>(false);
+        Enable(false);
     }
 
     /** The instance of the Transmit class.

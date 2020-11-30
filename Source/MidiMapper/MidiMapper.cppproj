@@ -45,13 +45,13 @@
       </ToolNumber>
       <ToolName>Simulator</ToolName>
     </com_atmel_avrdbg_tool_simulator>
-    <avrtoolinterface>ISP</avrtoolinterface>
+    <avrtoolinterface>JTAG</avrtoolinterface>
     <com_atmel_avrdbg_tool_atmelice>
       <ToolOptions>
         <InterfaceProperties>
-          <JtagDbgClock>200000</JtagDbgClock>
+          <JtagDbgClock>2000000</JtagDbgClock>
           <IspClock>2000000</IspClock>
-          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagEnableExtResetOnStartSession>true</JtagEnableExtResetOnStartSession>
           <JtagInChain>false</JtagInChain>
           <JtagDevicesBefore>0</JtagDevicesBefore>
           <JtagDevicesAfter>0</JtagDevicesAfter>
@@ -62,13 +62,27 @@
           <JtagDaisyChainDevices>
           </JtagDaisyChainDevices>
         </InterfaceProperties>
-        <InterfaceName>ISP</InterfaceName>
+        <InterfaceName>JTAG</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
       <ToolNumber>J41800030322</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.47.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -207,6 +221,9 @@
     <Compile Include="ATL\AVR\DigitalOutputPin.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ATL\AVR\DigitalNotConnectedPin.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="ATL\AVR\Interrupt.h">
       <SubType>compile</SubType>
     </Compile>
@@ -214,6 +231,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ATL\AVR\PowerReduction.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ATL\AVR\Spi.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ATL\AVR\Timer.h">
@@ -250,6 +270,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ATL\Bit.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ATL\BitArray.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="ATL\BitArray.h">
@@ -480,16 +503,22 @@
     <Compile Include="DigitalMatrixScan.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="DummyDigitalPin.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="Globals.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Globals.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MidiProcessor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="ValueSequence.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="KeyboardMatrix.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MapDataContext.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MessageManager.h">
@@ -531,7 +560,7 @@
     <Compile Include="Program.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="MessageTestResult.h">
+    <Compile Include="MessageMatchResult.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="UI\MidiInNoteControl.h">

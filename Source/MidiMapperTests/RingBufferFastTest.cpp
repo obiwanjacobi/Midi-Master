@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "..\MidiMapper\ATL\RingBufferFast.h"
+#include "ATL\RingBufferFast.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 using namespace ATL;
 
-namespace MidiMapperTests2
+namespace MidiMapperTests
 {
     [TestClass]
     public ref class RingBufferFastTest

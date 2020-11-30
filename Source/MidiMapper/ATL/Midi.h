@@ -35,7 +35,7 @@ namespace ATL {
     class Midi
     {
     public:
-        /** The MIDI communication speed. */
+        /** The MIDI communication speed in bits per second. */
         static const uint16_t BaudRate = 31250;
 
         /** The categories the Midi messages belong to.
@@ -179,6 +179,11 @@ namespace ATL {
                 return 0;
             }
         }
+
+		inline static MessageCategory ToMessageCategory(uint8_t msgType)
+		{
+			return ToMessageCategory((MessageTypes)msgType);
+		}
 
 		inline static MessageCategory ToMessageCategory(MessageTypes msgType)
 		{

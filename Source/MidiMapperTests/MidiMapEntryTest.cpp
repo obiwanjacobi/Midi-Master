@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "..\MidiMapper\MidiPatch.h"
+#include "MidiPatch.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
 
@@ -11,7 +11,7 @@ namespace MidiMapperTests
     {
     public:
         [TestMethod]
-        void TestMessage_NotSet_ControlChange_Passed()
+        void MatchMessage_NotSet_ControlChange_Passed()
         {
             MidiMapEntry tested;
             tested.Mode = MidiMapEntry::Mode::Normal;
@@ -22,18 +22,15 @@ namespace MidiMapperTests
             tested.Transforms[0].Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
-            msg.MessageType = Midi::ControlChange;
-            msg.Channel = 0;
-            msg.Number = 66;
-            msg.Value = 100;
+            CreateMessage(&msg);
             
-            MessageTestResult result = tested.TestMessage(&msg);
+            MessageMatchResult result = tested.MatchMessage(&msg);
 
-            Assert::IsTrue(result == MessageTestResult::Passed);
+            Assert::IsTrue(result == MessageMatchResult::Passed);
         };
 
         [TestMethod]
-        void TestMessage_ControlChange_ControlChange_Passed()
+        void MatchMessage_ControlChange_ControlChange_Passed()
         {
             MidiMapEntry tested;
             tested.Mode = MidiMapEntry::Mode::Normal;
@@ -44,14 +41,20 @@ namespace MidiMapperTests
             tested.Transforms[0].Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
-            msg.MessageType = Midi::ControlChange;
-            msg.Channel = 0;
-            msg.Number = 66;
-            msg.Value = 100;
+            CreateMessage(&msg);
 
-            MessageTestResult result = tested.TestMessage(&msg);
+            MessageMatchResult result = tested.MatchMessage(&msg);
 
-            Assert::IsTrue(result == MessageTestResult::Passed);
+            Assert::IsTrue(result == MessageMatchResult::Passed);
         };
+
+    private:
+        void CreateMessage(MidiMessage* message)
+        {
+            message->MessageType = Midi::MessageTypes::ControlChange;
+            message->Channel = 0;
+            message->Number = 66;
+            message->Value = 100;
+        }
     };
 }

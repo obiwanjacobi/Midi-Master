@@ -6,7 +6,7 @@
 #include "ATL/MidiMessage.h"
 #include "ATL/ValueContainer.h"
 #include "DataTypes.h"
-#include "MessageTestResult.h"
+#include "MessageMatchResult.h"
 
 using namespace ATL;
 
@@ -21,25 +21,25 @@ public:
 	MessageDetection()
 		: Category(Midi::MessageCategory::NotSet)
 	{ }
-		
+
 	Midi::MessageCategory Category;
 	ValueContainer<uint8_t> Channel;
 	ValueContainer<uint8_t> Identifier;
 	ValueContainer<int16_t> Value;
 
-	MessageTestResult TestMessage(MidiMessage* midiMsg)
+	MessageMatchResult MatchMessage(MidiMessage* midiMsg)
 	{
-		if (midiMsg == nullptr) return MessageTestResult::None;
+		if (midiMsg == nullptr) return MessageMatchResult::None;
 
 		if (Category == Midi::MessageCategory::NotSet)
 		{
-			return DispatchTestMessage(midiMsg, Midi::ToMessageCategory(midiMsg->MessageType));
+			return DispatchMessage(midiMsg, Midi::ToMessageCategory(midiMsg->MessageType));
 		}
 
-		return DispatchTestMessage(midiMsg, Category);
+		return DispatchMessage(midiMsg, Category);
 	}
 
-	/*MessageTestResult TestRealtime(Midi::MessageTypes msgType)
+	/*MessageTestResult MatchRealtime(Midi::MessageTypes msgType)
 	{
 		if (Midi::IsRealtimeMessage(msgType) &&
 			Category == Midi::MessageCategory::Realtime)
@@ -51,88 +51,92 @@ public:
 	}*/
 
 protected:
-	MessageTestResult TestNote(uint8_t channel, uint8_t noteNr, uint8_t velocity)
+	MessageMatchResult MatchNote(uint8_t channel, uint8_t noteNr, uint8_t velocity)
 	{
-		return (Channel.IsInRange(channel) &&
-				Identifier.IsInRange(noteNr) &&
-				Value.IsInRange(velocity)) ? MessageTestResult::Passed : MessageTestResult::Blocked;
+		return DoFieldsMatch (channel, noteNr, velocity) 
+                ? MessageMatchResult::Passed : MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestAfterTouch(uint8_t channel, uint8_t noteNr, uint8_t pressure)
+	MessageMatchResult MatchAfterTouch(uint8_t channel, uint8_t noteNr, uint8_t pressure)
 	{
-		return (Channel.IsInRange(channel) &&
-				Identifier.IsInRange(noteNr) &&
-				Value.IsInRange(pressure)) ? MessageTestResult::Passed : MessageTestResult::Blocked;
+		return DoFieldsMatch(channel, noteNr, pressure)
+                ? MessageMatchResult::Passed : MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestControlChange(uint8_t channel, uint8_t number, uint8_t value)
+	MessageMatchResult MatchControlChange(uint8_t channel, uint8_t number, uint8_t value)
 	{
-		return (Channel.IsInRange(channel) &&
-				Identifier.IsInRange(number) &&
-				Value.IsInRange(value)) ? MessageTestResult::Passed : MessageTestResult::Blocked;
+		return DoFieldsMatch(channel, number, value)
+                ? MessageMatchResult::Passed : MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestProgramChange(uint8_t channel, uint8_t number)
+	MessageMatchResult MatchProgramChange(uint8_t channel, uint8_t number)
 	{
-		return (Channel.IsInRange(channel) &&
-				Identifier.IsInRange(number)) ? MessageTestResult::Passed : MessageTestResult::Blocked;
+		return DoFieldsMatch(channel, number, 0)
+                ? MessageMatchResult::Passed : MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestPitchBend(uint8_t channel, int16_t bend)
+	MessageMatchResult MatchPitchBend(uint8_t channel, int16_t bend)
 	{
-		return (Channel.IsInRange(channel) &&
-				Value.IsInRange(bend)) ? MessageTestResult::Passed : MessageTestResult::Blocked;
+		return DoFieldsMatch(channel, 0, bend)
+                ? MessageMatchResult::Passed : MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestSysEx(MidiMessage* midiMsg)
+	MessageMatchResult MatchSysEx(MidiMessage* midiMsg)
 	{
-		return MessageTestResult::Blocked;
+		return MessageMatchResult::Blocked;
 	}
 
-	MessageTestResult TestSystemCommon(MidiMessage* midiMsg)
+	MessageMatchResult MatchSystemCommon(MidiMessage* midiMsg)
 	{
-		return MessageTestResult::Blocked;
+		return MessageMatchResult::Blocked;
 	}
 	
 private:
-	MessageTestResult DispatchTestMessage(MidiMessage* midiMsg, Midi::MessageCategory category)
+	bool DoFieldsMatch(uint8_t channel, uint8_t identifier, int16_t value)
 	{
-		MessageTestResult result = MessageTestResult::Blocked;
+		return Channel.IsInRange(channel) &&
+			   Identifier.IsInRange(identifier) &&
+			   Value.IsInRange(value);
+	}
+
+	MessageMatchResult DispatchMessage(MidiMessage* midiMsg, Midi::MessageCategory category)
+	{
+		MessageMatchResult result = MessageMatchResult::Blocked;
 
 		switch(category.value)
 		{
 		case Midi::MessageCategory::Note:
 			if (midiMsg->MessageType == Midi::NoteOn || midiMsg->MessageType == Midi::NoteOff) 
-				result = static_cast<SuperT*>(this)->TestNote(midiMsg->Channel, midiMsg->Note, midiMsg->Velocity);
+				result = static_cast<SuperT*>(this)->MatchNote(midiMsg->Channel, midiMsg->Note, midiMsg->Velocity);
 			break;
 		case Midi::MessageCategory::AfterTouch:
 			if (midiMsg->MessageType == Midi::AfterTouchChannel || midiMsg->MessageType == Midi::AfterTouchPoly) 
-				result = static_cast<SuperT*>(this)->TestAfterTouch(midiMsg->Channel, midiMsg->Note, midiMsg->Pressure);
+				result = static_cast<SuperT*>(this)->MatchAfterTouch(midiMsg->Channel, midiMsg->Note, midiMsg->Pressure);
 			break;
 		case Midi::MessageCategory::ControlChange:
 			if (midiMsg->MessageType == Midi::ControlChange)
-				result = static_cast<SuperT*>(this)->TestControlChange(midiMsg->Channel, midiMsg->Number, midiMsg->Value);
+				result = static_cast<SuperT*>(this)->MatchControlChange(midiMsg->Channel, midiMsg->Number, midiMsg->Value);
 			break;
 		case Midi::MessageCategory::ProgramChange:
 			if (midiMsg->MessageType == Midi::ProgramChange)
-				result = static_cast<SuperT*>(this)->TestProgramChange(midiMsg->Channel, midiMsg->Number);
+				result = static_cast<SuperT*>(this)->MatchProgramChange(midiMsg->Channel, midiMsg->Number);
 			break;
 		case Midi::MessageCategory::PitchBend:
 			if(midiMsg->MessageType == Midi::PitchBend)
-				result = static_cast<SuperT*>(this)->TestPitchBend(midiMsg->Channel, midiMsg->Bend);
+				result = static_cast<SuperT*>(this)->MatchPitchBend(midiMsg->Channel, midiMsg->Bend);
 			break;
 		case Midi::MessageCategory::SystemExclusive:
-			result = static_cast<SuperT*>(this)->TestSysEx(midiMsg);
+			result = static_cast<SuperT*>(this)->MatchSysEx(midiMsg);
 			break;
 		case Midi::MessageCategory::SystemCommon:
-			result = static_cast<SuperT*>(this)->TestSystemCommon(midiMsg);
+			result = static_cast<SuperT*>(this)->MatchSystemCommon(midiMsg);
 			break;
 		/*case Midi::MessageCategory::Realtime:
-			result = static_cast<SuperT*>(this)->TestRealtime(midiMsg->MessageType);
+			result = static_cast<SuperT*>(this)->MatchRealtime(midiMsg->MessageType);
 			break;*/
 		default:
 			// Not Implemented
-			result = MessageTestResult::None;
+			result = MessageMatchResult::None;
 			break;
 		}
 

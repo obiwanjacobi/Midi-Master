@@ -41,8 +41,7 @@ public:
      */
     DigitalOutputPin()
     {
-        Port<PortId>::SetDirection(PinId, Output);
-        //Write(false);
+        Initialize();
     }
 
     /*
@@ -50,8 +49,13 @@ public:
      */
     DigitalOutputPin(bool initialValue)
     {
-        Port<PortId>::SetDirection(PinId, Output);
+        Initialize();
         Write(initialValue);
+    }
+
+    inline static void Initialize()
+    {
+        Port<PortId>::SetDirection(PinId, Output);
     }
 
     /*

@@ -10,8 +10,7 @@
 #define PatchNameMaxLength 15
 
 // memory layout definitions
-#define MaxPatches 32
-#define MaxFilters 3
+#define MaxPatches 10
 #define MaxMaps 2
 #define MaxMapEntries 8
 #define MaxTransforms 4

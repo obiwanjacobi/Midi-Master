@@ -62,7 +62,7 @@ namespace ATL {
         }
 
         /** The Midi message type */
-        Midi::MessageTypes MessageType;
+        uint8_t /*Midi::MessageTypes*/ MessageType;
 
         union
         {
@@ -106,9 +106,6 @@ namespace ATL {
             /** Time code. */
             uint8_t Data;
         };
-
-        /** filler to get to power of 2 struct size (8 bytes) */
-        //uint8_t reserved[3];
 
         /** Retrieves the complete status-byte from the message.
          *  \return Returns the MessageType with possibly the Channel.

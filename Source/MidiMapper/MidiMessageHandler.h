@@ -31,35 +31,42 @@ public:
     }
     
 protected:
+    
 	// MidiReader methods
 	void OnMessage(MidiMessage* midiMsg)
 	{
 		if (midiMsg == nullptr) return;
 		
+        /*
 		for (uint8_t i = 0; i < MaxMaps; i++)
 		{
-			MessageTestResult result = StateT::MemPatch[0].Maps[i].TestMap(midiMsg);
+			// TODO: remove this call and integrate it with ExecuteMap
+			// Now we're iterating the MapEntries twice.
+			MessageMatchResult result = StateT::MemPatch[0].Maps[i].Match(midiMsg);
 
 			switch (result.value)
 			{
-			case MessageTestResult::Through:
+			case MessageMatchResult::Through:
 				StateT::MidiOutSend(i, midiMsg);
 				break;
-			case MessageTestResult::None:
-			case MessageTestResult::Passed:
-				ExecuteMap(i, midiMsg);
+			case MessageMatchResult::None:
+			case MessageMatchResult::Passed:
+				//ExecuteMap(i, midiMsg);
 				break;
 			default:
 				break;
 			}
 		}
+        */
 	}
+    
+
 
 	void OnRealtime(Midi::MessageTypes msgType)
 	{
 		/*for (uint8_t i = 0; i < MaxMaps; i++)
 		{
-			TestResult result = StateT::MemPatch.Maps[i].TestMap(msgType);
+			TestResult result = StateT::MemPatch.Maps[i].Match(msgType);
 
 			switch (result)
 			{
@@ -80,6 +87,7 @@ protected:
 	{ }
 
 private:
+    /*
 	void ExecuteMap(uint8_t mapIndex, MidiMessage* inputMsg)
 	{
 		MidiMap map = StateT::MemPatch[0].Maps[mapIndex];
@@ -94,6 +102,7 @@ private:
 			StateT::MidiOutSend(mapIndex, &outputMsg);
 		}
 	}
+    */
 
 	/*void ExecuteMap(uint8_t mapIndex, Midi::MessageTypes msgType)
 	{

@@ -1,31 +1,29 @@
-#ifndef __MIDIMAPENTRY_H__
-#define __MIDIMAPENTRY_H__
+#ifndef MIDIMAPENTRY_H_
+#define MIDIMAPENTRY_H_
 
-#include "ATL/FixedArray.h"
 #include "DataTypes.h"
 #include "MessageDetection.h"
-#include "MessageManager.h"
-#include "MidiTransform.h"
 
 class MidiMapEntry : public MessageDetection<MidiMapEntry>
 {
 public:
-	BeginEnum(Mode)
+	BeginEnum(State)
 	{
 		// this map entry is not doing anything
 		None,
 		// this map entry is active
-		Normal
+		Enabled
 	}
-	EndEnum(Mode)
+	EndEnum(State)
 
 	MidiMapEntry()
-		: Mode(Mode::None)
+		: State(State::None)
 	{ }
 
-	Mode Mode;
-	FixedArray<MidiTransform, MaxTransforms> Transforms;
+	uint8_t /*Mode*/ State;
+	//FixedArray<MidiTransform, MaxTransforms> Transforms;
 
+    /*
 	void ExecuteMapEntry(MidiMessage* inputMsg, MidiMessage* outputMsg)
 	{
 		for (uint8_t i = 0; i < Transforms.getCapacity(); i++)
@@ -34,9 +32,10 @@ public:
 
 			uint8_t value = Transforms[i].Transform(inputMsg);
 
-			Insert(outputMsg, Transforms[i].TargetField, value);
+			MessageManager::SetField(outputMsg, Transforms[i].TargetField, value);
 		}
 	}
+    */
 
 	/*Midi::MessageTypes ExecuteMapEntry(Midi::MessageTypes msgType)
 	{
@@ -54,12 +53,6 @@ public:
 	{
 		memset(this, 0, sizeof(MidiMapEntry));
 	}
-	
-private:
-	inline void Insert(MidiMessage* midiMsg, MessageField targetField, uint8_t value)
-	{
-		MessageManager::SetField(midiMsg, targetField, value);
-	}
 };
 
-#endif //__MIDIMAPENTRY_H__
+#endif //MIDIMAPENTRY_H_

@@ -96,7 +96,13 @@ namespace ATL {
          *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than the count.
          *  \return Returns the item or a default value.
          */
-        inline ItemT GetAt(int16_t index) const
+        inline const ItemT& GetAt(int16_t index) const
+        {
+            if (!IsValidIndex(index)) return Default<ItemT>::DefaultOfT;
+
+            return _array.GetAt(index);
+        }
+        inline ItemT& GetAt(int16_t index)
         {
             if (!IsValidIndex(index)) return Default<ItemT>::DefaultOfT;
 
@@ -108,7 +114,11 @@ namespace ATL {
          *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than the count.
          *  \return Returns the item or a default value.
          */
-        inline ItemT operator[](int16_t index) const
+        inline const ItemT& operator[](int16_t index) const
+        {
+            return GetAt(index);
+        }
+        inline ItemT& operator[](int16_t index)
         {
             return GetAt(index);
         }

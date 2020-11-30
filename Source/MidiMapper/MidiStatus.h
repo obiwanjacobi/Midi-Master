@@ -32,7 +32,7 @@ public:
      
     inline bool getMidiOutIsActive(uint8_t outIndex)
     {
-        if (outIndex < 4)
+        if (outIndex < MaxMaps)
         {
             return ReadAndClear(outIndex + 1);
         }

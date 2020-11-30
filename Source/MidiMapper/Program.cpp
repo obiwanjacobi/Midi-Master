@@ -12,6 +12,7 @@
 #include "ATL/AVR/Time_Avr.h"
 #include "ATL/AVR/TimerCounter.h"
 #include "ATL/AVR/Interrupt.h"
+#include "ATL/AVR/Spi.h"
 
 #include <avr/pgmspace.h>
 
@@ -24,29 +25,31 @@ PresetManager PresetManagerInstance(Globals::MemPatch);
 MidiStatus CurrentMidiStatus;
 PageManager Pages;
 
-uint8_t DebugCol = 0;
+Spi<SpiTransmit, SpiReceive> SpiTrace;
 
 void ATL::AtlDebugWrite(const char* message)
 {
-	uint8_t c = program.Lcd.getCursorCol();
-	uint8_t r = program.Lcd.getCursorRow();
+    const char* p = message;
 
-    program.Lcd.SetCursor(1, DebugCol);
-    program.Lcd.Write(message);
+    while(*p != 0)
+    {
+        SpiTrace.Transmit.Write(*p);
+        p++;
 
-	DebugCol = program.Lcd.getCursorCol();
-	if (DebugCol > 24)
-		DebugCol = 0;
-
-	// restore position
-	program.Lcd.SetCursor(r, c);
+        SpiTrace.Transmit.WaitIsComplete();
+    }
 }
 
-//bool ATL::AtlDebugLevel(uint8_t componentId, DebugLevel level)
-//{
-////return Bit<7>::IsTrue(componentId);
-//return true;
-//}
+void InitSpiTrace()
+{
+    SpiMasterPins::Initialize();
+
+    SpiConfig config;
+    config.setSpeed(SpiConfig::ClockDividedBy8);    // 2.5Mhz
+
+    SpiTrace.OpenMaster(config);
+}
+
 
 static const char SplashLine1[] PROGMEM = "MIDI Master v0.1";
 static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2017";
@@ -69,22 +72,19 @@ void Program::Run()
     }
     
     KeyMatrix.ScanButton();
-
-	if (KeyMatrix.getIsActive() &&
+    bool keyIsActive = KeyMatrix.getIsActive();
+	
+    if (keyIsActive &&
 		LastNavCmd == NavigationCommands::None)
 	{
 		LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
-			
+
 		if (Pages.OnNavigationCommand(LastNavCmd))
 		{
 			Pages.Display(&Lcd);
-
-			StringWriter<10> str;
-			str.Write(sizeof(Pages));
-			AtlDebugWrite(str);
 		}
 	}
-	else
+	else if (!keyIsActive)
 	{
 		LastNavCmd = NavigationCommands::None;
 	}
@@ -113,6 +113,8 @@ void Program::OpenLcd()
 	Globals::MemPatch[1].Clear();
     TimerCounter::Start();
     
+    InitSpiTrace();
+
 	OpenLcd();
 	Globals::OpenMidiPorts();
 	
@@ -123,8 +125,8 @@ void Program::OpenLcd()
     
 
     // TEST
-    Globals::InitTest();
-    
+    //Globals::InitTest();
+    // TEST
     
     Lcd.ClearDisplay();
     Lcd.ReturnHome();

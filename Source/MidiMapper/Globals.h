@@ -1,5 +1,5 @@
-#ifndef __GLOBALS_H__
-#define __GLOBALS_H__
+#ifndef GLOBALS_H_
+#define GLOBALS_H_
 
 #include "DataTypes.h"
 #include "MidiPatch.h"
@@ -59,7 +59,7 @@ public:
         }
     }
     
-    
+    /*
     static void InitTest()
     {
         //
@@ -93,10 +93,11 @@ public:
 		MemPatch[1].Maps[1].Entries[0].Identifier.SetAny();
 		MemPatch[1].Maps[1].Entries[0].Value.SetRange(64, 127);
     }
-    
+    */
+
 private:
 	Globals();
 
 };
 
-#endif //__GLOBALS_H__
+#endif //GLOBALS_H_
