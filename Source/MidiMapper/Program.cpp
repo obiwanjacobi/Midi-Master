@@ -49,7 +49,7 @@ void ATL::AtlDebugWrite(const char* message)
 //}
 
 static const char SplashLine1[] PROGMEM = "MIDI Master v0.1";
-static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2017";
+static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2020";
 
 // char code 246 >
 // char code 247 <
@@ -59,7 +59,7 @@ NavigationCommands LastNavCmd = NavigationCommands::None;
 void Program::Run()
 {
     uint32_t deltaTime = TaskScheduler::Update();
-    
+
     // while() ensures that all midi bytes are processed as one message - as fast as possible
 	while(Globals::MidiInOutPort1.Receive.ReadByte());
 
@@ -67,24 +67,21 @@ void Program::Run()
     {
         Pages.RealtimeScreen.DisplayActivity(&Lcd);
     }
-    
-    KeyMatrix.ScanButton();
 
-	if (KeyMatrix.getIsActive() &&
+    KeyMatrix.ScanButton();
+    auto isActive = KeyMatrix.getIsActive();
+
+	if (isActive &&
 		LastNavCmd == NavigationCommands::None)
 	{
 		LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
-			
+
 		if (Pages.OnNavigationCommand(LastNavCmd))
 		{
 			Pages.Display(&Lcd);
-
-			StringWriter<10> str;
-			str.Write(sizeof(Pages));
-			AtlDebugWrite(str);
 		}
 	}
-	else
+	else if (!isActive)
 	{
 		LastNavCmd = NavigationCommands::None;
 	}
@@ -103,7 +100,7 @@ void Program::OpenLcd()
 	Lcd.SetCursor(1, 1);
 	temp.CopyFromProgMem(SplashLine2);
 	Lcd.WriteLine(temp);
-	
+
 	Lcd.ReturnHome();
 }
 
@@ -112,23 +109,23 @@ void Program::OpenLcd()
 	Globals::MemPatch[0].Clear();
 	Globals::MemPatch[1].Clear();
     TimerCounter::Start();
-    
+
 	OpenLcd();
 	Globals::OpenMidiPorts();
-	
+
 	Interrupt::EnableAll(true);
-    
+
     // time to show the splash screen
     Delay<TimeResolution::Milliseconds>::Wait(2000);
-    
+
 
     // TEST
     Globals::InitTest();
-    
-    
+
+
     Lcd.ClearDisplay();
     Lcd.ReturnHome();
-    
+
     Pages.TrySetFirstPage();
     Pages.Display(&Lcd);
 }
@@ -157,7 +154,7 @@ NavigationCommands Program::TranslateKeyToCommand(uint8_t keyCode)
 int main(void)
 {
     program.Initialize();
-	
+
     while (1)
     {
 		program.Run();

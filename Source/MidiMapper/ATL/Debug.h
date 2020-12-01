@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-    /** Intended t give an indication on the ComponentId value ranges.
+    /** Intended to give an indication on the ComponentId value ranges.
      *  All ComponentIds 0x00-0x7F are reserved. Start your custom ComponentIds
      *  at 0x80-0xFF.
      */

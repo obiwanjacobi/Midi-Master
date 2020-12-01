@@ -7,12 +7,12 @@
 namespace ATL {
 
     /** The EditControl is a text edit control that allows a FixedString to be edited.
-     *	\tparam StringT is a FixedString type that holds the string and implements 
+     *	\tparam StringT is a FixedString type that holds the string and implements
      *  `typename ItemT`
      *  `ItemT GetAt(uint8_T)` (Array)
      *  `void SetAt(uint8_t, ItemT)` (FixedArray)
      *  `uint8_t getCapacity()` (Array).
-     *	\tparam CharacterIteratorT is an Iterator that manages the characters that can be selected 
+     *	\tparam CharacterIteratorT is an Iterator that manages the characters that can be selected
      *  when editing the TextControl and implements:
      *  `bool MoveNext()` (Iterator)
      *  `bool MoveBack()` (Iterator)
@@ -53,7 +53,7 @@ namespace ATL {
         }
 
         /** Assigns the String the TextControl displays.
-         *  \param text points to a string instance. 
+         *  \param text points to a string instance.
 		 *  The string is NOT copied and the same buffer is used for editing.
          */
         inline void setString(StringT* str)
@@ -109,7 +109,7 @@ namespace ATL {
         {
             if (BaseT::getIsSelected())
             {
-                if (_editIndex + 1 < _str->getCapacity())
+                if (_editIndex + 1 < _str->getCapacity() - 1)
                 {
                     _editIndex++;
                     RepositionIterator();
@@ -158,7 +158,7 @@ namespace ATL {
 				_str->SetAt(_editIndex, _iterator->getCurrent());
 			}
         }
-	
+
         /** Helper method that sets the CharacterIteratorT at the character at the current edit position.
          */
         inline void RepositionIterator()
