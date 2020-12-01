@@ -1,6 +1,43 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:MidiMapper-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:altera
+LIBS:diode
+LIBS:ftdi
+LIBS:lattice
+LIBS:maxim
+LIBS:msp430
+LIBS:silabs
 LIBS:MidiMapper-cache
-EELAYER 29 0
+EELAYER 25 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
@@ -15,7 +52,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 4 1 53B40DFB
 P 3300 4750
 F 0 "IC1" H 3400 4875 50  0000 L BNN
@@ -26,7 +63,7 @@ F 3 "" H 3300 4750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 6 1 53B40E0A
 P 4400 2200
 F 0 "IC1" H 4500 2325 50  0000 L BNN
@@ -37,7 +74,7 @@ F 3 "" H 4400 2200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:CNY17 OC1
+L CNY17 OC1
 U 1 1 53B40EA0
 P 3200 2200
 F 0 "OC1" H 2925 2425 50  0000 L BNN
@@ -48,7 +85,7 @@ F 3 "" H 3200 2200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR02
+L +5V #PWR02
 U 1 1 53B40FFC
 P 3900 1500
 F 0 "#PWR02" H 3900 1590 20  0001 C CNN
@@ -59,7 +96,7 @@ F 3 "" H 3900 1500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 1 1 53B41237
 P 3250 3450
 F 0 "IC1" H 3350 3575 50  0000 L BNN
@@ -70,7 +107,7 @@ F 3 "" H 3250 3450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:LED-RESCUE-MidiMapper D2
+L LED-RESCUE-MidiMapper D2
 U 1 1 53B4123D
 P 3850 3450
 F 0 "D2" H 3850 3550 50  0000 C CNN
@@ -81,7 +118,7 @@ F 3 "~" H 3850 3450 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5V #PWR04
+L +5V #PWR04
 U 1 1 53B4124F
 P 4550 3450
 F 0 "#PWR04" H 4550 3540 20  0001 C CNN
@@ -92,7 +129,7 @@ F 3 "" H 4550 3450 60  0000 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L power:+5V #PWR05
+L +5V #PWR05
 U 1 1 53B41286
 P 2500 3350
 F 0 "#PWR05" H 2500 3440 20  0001 C CNN
@@ -103,7 +140,7 @@ F 3 "" H 2500 3350 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 2 1 53B4128C
 P 3250 3900
 F 0 "IC1" H 3350 4025 50  0000 L BNN
@@ -114,7 +151,7 @@ F 3 "" H 3250 3900 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR08
+L +5V #PWR08
 U 1 1 53B414F7
 P 2500 4650
 F 0 "#PWR08" H 2500 4740 20  0001 C CNN
@@ -125,7 +162,7 @@ F 3 "" H 2500 4650 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 3 1 53B414FD
 P 3300 5200
 F 0 "IC1" H 3400 5325 50  0000 L BNN
@@ -136,7 +173,7 @@ F 3 "" H 3300 5200 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:LED-RESCUE-MidiMapper D3
+L LED-RESCUE-MidiMapper D3
 U 1 1 53B4150D
 P 3900 4750
 F 0 "D3" H 3900 4850 50  0000 C CNN
@@ -147,7 +184,7 @@ F 3 "~" H 3900 4750 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5V #PWR09
+L +5V #PWR09
 U 1 1 53B41523
 P 4600 4750
 F 0 "#PWR09" H 4600 4840 20  0001 C CNN
@@ -158,7 +195,7 @@ F 3 "" H 4600 4750 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 6 1 53B415E3
 P 3300 6050
 F 0 "IC2" H 3400 6175 50  0000 L BNN
@@ -169,7 +206,7 @@ F 3 "" H 3300 6050 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR011
+L +5V #PWR011
 U 1 1 53B41601
 P 2450 5950
 F 0 "#PWR011" H 2450 6040 20  0001 C CNN
@@ -180,7 +217,7 @@ F 3 "" H 2450 5950 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 1 1 53B41607
 P 3300 6500
 F 0 "IC2" H 3400 6625 50  0000 L BNN
@@ -191,7 +228,7 @@ F 3 "" H 3300 6500 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:LED-RESCUE-MidiMapper D4
+L LED-RESCUE-MidiMapper D4
 U 1 1 53B4160D
 P 3900 6050
 F 0 "D4" H 3900 6150 50  0000 C CNN
@@ -202,7 +239,7 @@ F 3 "~" H 3900 6050 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5V #PWR012
+L +5V #PWR012
 U 1 1 53B41619
 P 4600 6050
 F 0 "#PWR012" H 4600 6140 20  0001 C CNN
@@ -213,7 +250,7 @@ F 3 "" H 4600 6050 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 7 1 53B4172A
 P 2750 1200
 F 0 "IC1" H 2800 1250 50  0000 L BNN
@@ -224,7 +261,7 @@ F 3 "" H 2750 1200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 4 1 53B50DA5
 P 3300 8700
 F 0 "IC2" H 3400 8825 50  0000 L BNN
@@ -235,7 +272,7 @@ F 3 "" H 3300 8700 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR014
+L +5V #PWR014
 U 1 1 53B50DC3
 P 2450 8600
 F 0 "#PWR014" H 2450 8690 20  0001 C CNN
@@ -246,7 +283,7 @@ F 3 "" H 2450 8600 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 3 1 53B50DC9
 P 3300 9150
 F 0 "IC2" H 3400 9275 50  0000 L BNN
@@ -257,7 +294,7 @@ F 3 "" H 3300 9150 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:LED-RESCUE-MidiMapper D6
+L LED-RESCUE-MidiMapper D6
 U 1 1 53B50DCF
 P 3900 8700
 F 0 "D6" H 3900 8800 50  0000 C CNN
@@ -268,7 +305,7 @@ F 3 "~" H 3900 8700 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5V #PWR015
+L +5V #PWR015
 U 1 1 53B50DDB
 P 4600 8700
 F 0 "#PWR015" H 4600 8790 20  0001 C CNN
@@ -279,7 +316,7 @@ F 3 "" H 4600 8700 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 5 1 53B50DF7
 P 3300 7350
 F 0 "IC2" H 3400 7475 50  0000 L BNN
@@ -290,7 +327,7 @@ F 3 "" H 3300 7350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR017
+L +5V #PWR017
 U 1 1 53B50E15
 P 2450 7250
 F 0 "#PWR017" H 2450 7340 20  0001 C CNN
@@ -301,7 +338,7 @@ F 3 "" H 2450 7250 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 2 1 53B50E1B
 P 3300 7800
 F 0 "IC2" H 3400 7925 50  0000 L BNN
@@ -312,7 +349,7 @@ F 3 "" H 3300 7800 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:LED-RESCUE-MidiMapper D5
+L LED-RESCUE-MidiMapper D5
 U 1 1 53B50E21
 P 3900 7350
 F 0 "D5" H 3900 7450 50  0000 C CNN
@@ -323,7 +360,7 @@ F 3 "~" H 3900 7350 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+5V #PWR018
+L +5V #PWR018
 U 1 1 53B50E2D
 P 4600 7350
 F 0 "#PWR018" H 4600 7440 20  0001 C CNN
@@ -334,7 +371,7 @@ F 3 "" H 4600 7350 60  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC2
+L 74LS07N IC2
 U 7 1 53B50F7C
 P 2350 1200
 F 0 "IC2" H 2400 1250 50  0000 L BNN
@@ -345,7 +382,7 @@ F 3 "" H 2350 1200 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR019
+L +5V #PWR019
 U 1 1 53B5116B
 P 3600 750
 F 0 "#PWR019" H 3600 840 20  0001 C CNN
@@ -356,7 +393,7 @@ F 3 "" H 3600 750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:74LS07N IC1
+L 74LS07N IC1
 U 5 1 53B513B6
 P 1400 1100
 F 0 "IC1" H 1500 1225 50  0000 L BNN
@@ -367,7 +404,7 @@ F 3 "" H 1400 1100 60  0000 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1C31F
 P 4300 3450
 F 0 "R?" V 4380 3450 50  0000 C CNN
@@ -378,7 +415,7 @@ F 3 "" H 4300 3450 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1E00E
 P 2200 2100
 F 0 "R?" V 2280 2100 50  0000 C CNN
@@ -389,7 +426,7 @@ F 3 "" H 2200 2100 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1E6A0
 P 2200 3900
 F 0 "R?" V 2280 3900 50  0000 C CNN
@@ -400,7 +437,7 @@ F 3 "" H 2200 3900 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1ED5E
 P 2200 3350
 F 0 "R?" V 2280 3350 50  0000 C CNN
@@ -411,7 +448,7 @@ F 3 "" H 2200 3350 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1F3EE
 P 2200 4650
 F 0 "R?" V 2280 4650 50  0000 C CNN
@@ -422,7 +459,7 @@ F 3 "" H 2200 4650 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C1FB14
 P 2200 5200
 F 0 "R?" V 2280 5200 50  0000 C CNN
@@ -433,7 +470,7 @@ F 3 "" H 2200 5200 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C2010C
 P 2200 5950
 F 0 "R?" V 2280 5950 50  0000 C CNN
@@ -444,7 +481,7 @@ F 3 "" H 2200 5950 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C20874
 P 2200 6500
 F 0 "R?" V 2280 6500 50  0000 C CNN
@@ -455,7 +492,7 @@ F 3 "" H 2200 6500 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C20936
 P 2200 7250
 F 0 "R?" V 2280 7250 50  0000 C CNN
@@ -466,7 +503,7 @@ F 3 "" H 2200 7250 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C20D90
 P 2200 7800
 F 0 "R?" V 2280 7800 50  0000 C CNN
@@ -477,7 +514,7 @@ F 3 "" H 2200 7800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C21284
 P 2200 8600
 F 0 "R?" V 2280 8600 50  0000 C CNN
@@ -488,7 +525,7 @@ F 3 "" H 2200 8600 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C21334
 P 2200 9150
 F 0 "R?" V 2280 9150 50  0000 C CNN
@@ -499,7 +536,7 @@ F 3 "" H 2200 9150 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C2140E
 P 4350 8700
 F 0 "R?" V 4430 8700 50  0000 C CNN
@@ -510,7 +547,7 @@ F 3 "" H 4350 8700 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C214E2
 P 4350 7350
 F 0 "R?" V 4430 7350 50  0000 C CNN
@@ -521,7 +558,7 @@ F 3 "" H 4350 7350 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C215A3
 P 4350 6050
 F 0 "R?" V 4430 6050 50  0000 C CNN
@@ -532,7 +569,7 @@ F 3 "" H 4350 6050 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C21E8D
 P 4350 4750
 F 0 "R?" V 4430 4750 50  0000 C CNN
@@ -543,7 +580,7 @@ F 3 "" H 4350 4750 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C28157
 P 3900 1750
 F 0 "R?" V 3980 1750 50  0000 C CNN
@@ -554,7 +591,7 @@ F 3 "" H 3900 1750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C2833D
 P 3750 2450
 F 0 "R?" V 3830 2450 50  0000 C CNN
@@ -565,7 +602,7 @@ F 3 "" H 3750 2450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C30A6E
 P 4900 1750
 F 0 "R?" V 4980 1750 50  0000 C CNN
@@ -576,7 +613,7 @@ F 3 "" H 4900 1750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR?
+L +5V #PWR?
 U 1 1 58C30B54
 P 4900 1500
 F 0 "#PWR?" H 4900 1590 20  0001 C CNN
@@ -587,7 +624,7 @@ F 3 "" H 4900 1500 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:ATMEGA1284-P IC?
+L ATMEGA1284-P IC?
 U 1 1 58C42DBE
 P 8250 5900
 F 0 "IC?" H 7400 7780 50  0000 L BNN
@@ -598,7 +635,7 @@ F 3 "" H 8250 5900 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:AVR-JTAG-10 CON?
+L AVR-JTAG-10 CON?
 U 1 1 58C44658
 P 13400 8750
 F 0 "CON?" H 13230 9080 50  0000 C CNN
@@ -609,7 +646,7 @@ F 3 "" H 13400 8750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:CONN_02X08 P?
+L CONN_02X08 P?
 U 1 1 58C4471D
 P 10400 1750
 F 0 "P?" H 10400 2200 50  0000 C CNN
@@ -620,7 +657,7 @@ F 3 "" H 10400 550 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:Crystal Y?
+L Crystal Y?
 U 1 1 58C448B5
 P 7050 4800
 F 0 "Y?" H 7050 4950 50  0000 C CNN
@@ -631,7 +668,7 @@ F 3 "" H 7050 4800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C44ABB
 P 13400 1550
 F 0 "SW?" H 13550 1660 50  0000 C CNN
@@ -642,7 +679,7 @@ F 3 "" H 13400 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C44BBE
 P 13300 2500
 F 0 "D?" H 13300 2600 50  0000 C CNN
@@ -653,7 +690,7 @@ F 3 "" H 13300 2500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L MidiMapper-rescue:POT RV?
+L POT RV?
 U 1 1 58C44C9F
 P 8950 1800
 F 0 "RV?" H 8950 1700 50  0000 C CNN
@@ -664,7 +701,7 @@ F 3 "" H 8950 1800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C_Small C?
+L C_Small C?
 U 1 1 58C4619D
 P 6800 5000
 F 0 "C?" H 6810 5070 50  0000 L CNN
@@ -675,7 +712,7 @@ F 3 "" H 6800 5000 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C_Small C?
+L C_Small C?
 U 1 1 58C46BE7
 P 6800 4600
 F 0 "C?" H 6810 4670 50  0000 L CNN
@@ -686,7 +723,7 @@ F 3 "" H 6800 4600 50  0000 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C47EC6
 P 1500 3000
 F 0 "#PWR?" H 1500 2750 50  0001 C CNN
@@ -697,7 +734,7 @@ F 3 "" H 1500 3000 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P1
+L DIN_5 P1
 U 1 1 58C4D41E
 P 1500 2300
 F 0 "P1" H 1500 2300 50  0000 C CNN
@@ -708,7 +745,7 @@ F 3 "" H 1500 2300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P2
+L DIN_5 P2
 U 1 1 58C4E4DC
 P 1500 3550
 F 0 "P2" H 1500 3550 50  0000 C CNN
@@ -719,7 +756,7 @@ F 3 "" H 1500 3550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P3
+L DIN_5 P3
 U 1 1 58C5373D
 P 1500 4850
 F 0 "P3" H 1500 4850 50  0000 C CNN
@@ -730,7 +767,7 @@ F 3 "" H 1500 4850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P4
+L DIN_5 P4
 U 1 1 58C538B9
 P 1500 6150
 F 0 "P4" H 1500 6150 50  0000 C CNN
@@ -741,7 +778,7 @@ F 3 "" H 1500 6150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P5
+L DIN_5 P5
 U 1 1 58C54197
 P 1500 7450
 F 0 "P5" H 1500 7450 50  0000 C CNN
@@ -752,7 +789,7 @@ F 3 "" H 1500 7450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:DIN_5 P6
+L DIN_5 P6
 U 1 1 58C54F77
 P 1500 8800
 F 0 "P6" H 1500 8800 50  0000 C CNN
@@ -763,7 +800,7 @@ F 3 "" H 1500 8800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C588CF
 P 1500 4300
 F 0 "#PWR?" H 1500 4050 50  0001 C CNN
@@ -774,7 +811,7 @@ F 3 "" H 1500 4300 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C5BE5F
 P 1500 6900
 F 0 "#PWR?" H 1500 6650 50  0001 C CNN
@@ -785,7 +822,7 @@ F 3 "" H 1500 6900 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C5C63E
 P 1500 8250
 F 0 "#PWR?" H 1500 8000 50  0001 C CNN
@@ -796,7 +833,7 @@ F 3 "" H 1500 8250 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C61904
 P 1500 5600
 F 0 "#PWR?" H 1500 5350 50  0001 C CNN
@@ -807,7 +844,7 @@ F 3 "" H 1500 5600 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C658E9
 P 3650 2800
 F 0 "#PWR?" H 3650 2550 50  0001 C CNN
@@ -818,7 +855,7 @@ F 3 "" H 3650 2800 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C72B28
 P 2100 1650
 F 0 "#PWR?" H 2100 1400 50  0001 C CNN
@@ -829,7 +866,7 @@ F 3 "" H 2100 1650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C76207
 P 6550 4850
 F 0 "#PWR?" H 6550 4600 50  0001 C CNN
@@ -840,7 +877,7 @@ F 3 "" H 6550 4850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L C_Small C?
 U 1 1 58C80668
 P 3250 1200
 F 0 "C?" H 3260 1270 50  0000 L CNN
@@ -851,7 +888,7 @@ F 3 "" H 3250 1200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C?
+L C_Small C?
 U 1 1 58C80F94
 P 3600 1200
 F 0 "C?" H 3610 1270 50  0000 L CNN
@@ -862,7 +899,7 @@ F 3 "" H 3600 1200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C86DBB
 P 13200 1950
 F 0 "SW?" H 13350 2060 50  0000 C CNN
@@ -873,7 +910,7 @@ F 3 "" H 13200 1950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C86F10
 P 13750 1950
 F 0 "SW?" H 13900 2060 50  0000 C CNN
@@ -884,7 +921,7 @@ F 3 "" H 13750 1950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C87067
 P 13950 1550
 F 0 "SW?" H 14100 1660 50  0000 C CNN
@@ -895,7 +932,7 @@ F 3 "" H 13950 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C8749A
 P 14300 1950
 F 0 "SW?" H 14450 2060 50  0000 C CNN
@@ -906,7 +943,7 @@ F 3 "" H 14300 1950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C87604
 P 14500 1550
 F 0 "SW?" H 14650 1660 50  0000 C CNN
@@ -917,7 +954,7 @@ F 3 "" H 14500 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C878E5
 P 14850 1950
 F 0 "SW?" H 15000 2060 50  0000 C CNN
@@ -928,7 +965,7 @@ F 3 "" H 14850 1950 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L MidiMapper-rescue:SW_PUSH_SMALL SW?
+L SW_PUSH_SMALL SW?
 U 1 1 58C87A6F
 P 15050 1550
 F 0 "SW?" H 15200 1660 50  0000 C CNN
@@ -939,7 +976,7 @@ F 3 "" H 15050 1550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C89D91
 P 13500 2200
 F 0 "D?" H 13500 2300 50  0000 C CNN
@@ -950,7 +987,7 @@ F 3 "" H 13500 2200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A1ED
 P 13850 2500
 F 0 "D?" H 13850 2600 50  0000 C CNN
@@ -961,7 +998,7 @@ F 3 "" H 13850 2500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A2E0
 P 14050 2200
 F 0 "D?" H 14050 2300 50  0000 C CNN
@@ -972,7 +1009,7 @@ F 3 "" H 14050 2200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A3CC
 P 14400 2500
 F 0 "D?" H 14400 2600 50  0000 C CNN
@@ -983,7 +1020,7 @@ F 3 "" H 14400 2500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A762
 P 14600 2200
 F 0 "D?" H 14600 2300 50  0000 C CNN
@@ -994,7 +1031,7 @@ F 3 "" H 14600 2200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A854
 P 14950 2500
 F 0 "D?" H 14950 2600 50  0000 C CNN
@@ -1005,7 +1042,7 @@ F 3 "" H 14950 2500 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:D D?
+L D D?
 U 1 1 58C8A947
 P 15150 2200
 F 0 "D?" H 15150 2300 50  0000 C CNN
@@ -1016,7 +1053,7 @@ F 3 "" H 15150 2200 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C8E5EE
 P 13300 3200
 F 0 "R?" V 13380 3200 50  0000 C CNN
@@ -1027,7 +1064,7 @@ F 3 "" H 13300 3200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C8F6BA
 P 13850 3200
 F 0 "R?" V 13930 3200 50  0000 C CNN
@@ -1038,7 +1075,7 @@ F 3 "" H 13850 3200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C8F7BE
 P 14400 3200
 F 0 "R?" V 14480 3200 50  0000 C CNN
@@ -1049,7 +1086,7 @@ F 3 "" H 14400 3200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L R R?
 U 1 1 58C8F8C5
 P 14950 3200
 F 0 "R?" V 15030 3200 50  0000 C CNN
@@ -1060,7 +1097,7 @@ F 3 "" H 14950 3200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C90AC7
 P 14100 3550
 F 0 "#PWR?" H 14100 3300 50  0001 C CNN
@@ -1071,7 +1108,7 @@ F 3 "" H 14100 3550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR?
+L +5V #PWR?
 U 1 1 58C97B1F
 P 8950 1400
 F 0 "#PWR?" H 8950 1490 20  0001 C CNN
@@ -1082,7 +1119,7 @@ F 3 "" H 8950 1400 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C981FE
 P 8950 2200
 F 0 "#PWR?" H 8950 1950 50  0001 C CNN
@@ -1093,7 +1130,7 @@ F 3 "" H 8950 2200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR?
+L +5V #PWR?
 U 1 1 58C9A523
 P 10900 1750
 F 0 "#PWR?" H 10900 1840 20  0001 C CNN
@@ -1104,7 +1141,7 @@ F 3 "" H 10900 1750 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58C9A612
 P 11100 1750
 F 0 "#PWR?" H 11100 1500 50  0001 C CNN
@@ -1129,7 +1166,7 @@ RS
 Text Label 11650 2350 0    60   ~ 0
 E
 $Comp
-L power:GND #PWR?
+L GND #PWR?
 U 1 1 58CA2BD3
 P 8150 8100
 F 0 "#PWR?" H 8150 7850 50  0001 C CNN
@@ -1188,7 +1225,7 @@ RESET
 Text Notes 12800 8300 0    157  ~ 31
 AVR-JTAG
 $Comp
-L power:+5V #PWR?
+L +5V #PWR?
 U 1 1 58CBEF56
 P 8150 3650
 F 0 "#PWR?" H 8150 3740 20  0001 C CNN
@@ -1259,6 +1296,8 @@ Wire Wire Line
 	4150 3450 4050 3450
 Wire Wire Line
 	4450 3450 4550 3450
+Wire Wire Line
+	1800 1100 1800 1100
 Wire Wire Line
 	3700 7800 4550 7800
 Wire Wire Line
@@ -1770,11 +1809,11 @@ Wire Wire Line
 Wire Wire Line
 	9250 4900 9750 4900
 Text Label 9300 4800 0    60   ~ 0
-RS
-Text Label 9300 4900 0    60   ~ 0
 E
+Text Label 9300 4900 0    60   ~ 0
+RS
 $Comp
-L Device:D D1
+L D D1
 U 1 1 58C39BBE
 P 2600 2350
 F 0 "D1" H 2600 2450 50  0000 C CNN
@@ -1786,26 +1825,4 @@ F 3 "" H 2600 2350 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	2600 2100 2600 2200
-$Comp
-L power:GND #PWR?
-U 1 1 5FC78B18
-P 13900 9150
-F 0 "#PWR?" H 13900 8900 50  0001 C CNN
-F 1 "GND" H 13900 9000 50  0000 C CNN
-F 2 "" H 13900 9150 50  0000 C CNN
-F 3 "" H 13900 9150 50  0000 C CNN
-	1    13900 9150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR?
-U 1 1 5FC7935A
-P 14250 8550
-F 0 "#PWR?" H 14250 8640 20  0001 C CNN
-F 1 "+5V" H 14250 8640 30  0000 C CNN
-F 2 "" H 14250 8550 60  0000 C CNN
-F 3 "" H 14250 8550 60  0000 C CNN
-	1    14250 8550
-	1    0    0    -1  
-$EndComp
 $EndSCHEMATC
