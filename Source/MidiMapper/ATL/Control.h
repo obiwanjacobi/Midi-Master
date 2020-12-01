@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __CONTROL_H__
 #define __CONTROL_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "DisplayWriter.h"
 #include "EnumScope.h"
@@ -206,9 +205,9 @@ namespace ATL {
          */
         inline static Control* DynamicCast(Control* ctrl, ControlTypes type)
         {
-			if (ctrl == nullptr) return nullptr;
+            if (ctrl == nullptr) return nullptr;
             if (ctrl->IsOfType(type)) return ctrl;
-			return nullptr;
+            return nullptr;
         }
 
     protected:

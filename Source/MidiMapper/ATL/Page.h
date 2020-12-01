@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __PAGE_H__
 #define __PAGE_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "NavigationController.h"
 #include "ControlContainer.h"
@@ -129,9 +128,9 @@ namespace ATL {
             case NavigationCommands::Down:
                 handled = TrySelectNextLine();
                 break;
-			case NavigationCommands::Exit:
-				handled = TryUnselectCurrentControl();
-				break;
+            case NavigationCommands::Exit:
+                handled = TryUnselectCurrentControl();
+                break;
             default:
                 break;
             }
@@ -140,7 +139,7 @@ namespace ATL {
 
             // Skip VerticalPanel because we reimplemented line navigation (up/down) here.
             handled = PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
-			return handled;
+            return handled;
         }
 
         /** Overridden to implement the typePage type flag.
@@ -152,22 +151,22 @@ namespace ATL {
             return type.HasFlag(ControlTypes::Page) || BaseT::IsOfType(type);
         }
 
-		/** Un-selects the current focused control (if any).
+        /** Un-selects the current focused control (if any).
          *  \return Returns true if the current control was unselected.
          */
-		bool TryUnselectCurrentControl()
-		{
-			InputControl* currentCtrl = getCurrentInputControl();
+        bool TryUnselectCurrentControl()
+        {
+            InputControl* currentCtrl = getCurrentInputControl();
 
-			if (currentCtrl != nullptr && 
-				currentCtrl->getIsFocussed())
-			{
-				BaseT::setCurrentControl(nullptr);
-				return true;
-			}
+            if (currentCtrl != nullptr && 
+                currentCtrl->getIsFocussed())
+            {
+                BaseT::setCurrentControl(nullptr);
+                return true;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         /** Selects the next line -or the first if no current line is set- if no Control is currently selected.
          *  \return Returns true if successful.
@@ -177,13 +176,13 @@ namespace ATL {
             InputControl* currentCtrl = getCurrentInputControl();
 
             if (currentCtrl == nullptr ||
-				(currentCtrl != nullptr && !currentCtrl->getIsSelected()))
+                (currentCtrl != nullptr && !currentCtrl->getIsSelected()))
             {
-	            if (BaseT::SetNextInputControl())
-	            {
-		            TryFocusFirstControl();
-		            return true;
-	            }
+                if (BaseT::SetNextInputControl())
+                {
+                    TryFocusFirstControl();
+                    return true;
+                }
             }
 
             return false;
@@ -197,13 +196,13 @@ namespace ATL {
             InputControl* currentCtrl = getCurrentInputControl();
 
             if (currentCtrl == nullptr ||
-				(currentCtrl != nullptr && !currentCtrl->getIsSelected()))
+                (currentCtrl != nullptr && !currentCtrl->getIsSelected()))
             {
-	            if (BaseT::SetPreviousInputControl())
-	            {
-		            TryFocusFirstControl();
-		            return true;
-	            }
+                if (BaseT::SetPreviousInputControl())
+                {
+                    TryFocusFirstControl();
+                    return true;
+                }
             }
 
             return false;
@@ -243,12 +242,12 @@ namespace ATL {
             InputControl* ctrl = getCurrentInputControl();
 
             if (ctrl != nullptr && 
-				ctrl->getIsActive())
+                ctrl->getIsActive())
             {
                 Panel* line = getCurrentLine();
                 output->EnableCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
-				
-				ctrl->Display(output, ControlDisplayMode::Cursor);
+                
+                ctrl->Display(output, ControlDisplayMode::Cursor);
             }
             else
             {
@@ -257,22 +256,22 @@ namespace ATL {
             }
         }
 
-		/** Focuses the first control of the current line if no current control is set.
-		 *  \return Returns true if the control state was changed.
-		 */
-		inline bool TryFocusFirstControl()
-		{
-			Panel* line = getCurrentLine();
+        /** Focuses the first control of the current line if no current control is set.
+         *  \return Returns true if the control state was changed.
+         */
+        inline bool TryFocusFirstControl()
+        {
+            Panel* line = getCurrentLine();
 
-			if (line != nullptr &&
-				line->getCurrentControl() == nullptr)
-			{
-				// there is no other way to access the control collection
-				return line->OnNavigationCommand(NavigationCommands::Right);
-			}
+            if (line != nullptr &&
+                line->getCurrentControl() == nullptr)
+            {
+                // there is no other way to access the control collection
+                return line->OnNavigationCommand(NavigationCommands::Right);
+            }
 
-			return false;
-		}
+            return false;
+        }
 
     };
 

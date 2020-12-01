@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __ARRAYREF_H__
 #define __ARRAYREF_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "Default.h"
 

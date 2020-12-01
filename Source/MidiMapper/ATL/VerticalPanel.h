@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __VERTICALPANEL_H__
 #define __VERTICALPANEL_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "NavigationController.h"
 #include "Control.h"
@@ -48,7 +47,7 @@ namespace ATL {
         { }
 
         /** The Panel adjusts the current (selected) control on the `Up` and `Down` commands,
-		 *  otherwise routed to the BaseT navigation handler.
+         *  otherwise routed to the BaseT navigation handler.
          *  \param navCmd is the navigation command.
          *  \return Returns true when the command was handled, otherwise false.
          */

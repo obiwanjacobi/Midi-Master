@@ -7,19 +7,19 @@ using namespace ATL;
 
 namespace ArduinoTemplateLibraryTests
 {
-	[TestClass]
-	public ref class BitArrayTest
-	{
+    [TestClass]
+    public ref class BitArrayTest
+    {
         typedef BitArray<uint8_t> TestBitArray;
 
     public:
-		[TestMethod]
-		void Constructor_Initialization_Test()
-		{
-			TestBitArray tested(0x04);
+        [TestMethod]
+        void Constructor_Initialization_Test()
+        {
+            TestBitArray tested(0x04);
 
-			Assert::IsTrue(tested.IsTrue(2));
-		}
+            Assert::IsTrue(tested.IsTrue(2));
+        }
 
         [TestMethod]
         void Set_Bit_Test()
@@ -49,24 +49,24 @@ namespace ArduinoTemplateLibraryTests
             Assert::IsTrue(tested.Get(3));
         }
 
-		[TestMethod]
-		void Set_MultiBit_Test()
-		{
-			TestBitArray tested;
+        [TestMethod]
+        void Set_MultiBit_Test()
+        {
+            TestBitArray tested;
 
-			// 0x11 masked to 0x01
-			tested.Set(3, 0x11, 2);
+            // 0x11 masked to 0x01
+            tested.Set(3, 0x11, 2);
 
-			Assert::AreEqual((int)tested, (int)0x08);
-		}
+            Assert::AreEqual((int)tested, (int)0x08);
+        }
 
-		[TestMethod]
-		void Get_MultiBit_Test()
-		{
-			TestBitArray tested(0x08);
+        [TestMethod]
+        void Get_MultiBit_Test()
+        {
+            TestBitArray tested(0x08);
 
-			Assert::AreEqual((int)tested.Get(3, 2), (int)0x01);
-		}
+            Assert::AreEqual((int)tested.Get(3, 2), (int)0x01);
+        }
 
         [TestMethod]
         void Reverse_MultiBit_Test()
@@ -78,5 +78,5 @@ namespace ArduinoTemplateLibraryTests
 
             Assert::AreEqual((int)tested, (int)0xAA);
         }
-	};
+    };
 }

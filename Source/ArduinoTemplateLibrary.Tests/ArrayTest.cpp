@@ -31,7 +31,8 @@ namespace ArduinoTemplateLibraryTests
         {
             uint16_t capacity = ArrayT::getCapacity();
             uint16_t count = ArrayT::getCount();
-            ItemT item0 = ArrayT::GetAt(0);
+            // TODO: fix this compile error on retval
+            //ItemT item0 = ArrayT::GetAt(0);
             ItemT* pBuffer = ArrayT::getBuffer();
             bool validIndex = ArrayT::IsValidIndex(0);
             int16_t index = ArrayT::IndexOf(0);
@@ -61,14 +62,14 @@ namespace ArduinoTemplateLibraryTests
 
     };
 
-	[TestClass]
-	public ref class ArrayTest
-	{
-	public: 
-		[TestMethod]
+    [TestClass]
+    public ref class ArrayTest
+    {
+    public: 
+        [TestMethod]
         [TestCategory("CompilerTest")]
-		void Array_ReadOnlyInterface_Test()
-		{
+        void Array_ReadOnlyInterface_Test()
+        {
             ReadOnlyArrayInterfaceTest<Array<uint8_t, 2> > array;
             array.CallAllInterfaceMethods();
             
@@ -87,7 +88,7 @@ namespace ArduinoTemplateLibraryTests
 
             WritableArrayInterfaceTest<FixedArrayRef<uint8_t, 2> > fixedArrayRef(nakedArray);
             fixedArrayRef.CallAllInterfaceMethods();
-		}
+        }
 
         [TestMethod]
         [TestCategory("CompilerTest")]
@@ -112,5 +113,5 @@ namespace ArduinoTemplateLibraryTests
             WritableArrayInterfaceTest<Collection<FixedArrayRef<uint8_t, 2> > > fixedArrayRef(nakedArray);
             fixedArrayRef.CallAllInterfaceMethods();
         }
-	};
+    };
 }

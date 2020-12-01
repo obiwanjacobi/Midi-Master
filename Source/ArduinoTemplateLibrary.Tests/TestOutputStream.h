@@ -1,7 +1,6 @@
 #ifndef __TESTOUTPUTSTREAM_H__
 #define __TESTOUTPUTSTREAM_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "Arduino.h"
 

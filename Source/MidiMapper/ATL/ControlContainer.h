@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __CONTROLCONTAINER_H__
 #define __CONTROLCONTAINER_H__
 
-#include <stddef.h>
 #include <stdint.h>
 #include "FixedArray.h"
 #include "Collection.h"

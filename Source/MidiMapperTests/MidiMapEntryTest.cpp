@@ -14,12 +14,12 @@ namespace MidiMapperTests
         void MatchMessage_NotSet_ControlChange_Passed()
         {
             MidiMapEntry tested;
-            tested.Mode = MidiMapEntry::Mode::Normal;
+            tested.State = MidiMapEntry::State::Enabled;
             tested.Category = Midi::MessageCategory::NotSet;
             tested.Channel.SetAny();
             tested.Identifier.SetAny();
             tested.Value.SetAny();
-            tested.Transforms[0].Mode = MidiTransform::Mode::None;
+            //tested.Transforms[0].Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
             CreateMessage(&msg);
@@ -33,12 +33,12 @@ namespace MidiMapperTests
         void MatchMessage_ControlChange_ControlChange_Passed()
         {
             MidiMapEntry tested;
-            tested.Mode = MidiMapEntry::Mode::Normal;
+            tested.State = MidiMapEntry::State::Enabled;
             tested.Category = Midi::MessageCategory::ControlChange;
             tested.Channel.SetAny();
             tested.Identifier.SetAny();
             tested.Value.SetAny();
-            tested.Transforms[0].Mode = MidiTransform::Mode::None;
+            //tested.Transforms[0].Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
             CreateMessage(&msg);
