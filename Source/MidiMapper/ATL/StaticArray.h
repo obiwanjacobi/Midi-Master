@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -66,7 +66,7 @@ namespace ATL {
         /** Gets the item at the zero-based index position.
          *  If the specified index is invalid a default value for T is returned. See also Default<T>::DefaultOfT.
          *  The value for the item is read using the ProgMemAccessor.
-         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems. 
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          *  \return Returns the item or a default value.
          */
         inline T GetAt(int16_t index) const

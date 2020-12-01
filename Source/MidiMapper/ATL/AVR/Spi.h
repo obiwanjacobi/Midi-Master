@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -107,9 +107,9 @@ public:
     {
         ClockFromMaster,    // for slaves
         ClockDividedBy2,
-        ClockDividedBy4,    
+        ClockDividedBy4,
         ClockDividedBy8,
-        ClockDividedBy16,   
+        ClockDividedBy16,
         ClockDividedBy32,
         ClockDividedBy64,
         ClockDividedBy128,
@@ -167,7 +167,7 @@ public:
     {
         uint8_t spsr = 0;
 
-        if (_speed % 2 != 0 && 
+        if (_speed % 2 != 0 &&
             _speed != ClockDividedBy128)
         {
             Bit<SPI2X>::Set(spsr);

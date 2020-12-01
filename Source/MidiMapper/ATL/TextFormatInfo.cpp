@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "TextFormatInfo.h"
 
 namespace ATL {
-	
+
 char TextFormatInfo::NewLine[] = { '\n', '\r', '\0' };
 uint8_t TextFormatInfo::DecimalDigits = (uint8_t )2;
 char TextFormatInfo::NegativeSign = { '-' };

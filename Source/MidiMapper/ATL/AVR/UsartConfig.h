@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -106,16 +106,16 @@ class UsartConfig
     #define DIV_SYNC 2
     #define DIV_ASYNC2SPEED 8
     #define DIV_ASYNC 16
-    
+
 public:
     /** Constructs a new instance.
-     *  Default: 8 data bits, no parity and one stop bit. 
+     *  Default: 8 data bits, no parity and one stop bit.
      */
     UsartConfig()
-        : _clockDivider(0), _ubrr(0), 
+        : _clockDivider(0), _ubrr(0),
         _dataBits(UsartDataBits::Bits8), _parity(UsartParity::Off), _stopBits(UsartStopBits::OneStopBit)
     { }
-    
+
     /** Initializes an Asynchronous mode using the baudRate.
      *  The configured baud rate can deviate from the specified baudRate.
      *  The method will choose between normal and double speed Async mode based on the smallest deviation of the baud rate.
@@ -163,14 +163,14 @@ public:
         _ubrr = ubrr16;
         return true;
     }
-    
+
     //inline bool InitSyncSlave()
     //{
     //    // TODO
     //    ClearBaudRate();
     //    return false;
     //}
-    
+
     /** Retrieves the configured baud rate.
      *  This value may deviate from the baudRate specified in the InitAsync method.
      *  \return Returns the baud rate.
@@ -180,7 +180,7 @@ public:
         if (_ubrr == 0 || _clockDivider == 0) return 0;
         return CalcBaudRate(_clockDivider, _ubrr);
     }
-    
+
     /** Retrieves the configured mode.
      *  (Currently only Async modes are implemented).
      *  \return Returns Invalid if the InitAsync method was not called.
@@ -200,10 +200,10 @@ public:
             default:
                 break;
         }
-        
+
         return UsartModes::Invalid;
     }
-    
+
     /** Configures the number of data bits.
      *  \param numberOfDataBits is the value to configure.
      */
@@ -211,7 +211,7 @@ public:
     {
         _dataBits = numberOfDataBits;
     }
-    
+
     /** Retrieves the configured number of data bits.
      *  \return Returns the configured value.
      */
@@ -219,7 +219,7 @@ public:
     {
         return _dataBits;
     }
-    
+
     /** Configures the parity.
      *  \param parity is the value to configure.
      */
@@ -227,7 +227,7 @@ public:
     {
         _parity = parity;
     }
-    
+
     /** Retrieves the configured parity.
     *  \return Returns the configured value.
     */
@@ -235,7 +235,7 @@ public:
     {
         return _parity;
     }
-    
+
     /** Configures the number of stop bits.
      *  \param stopBits is the value to configure.
      */
@@ -243,7 +243,7 @@ public:
     {
         _stopBits = stopBits;
     }
-    
+
     /** Retrieves the configured number of stop bits.
     *  \return Returns the configured value.
     */
@@ -251,7 +251,7 @@ public:
     {
         return _stopBits;
     }
-    
+
 //protected: - cant be-friend a template class (Usart)
 
     /** Retrieves the register value.
@@ -261,67 +261,67 @@ public:
     {
         return _ubrr;
     }
-    
+
     /** Retrieves the register value.
      *  Used by the Usart class to Open the device.
      */
     inline uint8_t getUCSRA() const
     {
         uint8_t ucsra = 0;
-        
+
         if (_clockDivider == DIV_ASYNC2SPEED)
         {
             // double speed flag
             Bit<U2X0>::Set(ucsra);
         }
-        
+
         return ucsra;
     }
-    
+
     /** Retrieves the register value.
      *  Used by the Usart class to Open the device.
      */
     inline uint8_t getUCSRB() const
     {
         uint8_t ucsrb = 0;
-        
+
         if (_dataBits == UsartDataBits::Bits9)
         {
             Bit<UCSZ02>::Set(ucsrb);
         }
-        
+
         return ucsrb;
     }
-    
+
     /** Retrieves the register value.
      *  Used by the Usart class to Open the device.
      */
     inline uint8_t getUCSRC() const
     {
         uint8_t ucsrc = 0;
-        
+
         // UMSEL0:1
         if (_clockDivider < DIV_ASYNC2SPEED)
         {
             // sync mode
             Bit<UMSEL00>::Set(ucsrc);
         }
-        
+
         // UPM0:1
         if (_parity != UsartParity::Off)
         {
             if (_parity == UsartParity::Even)
                 Bit<UPM00>::Set(ucsrc);
-            
+
             Bit<UPM01>::Set(ucsrc);
         }
-        
+
         // USBS
         if (_stopBits == UsartStopBits::TwoStopBits)
         {
             Bit<USBS0>::Set(ucsrc);
         }
-        
+
         // UCSZ0:1
         if (_dataBits < UsartDataBits::Bits9)
         {
@@ -332,20 +332,20 @@ public:
             // Bits9 = UCSZ00=1, UCSZ01=1
             Bit<UCSZ00>::Set(ucsrc);
         }
-        
+
         // UCPOL (sync clock polarity)
-        
+
         return ucsrc;
     }
 
-    
+
 private:
     uint8_t	_clockDivider;
     uint16_t _ubrr;
     UsartDataBits _dataBits;
     UsartParity _parity;
     UsartStopBits _stopBits;
-    
+
     // TODO: ((F_CPU + UART_BAUD_RATE * 8L) / (UART_BAUD_RATE * 16L) - 1)
     // ubrr = (fOsc / ([16,8,2] * baudRate)) - 1
     inline static int16_t CalcUBRR(uint8_t clockDivider, uint16_t baudRate)

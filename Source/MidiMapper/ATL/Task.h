@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
 /** \file Task.h
- *  The Task implementation is based on macros forming a switch statement. 
+ *  The Task implementation is based on macros forming a switch statement.
  *  It is possible to jump in and out of switch-cases and together
  *  with a _task variable a Task can be 'resumed' at the correct
  *  position.

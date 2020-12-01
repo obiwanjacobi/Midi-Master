@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -35,7 +35,7 @@ namespace ATL {
 		StaticString()
 			: _str(nullptr)
 		{ }
-			
+
         // declare PROGMEM string and pass in the var
         /** Constructs an initialized instance.
          *  Declare a PROGMEM array and pass in the variable.
@@ -61,13 +61,13 @@ namespace ATL {
 			if (_str == nullptr) return;
 			strncpy_P(target.getBuffer(), _str, target.getCapacity());
 		}
-		
+
 		inline StaticString& operator=(const char* str)
 		{
 			_str = str;
 			return *this;
 		}
-		
+
     private:
         const char* _str;
     };

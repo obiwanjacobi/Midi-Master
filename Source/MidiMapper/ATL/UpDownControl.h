@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -54,11 +54,11 @@ namespace ATL {
         {
             if (mode == ControlDisplayMode::Normal)
             {
-				const char* text = _value->getText();
-				if (text != nullptr)
-				{
-					output->Display(text);
-				}
+                const char* text = _value->getText();
+                if (text != nullptr)
+                {
+                    output->Display(text);
+                }
             }
         }
 

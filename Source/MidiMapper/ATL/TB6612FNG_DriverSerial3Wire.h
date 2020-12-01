@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -28,7 +28,7 @@ namespace ATL {
 
     /** This driver class writes to one port of a Toshiba TB6612FNG - a dual 1A motor driver/controller.
      *  Use two instances of this class to drive both channels of the chip.
-     *  The class implements the IO routines for partially using the serial-3-wire shift registers. 
+     *  The class implements the IO routines for partially using the serial-3-wire shift registers.
      *  The PWM is still connected directly to the Arduino (no support for PWM on Serial3Wire yet).
      *  \tparam BaseT is a Serial3WireOutput type and implements:
      *  `void Write(BitArrayT*)`

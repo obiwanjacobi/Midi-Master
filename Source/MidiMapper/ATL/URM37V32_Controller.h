@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -34,7 +34,7 @@ namespace ATL {
     template<class BaseT>
     class URM37V32_Controller : public BaseT
     {
-    
+
 #define CMD_TEMPERATURE 0x11
 #define CMD_DISTANCE 0x22
 #define CMD_READ_EEPROM 0x33
@@ -56,13 +56,13 @@ namespace ATL {
             Success
         };
 
-        // 
+        //
         /** Mode 2: Autonomous trigger mode.
          *  Under this mode, the sensor will make a sensor reading every 25ms and compare the reading with a
          *  threshold [..], if the reading is equal or
          *  smaller than the threshold, pin COMP/TRIG will have low output. In the meantime, pin PWM will output
          *  the distance reading, every 50us low level stands for 1cm, by counting the number of these pulses, the
-         *  distance can be calculated. This mode can be simply used as an ON/OFF switch. 
+         *  distance can be calculated. This mode can be simply used as an ON/OFF switch.
          *  \param the threshold to test for.
          *  \return Returns true when successful.
          */
@@ -77,7 +77,7 @@ namespace ATL {
         /** Mode 3: PWM passive control mode.
          *  Under this mode, a low pull on pin COMP/TRIG will trigger a sensor reading. The width of the pulse is
          *  proportional to the servo rotating degree. After a successful sensor reading, Pin PWM will output pulses,
-         *  every 50us represents 1cm. If the reading is invalid, a 50000us pulse will be returned. 
+         *  every 50us represents 1cm. If the reading is invalid, a 50000us pulse will be returned.
          *  \return Returns true when successful.
          */
         bool SetPassiveControlMode()

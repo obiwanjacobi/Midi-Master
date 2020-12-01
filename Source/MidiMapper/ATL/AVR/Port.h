@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -93,7 +93,7 @@ public:
 
         return false;
     }
-    
+
     inline static void EnableAllPullups(bool enable = true)
     {
         if (enable)
@@ -105,7 +105,7 @@ public:
     inline static void SetDirection(Pins pin, PinIO io)
     {
         uint8_t mask = PinToMask(pin);
-        
+
         if (io) PortRegDir() |= mask;
         else PortRegDir() &= ~mask;
     }

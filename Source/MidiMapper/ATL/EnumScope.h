@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -35,16 +35,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 #define BeginEnum(name) \
 struct name { \
-	enum type \
-		
+    enum type \
+
 /** MACRO: Ends an enum with a scope (See also BeginEnum).
  *	Values for the enum has to be scoped with the enum name. e.g. `Color::Red`.
  *	\param name is the name of the enum.
  */
 #define EndEnum(name) ; \
-	name(type val) : value(val) {} \
-	operator type() const {return value;} \
-	type value; \
+    name(type val) : value(val) {} \
+    operator type() const {return value;} \
+    type value; \
     bool HasFlag(type flag) const { return (value & flag) == flag; } \
 private: template<typename T> operator T () const; \
 };\

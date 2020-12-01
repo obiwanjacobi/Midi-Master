@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -27,7 +27,7 @@ namespace ATL {
 
     /** The BufferedInputStream implements an abstract InputStream by using a circular buffer (RingBuffer).
      *  This class derives from the BaseT type.
-     *	\tparam BaseT is the RingBuffer implementation: 
+     *	\tparam BaseT is the RingBuffer implementation:
      *  `unsigned uint8_t getCount();`
      *  `int Read();`
      */

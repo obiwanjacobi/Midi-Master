@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -28,9 +28,9 @@ namespace ATL {
 
 
     /** Implements the communication protocol for a HD44780 compatible LCD character display.
-     *  \tparam BaseT represents a HD44780_Driver that interfaces with the actual device. 
+     *  \tparam BaseT represents a HD44780_Driver that interfaces with the actual device.
      *  It implements: `void Write4(uint8_t)`, `void WriteCommand(uint8_t)` and void Initialize()`.
-     *  \tparam TimingProfileT is used to perform synchronous delays. 
+     *  \tparam TimingProfileT is used to perform synchronous delays.
      *  It can be used to fine-tune the synchronous delays. See also HD44780_Profile.
      */
     template<class BaseT, typename TimingProfileT = HD44780_Profile>

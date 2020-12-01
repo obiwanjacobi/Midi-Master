@@ -1,5 +1,5 @@
 /*
-    Arduino Template Library http://atl.codeplex.com
+    Arduino Template Library https://github.com/obiwanjacobi/atl
     Written by Marc Jacobi
     Copyright 2012-2015 All Rights Reserved
 
@@ -44,7 +44,7 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
-		 *  \param fixedLength is the number of total characters to display (leading zeros).
+         *  \param fixedLength is the number of total characters to display (leading zeros).
          */
         inline void Write(const uint8_t value, const uint8_t fixedLength = 0)
         {
@@ -68,7 +68,7 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
-		 *  \param fixedLength is the number of total characters to display (leading zeros).
+         *  \param fixedLength is the number of total characters to display (leading zeros).
          */
         inline void Write(const int16_t value, const uint8_t fixedLength = 0)
         {
@@ -93,7 +93,7 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
-		 *  \param fixedLength is the number of total characters to display (leading zeros).
+         *  \param fixedLength is the number of total characters to display (leading zeros).
          */
         inline void Write(const uint16_t value, const uint8_t fixedLength = 0)
         {
@@ -126,7 +126,7 @@ namespace ATL {
 
         /** Writes a textual representation for the value.
          *  \param value is the number to convert to string.
-		 *  \param fixedLength is the number of total characters to display (leading zeros).
+         *  \param fixedLength is the number of total characters to display (leading zeros).
          */
         inline void Write(const uint32_t value, const uint8_t fixedLength = 0)
         {
@@ -247,7 +247,7 @@ namespace ATL {
         {
             char buffer[bufferSize];
             char* strPos = &buffer[bufferSize - 1];
-			char* strEnd = strPos;
+            char* strEnd = strPos;
 
             // we fill the buffer from back to front.
             *strPos = '\0';
@@ -267,9 +267,9 @@ namespace ATL {
             }
             while (integer != 0);
 
-			// leading zeros
-			while (fixedLength - (strEnd - strPos) > 0 && strPos > buffer)
-				*--strPos = '0';
+            // leading zeros
+            while (fixedLength - (strEnd - strPos) > 0 && strPos > buffer)
+                *--strPos = '0';
 
             Write(strPos);
         }

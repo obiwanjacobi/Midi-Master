@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -127,7 +127,7 @@ namespace ATL {
         {
             return _array;
         }
-        
+
         /** Adds a new item at the end of the collection.
          *  Does nothing when the collection is full.
          *  \param item is the item to add. Will add NULL.

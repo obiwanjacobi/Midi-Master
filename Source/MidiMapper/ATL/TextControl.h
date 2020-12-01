@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -27,18 +27,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
     /** The TextControl is a text edit control that allows a FixedString to be edited.
-     *	\tparam StringT is a FixedString type that holds the string and implements 
+     *	\tparam StringT is a FixedString type that holds the string and implements
      *  `typename ItemT`
      *  `ItemT GetAt(uint8_T)` (Array)
      *  `void SetAt(uint8_t, ItemT)` (FixedArray)
      *  `uint8_t getCapacity()` (Array).
-     *	\tparam CharacterIteratorT is an Iterator that manages the characters that can be selected 
+     *	\tparam CharacterIteratorT is an Iterator that manages the characters that can be selected
      *  when editing the TextControl and implements:
      *  `bool MoveNext()` (Iterator)
      *  `bool MoveBack()` (Iterator)
      *  `bool MoveTo(char)` (Iterator)
      *  `char getCurrent() const` (Iterator).
-	 */
+     */
     template<class StringT, class CharacterIteratorT>
     class TextControl : public EditControl<StringT, CharacterIteratorT, TextControl<StringT, CharacterIteratorT> >
     {

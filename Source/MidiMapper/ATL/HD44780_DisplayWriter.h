@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -49,11 +49,11 @@ namespace ATL {
         {
             BaseT::Write(text);
         }
-        
+
         using BaseT::Write;
 
         /** Calls the `HD44780_View::SetCursor` method.
-         *  Will also call `HD44780_View::getCursorRow` and `HD44780_View::getCursorCol` 
+         *  Will also call `HD44780_View::getCursorRow` and `HD44780_View::getCursorCol`
          *  when `DisplayWriter::DontCare` values are specified.
          *  \param lineIndex indicates the display line.
          *  \param columnIndex indicates the display column (char position).
@@ -74,7 +74,7 @@ namespace ATL {
         {
             if (lineIndex == DontCare && columnIndex == DontCare)
             {
-				// This could be more efficient with SetDisplayControl 
+				// This could be more efficient with SetDisplayControl
 				// but that would also put another requirement on BaseT.
 				BaseT::setEnableBlink(false);
                 BaseT::setEnableCursor(false);
@@ -93,7 +93,7 @@ namespace ATL {
 
 			GoTo(lineIndex, columnIndex);
         }
-        
+
         using BaseT::SetCursor;
 
 	private:

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -47,7 +47,7 @@ namespace ATL {
 
         /** Constructs a new instance.
          */
-        Time() 
+        Time()
             : _ticks(0)
         {
             Update();
@@ -74,18 +74,18 @@ namespace ATL {
 
         /** Returns the TimeResolution template parameter.
          */
-        inline TimeResolution getResolution() const 
+        inline TimeResolution getResolution() const
         {
             return resolution;
         }
 
         inline static uint32_t ForClockCycles(uint32_t clockCylces);
-        
+
     protected:
 
         /** Returns the raw time ticks.
          */
-        inline uint32_t getTicks() const 
+        inline uint32_t getTicks() const
         {
             return _ticks;
         }
@@ -157,7 +157,7 @@ namespace ATL {
     public:
         /** Initializes a new instance.
          */
-        TimeEx() 
+        TimeEx()
         {
             Reset();
         }

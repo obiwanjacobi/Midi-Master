@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -180,56 +180,56 @@ namespace ATL {
             }
         }
 
-		inline static MessageCategory ToMessageCategory(uint8_t msgType)
-		{
-			return ToMessageCategory((MessageTypes)msgType);
-		}
+        inline static MessageCategory ToMessageCategory(uint8_t msgType)
+        {
+            return ToMessageCategory((MessageTypes)msgType);
+        }
 
-		inline static MessageCategory ToMessageCategory(MessageTypes msgType)
-		{
-			switch(msgType)
-			{
-			case NoteOff:
-			case NoteOn:
-				return MessageCategory::Note;
-				break;
-			case AfterTouchChannel:
-			case AfterTouchPoly:
-				return MessageCategory::AfterTouch;
-				break;
-			case ControlChange:
-				return MessageCategory::ControlChange;
-				break;
-			case PitchBend:
-				return MessageCategory::PitchBend;
-				break;
-			case ProgramChange:
-				return MessageCategory::ProgramChange;
-				break;
-			case Start:
-			case Stop:
-			case SystemReset:
-			case ActiveSensing:
-			case Continue:
-			case Clock:
-				return MessageCategory::Realtime;
-				break;
-			case TimeCodeQuarterFrame:
-			case SongPosition:
-			case SongSelect:
-			case TuneRequest:
-				return MessageCategory::SystemCommon;
-				break;
-			case SystemExclusive:
-				return MessageCategory::SystemExclusive;
-				break;
-			default:
-				break;
-			}
-			
-			return MessageCategory::NotSet;
-		}
-		
+        inline static MessageCategory ToMessageCategory(MessageTypes msgType)
+        {
+            switch(msgType)
+            {
+            case NoteOff:
+            case NoteOn:
+                return MessageCategory::Note;
+                break;
+            case AfterTouchChannel:
+            case AfterTouchPoly:
+                return MessageCategory::AfterTouch;
+                break;
+            case ControlChange:
+                return MessageCategory::ControlChange;
+                break;
+            case PitchBend:
+                return MessageCategory::PitchBend;
+                break;
+            case ProgramChange:
+                return MessageCategory::ProgramChange;
+                break;
+            case Start:
+            case Stop:
+            case SystemReset:
+            case ActiveSensing:
+            case Continue:
+            case Clock:
+                return MessageCategory::Realtime;
+                break;
+            case TimeCodeQuarterFrame:
+            case SongPosition:
+            case SongSelect:
+            case TuneRequest:
+                return MessageCategory::SystemCommon;
+                break;
+            case SystemExclusive:
+                return MessageCategory::SystemExclusive;
+                break;
+            default:
+                break;
+            }
+
+            return MessageCategory::NotSet;
+        }
+
         /** Determines if the statusByte is a channel message.
          *  \param statusByte is the status-byte to test.
          *  \return Returns true if the statusByte is channel message.

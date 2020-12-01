@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -34,13 +34,13 @@ namespace MCU {
 
 /** The Usart class is the basis for the Usart ports on the AVR MCU.
  *  \tparam: UsartId is the Usart port this class represents.
- *  \tparam: TransmitT is the class used for transmission (TX). 
+ *  \tparam: TransmitT is the class used for transmission (TX).
  *  By default it is the UsartTransmit template class but the UsartOutputStream class can also be used.
  *  \tparam: ReceiveT is the class used for reception (RX).
  *  By default it is the UsartReceive template class but the UsartInputStream class can also be used.
  */
-template<const UsartIds::type UsartId, 
-         typename TransmitT = UsartTransmit<UsartId>, 
+template<const UsartIds::type UsartId,
+         typename TransmitT = UsartTransmit<UsartId>,
          typename ReceiveT = UsartReceive<UsartId> >
 class Usart
 {
@@ -52,7 +52,7 @@ public:
     {
         return UsartId;
     }
-    
+
     inline void Enable(bool enabled)
     {
         PowerReduction::setEnableUsart<UsartId>(enabled);
@@ -63,7 +63,7 @@ public:
     }
 
     /// \todo TODO: OpenSync
-    
+
     /** Configures the Usart for asynchronous communication.
      *  The Usart is enabled in the Power Reduction Register.
      *  Receiver and/or Transmitter are not enabled. No interrupts are enabled.
@@ -73,22 +73,22 @@ public:
     inline bool OpenAsync(const UsartConfig& config)
     {
         UsartModes mode = config.getMode();
-        
+
         if (mode != UsartModes::Async &&
             mode != UsartModes::AsyncDoubleSpeed)
         {
             return false;
         }
-        
+
         Enable(true);
-        
+
         UsartRegisters<UsartId>::getUBRR() = config.getUBRR();
         UsartRegisters<UsartId>::getUCSRA() = config.getUCSRA();
         UsartRegisters<UsartId>::getUCSRB() = config.getUCSRB();
         UsartRegisters<UsartId>::getUCSRC() = config.getUCSRC();
         return true;
     }
-    
+
     /** Closes the Usart by closing the transmitter and receiver.
      *  Clears buffer, disables interrupts and disables the receiver and transmitter.
      *  Disables the Usart in the Power Reduction Register.

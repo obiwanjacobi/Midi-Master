@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -112,7 +112,7 @@ namespace ATL {
          */
         bool BeforeChangeState(ControlState newState) override
         {
-            return newState != ControlState::Selected && 
+            return newState != ControlState::Selected &&
                    InputControl::BeforeChangeState(newState);
         }
 

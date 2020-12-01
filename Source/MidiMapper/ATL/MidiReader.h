@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -39,13 +39,13 @@ namespace ATL {
     public:
         /** Constructs the instance.
          */
-        MidiReader() 
+        MidiReader()
             : _runningStatus(0), _parseState(StatusByte), _endState(NotSet)
         { }
 
         /** Reads one byte from the buffer and returns.
          *  Call this method repeatedly from the main loop.
-         *  Multiple events (notifications) may be fired. 
+         *  Multiple events (notifications) may be fired.
          *  Note that the MidiMessage used to notify complete message read, is reused for the next read-cycle
          *  - so it is ONLY valid during the notification call.
          *  \return Returns true when a byte was read.
@@ -78,12 +78,12 @@ namespace ATL {
             EOX,
         };
 
-        // Running status is when the next midi message has the same status 
+        // Running status is when the next midi message has the same status
         // as the previous midi message. This way status byte do not have to
         // be repeated when they are the same, saving some bandwidth.
         uint8_t _runningStatus;
 
-        // \todo both these fields can be merged to one. 
+        // \todo both these fields can be merged to one.
         //   Use a bit mask to check one or the other.
 
         // this is the type of midi byte that is expected next

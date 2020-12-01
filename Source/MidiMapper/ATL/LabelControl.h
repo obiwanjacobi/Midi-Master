@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -86,8 +86,8 @@ namespace ATL {
          */
         virtual bool BeforeChangeState(ControlState newState)
         {
-            return newState != ControlState::Focused && 
-                   newState != ControlState::Selected && 
+            return newState != ControlState::Focused &&
+                   newState != ControlState::Selected &&
                    Control::BeforeChangeState(newState);
         }
 

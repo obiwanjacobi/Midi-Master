@@ -1,5 +1,5 @@
-/*  
-	Arduino Template Library http://atl.codeplex.com
+/*
+	Arduino Template Library https://github.com/obiwanjacobi/atl
 	Written by Marc Jacobi
 	Copyright 2012-2015 All Rights Reserved
 
@@ -30,7 +30,7 @@ namespace ATL {
 	ReturnT Func3(Arg1T, Arg2T, Arg3T)
 	ReturnT Func4(Arg1T, Arg2T, Arg3T, Arg4T)
 	ReturnT Func5(Arg1T, Arg2T, Arg3T, Arg4T, Arg5T)
-	
+
 	void Func0()
 	void Func01(Arg1T)
 	void Func01(Arg1T, Arg2T)

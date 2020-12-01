@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -74,7 +74,7 @@ public:
         _buffer.Write(data);
         BaseT::setEnableAcceptDataInterrupt(true);
     }
-    
+
     /** Call this method from the `ISR(USARTn_UDRE_vect)` interrupt handler.
      *  May turn of the interrupt if the buffer is empty.
      *  Not meant to be called from regular code.
@@ -92,7 +92,7 @@ public:
             BaseT::setEnableAcceptDataInterrupt(false);
         }
     }
-    
+
     /** Retrieves the buffer size used for storing transmit data.
      *  \return Returns the size of the internal buffer.
      */
@@ -100,7 +100,7 @@ public:
     {
         return _buffer.getCapacity();
     }
-    
+
     /** Closes the output stream and transmitter.
      *  Data still in the buffer is lost.
      */
@@ -112,7 +112,7 @@ public:
 
 private:
     BufferT _buffer;
-};  
+};
 
 }}	// ATL::MCU
 

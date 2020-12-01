@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -29,7 +29,7 @@ namespace ATL {
 
     /** The Delays class is used count-down timer values typically used in Tasks.
      *  Delays is a static class and cannot be instantiated.
-     *  \tparam TimeT is the Time class to use - indicating time in Milliseconds or Microseconds. 
+     *  \tparam TimeT is the Time class to use - indicating time in Milliseconds or Microseconds.
      *  TimeT implements: `uint16_t Update()` - returns the delta-Time.
      *  \tparam MaxItems is the maximum number of delays that can be tracked.
      */
@@ -170,16 +170,16 @@ namespace ATL {
         Delays() {}
     };
 
-    template<class TimeT, const uint8_t MaxItems> 
+    template<class TimeT, const uint8_t MaxItems>
     TimeT Delays<TimeT, MaxItems>::_time;
 
-    template<class TimeT, const uint8_t MaxItems> 
+    template<class TimeT, const uint8_t MaxItems>
     uint32_t Delays<TimeT, MaxItems>::_delta = 0;
 
-    template<class TimeT, const uint8_t MaxItems> 
+    template<class TimeT, const uint8_t MaxItems>
     uint16_t Delays<TimeT, MaxItems>::_ids[] = {};
 
-    template<class TimeT, const uint8_t MaxItems> 
+    template<class TimeT, const uint8_t MaxItems>
     uint32_t Delays<TimeT, MaxItems>::_delays[] = {};
 
 } // ATL

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -60,7 +60,7 @@ public:
     {
         Bit<RXEN0>::Set(UsartRegisters<UsartId>::getUCSRB(), enable);
     }
-    
+
     /** Retrieves a value that indicates if the receiver is enabled (true).
      *  \return Returns false when not enabled.
      */
@@ -68,7 +68,7 @@ public:
     {
         return Bit<RXEN0>::IsTrue(UsartRegisters<UsartId>::getUCSRB());
     }
-    
+
     /** Enables (true) or disables (false) the receiver interrupt.
      *  When turning on interrupts you also have to implement the `ISR(USARTn_RX_vect)` interrupt handler.
      *  \param enable indicates the state.
@@ -77,7 +77,7 @@ public:
     {
         Bit<RXCIE0>::Set(UsartRegisters<UsartId>::getUCSRB(), enable);
     }
-    
+
     /** Retrieves a value that indicates if the receiver interrupt is enabled (true).
      *  \return Returns false when not enabled.
      */
@@ -85,7 +85,7 @@ public:
     {
         return Bit<RXCIE0>::IsTrue(UsartRegisters<UsartId>::getUCSRB());
     }
-  
+
     /** Retrieves a value indicating if reception of data is complete.
      *  \return Returns true if the receive operation is complete.
      */
@@ -93,7 +93,7 @@ public:
     {
         return Bit<RXC0>::IsTrue(UsartRegisters<UsartId>::getUCSRA());
     }
-    
+
     /** Blocks code execution until the receive operation is complete.
      *  See also `getIsComplete()`.
      */
@@ -101,7 +101,7 @@ public:
     {
         while(!getIsComplete());
     }
-    
+
     /** Discards all received data.
      */
     inline void Flush()
@@ -112,7 +112,7 @@ public:
             data = UsartRegisters<UsartId>::getUDR();
         }
     }
-    
+
     /** Wait for the receive operation to complete and returns the data.
      *  \return Returns -1 if no data is available.
      */
@@ -124,7 +124,7 @@ public:
 	    if (result != UsartReceiveResult::Success) return -1;
 	    return data;
     }
-    
+
     /** Wait for the receive operation to complete and returns the data.
      *  \param outResult is set with the result of the receive operation.
      *  \return Returns -1 if no data is available.
@@ -135,8 +135,8 @@ public:
         outResult = getResult();
         return ReadInternal();
     }
-    
-    /** Checks if the receive operation has completed in a non-blocking manner. 
+
+    /** Checks if the receive operation has completed in a non-blocking manner.
      *  If not false is returned and the outResult is set to `NotReady`.
      *  \param outData will be set with the received data.
      *  \param outResult is set with the result of the receive operation.
@@ -150,12 +150,12 @@ public:
             outResult = UsartReceiveResult::NotReady;
             return false;
         }
-        
+
         outResult = getResult();
         outData = ReadInternal();
         return true;
     }
-    
+
     /** Gives an indication of a receive error has occurred.
      *  Call this method before calling any of the `(Try)Read()` methods.
      *  Note that `DataOverRun` is not considered an error by this method.
@@ -167,7 +167,7 @@ public:
         //return Bit<FE0>::IsTrue(UsartRegisters<UsartId>::getUCSRA()) ||
             //Bit<UPE0>::IsTrue(UsartRegisters<UsartId>::getUCSRA());
     }
-    
+
     /** Retrieves the Usart port identifier.
      *  \return Returns the UsartId template parameter.
      */
@@ -193,16 +193,16 @@ protected:
     {
         if (Bit<FE0>::IsTrue(UsartRegisters<UsartId>::getUCSRA()))
             return UsartReceiveResult::FrameError;
-        
+
         if (Bit<UPE0>::IsTrue(UsartRegisters<UsartId>::getUCSRA()))
             return UsartReceiveResult::ParityError;
-        
+
         if (Bit<DOR0>::IsTrue(UsartRegisters<UsartId>::getUCSRA()))
             return UsartReceiveResult::DataOverRun;
-            
+
         return UsartReceiveResult::Success;
     }
-    
+
     /** Reads the data from the data register.
      *  Includes the 9th bit if this is active.
      *  \return Returns the data without any error checking.
@@ -210,7 +210,7 @@ protected:
     inline int16_t ReadInternal() const
     {
         int16_t data = 0;
-        
+
         if (getIs9DataBits())
         {
             if (Bit<RXB80>::IsTrue(UsartRegisters<UsartId>::getUCSRB()))
@@ -218,7 +218,7 @@ protected:
                 data = 0x0100;
             }
         }
-        
+
         data |= UsartRegisters<UsartId>::getUDR();
         return data;
     }

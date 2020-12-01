@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -29,7 +29,7 @@ namespace ATL {
     /** The Iterator class maintains a current index of the iteration position.
      *  It can move this position forward and backwards but does not wrap around the beginning or the end (See WrapAroundIterator).
      *  Either MoveNext, MoveBack or MoveTo methods must be called before there is a valid current item.
-     *	\tparam BaseT is expected to implement the Array interface: 
+     *	\tparam BaseT is expected to implement the Array interface:
      *	`typedef ItemT` (the item type in the array)
      *	`ctor(const ItemT*)`
      *	`bool IsValidIndex(int16_t) const`

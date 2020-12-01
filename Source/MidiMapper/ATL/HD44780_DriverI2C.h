@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-    
+
     template<typename BaseT, typename TimingProfileT = HD44780_Profile>
     class HD44780_DriverI2C : public BaseT
     {
@@ -146,7 +146,7 @@ namespace ATL {
             WriteToI2C();
 
             TimingProfileT::WaitPulseEnable();
-            
+
             _dataReg.Set(Enable_Index);
             WriteToI2C();
         }

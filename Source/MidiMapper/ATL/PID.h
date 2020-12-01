@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -38,11 +38,11 @@ namespace ATL {
      *  PID = P + I - D
      *  \remarks LowPassFilter:
      *  Filtered = (1 - filterConstant) * previousFiltered + filterConstant * Unfiltered
-     *  Where the filterConstant can be a constant value between 0 and 1 
-     *  (filter as a function of the number of samples) or can be 
+     *  Where the filterConstant can be a constant value between 0 and 1
+     *  (filter as a function of the number of samples) or can be
      *  calculated from an actual time constant (in seconds) by:
      *  filterConstant = deltaTime / (deltaTime + timeConstant)
-     *  You want to pick a timeConstant that is faster than the expected time 
+     *  You want to pick a timeConstant that is faster than the expected time
      *  for the physical input to be changing, but longer than a few samples.
      *  If you don't want to implement the LowPassFilter just return the parameter value:
      *  Filtered = Unfiltered
@@ -62,7 +62,7 @@ namespace ATL {
          *  Pass a bias of 0 for unused terms.
          *  \param setPoint is the target value.
          *  \param biasP
-         *  \param biasI 
+         *  \param biasI
          *  \param biasD
          *  \return Returns the calculated value.
          */

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 namespace ATL {
 
     /** FixedString is a specialized FixedArray for character strings.
-     *  \tparam MaxChars indicates the maximum number of characters in the string. 
+     *  \tparam MaxChars indicates the maximum number of characters in the string.
      *  The underlying array has one extra byte for the terminating zero.
      */
     template<const uint8_t MaxChars>
@@ -90,7 +90,7 @@ namespace ATL {
         {
             strncpy_P(BaseT::getBuffer(), text, MaxChars);
         }
-        
+
         /** Copy's in the specified text.
          *  Will never copy more than MaxChars characters from text.
          *  \param text is a pointer to a zero-terminated string.

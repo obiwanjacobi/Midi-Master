@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -88,8 +88,8 @@ namespace ATL {
      *  false => 0=stateOpen | 1=stateClosed (pull-down)
      *  true => 0=stateClosed | 1=stateOpen (pull-up)
      */
-    template<class BaseT, typename DelaysT, 
-        const uint32_t DebounceTimeout, const uint32_t HoldTimeout, 
+    template<class BaseT, typename DelaysT,
+        const uint32_t DebounceTimeout, const uint32_t HoldTimeout,
         const bool InverseValue=false>
     class PushButton : public BaseT
     {
@@ -140,7 +140,7 @@ namespace ATL {
         {
             return (ButtonStates)_states.Get(CurrentStateIndex, ButtonStateLength);
         }
-        
+
         inline bool getIsActive() const
         {
             ButtonStates state = getState();
@@ -195,7 +195,7 @@ namespace ATL {
             // button changed (meaningful) states
             if (prevState != state
                 && state != stateHold
-                && prevState != stateUnknown 
+                && prevState != stateUnknown
                 && prevState != statePending
                 )
             {

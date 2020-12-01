@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -39,12 +39,12 @@ namespace ATL {
     class RingBuffer
     {
     public:
-		typedef T ItemT;
-		
+        typedef T ItemT;
+
         /** Constructs the instance.
          */
         RingBuffer()
-			: _writeIndex(0), _readIndex(0)
+            : _writeIndex(0), _readIndex(0)
         { }
 
         /** Clears the buffer.
@@ -52,8 +52,8 @@ namespace ATL {
          */
         void Clear()
         {
-			LockScopeT lock;
-			
+            LockScopeT lock;
+
             _writeIndex = 0;
             _readIndex = 0;
         }
@@ -65,12 +65,12 @@ namespace ATL {
          */
         bool Write(T value)
         {
-			LockScopeT lock;
-			
+            LockScopeT lock;
+
             // check for overrun
             if ((_writeIndex + 1) >= Size)
             {
-				// TODO: this does not seem right
+                // TODO: this does not seem right
                 if (_readIndex == 0) return false;
             }
             else if ((_writeIndex + 1) == _readIndex) return false;
@@ -92,8 +92,8 @@ namespace ATL {
          */
         T Read()
         {
-			LockScopeT lock;
-			
+            LockScopeT lock;
+
             T result = _buffer[_readIndex];
             _readIndex++;
 
@@ -110,8 +110,8 @@ namespace ATL {
          */
         inline uint16_t getCount() const
         {
-			LockScopeT lock;
-			
+            LockScopeT lock;
+
             if (_writeIndex >= _readIndex)
             {
                 return _writeIndex - _readIndex;
@@ -124,19 +124,19 @@ namespace ATL {
         {
             return _writeIndex == _readIndex;
         }
-        
-		inline uint16_t getCapacity() const
-		{
-			return Size - 1;
-		}
-		
+
+        inline uint16_t getCapacity() const
+        {
+            return Size - 1;
+        }
+
     private:
         volatile T _buffer[Size];
         volatile uint16_t _writeIndex;
         volatile uint16_t _readIndex;
     };
 
-	
+
 } //ATL
 
 #endif //__RINGBUFFER_H__

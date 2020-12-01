@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -33,7 +33,7 @@ namespace ATL {
      *  The BitFlag class has similar functionality as the Bit class.
      *  BitFlag is a static class, meaning that no instance can be constructed.
      *  All methods are called like `BitFlag::Set(myVar, 2);` which would set bit2 in myVar.
-     *  Use BitFlag instead of Bit when the bitIndex is dynamic/only known at runtime. 
+     *  Use BitFlag instead of Bit when the bitIndex is dynamic/only known at runtime.
      *  Bit is slightly more optimal when the bitIndex is known at compile time (hard-coded).
      */
     class BitFlag

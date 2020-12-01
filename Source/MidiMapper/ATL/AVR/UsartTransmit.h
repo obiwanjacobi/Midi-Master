@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -53,7 +53,7 @@ public:
     {
         Bit<TXEN0>::Set(UsartRegisters<UsartId>::getUCSRB(), enable);
     }
-    
+
     /** Retrieves a value that indicates if the transmitter is enabled (true).
      *  \return Returns false when not enabled.
      */
@@ -61,7 +61,7 @@ public:
     {
         return Bit<TXEN0>::IsTrue(UsartRegisters<UsartId>::getUCSRB());
     }
-    
+
     /** Retrieves a value indicating if transmission of data is complete.
      *  \return Returns true if the transmit operation is complete.
      */
@@ -69,7 +69,7 @@ public:
     {
         return Bit<TXC0>::IsTrue(UsartRegisters<UsartId>::getUCSRA());
     }
-    
+
     /** Blocks code execution until the transmit operation is complete.
      *  See also `getIsComplete()`.
      */
@@ -77,7 +77,7 @@ public:
     {
         while(!getIsComplete());
     }
-    
+
     /** Retrieves a value indicating if another data byte is ready to be transmitted.
      *  This is different from the `getIsComplete()` in that transmission may still be taking place in the shift register,
      *  but the data register is empty and can accept new data.
@@ -87,7 +87,7 @@ public:
     {
         return Bit<UDRE0>::IsTrue(UsartRegisters<UsartId>::getUCSRA());
     }
-    
+
     /** Blocks code execution until the transmit operation can accept new data.
      *  See also `getAcceptData()`.
      */
@@ -98,15 +98,15 @@ public:
 
     /** Enables (true) or disables (false) the transmitter complete interrupt.
      *  When turning on interrupts you also have to implement the `ISR(USARTn_TX_vect)` interrupt handler.
-     *  This interrupt is most useful when implementing half-duplex communication where after transmitting, 
+     *  This interrupt is most useful when implementing half-duplex communication where after transmitting,
      *  the receiver has to be switched on.
      *  \param enable indicates the state.
      */
     inline void setEnableIsCompleteInterrupt(bool enable = true)
     {
         Bit<TXCIE0>::Set(UsartRegisters<UsartId>::getUCSRB(), enable);
-    }    
-    
+    }
+
     /** Retrieves a value that indicates if the transmitter complete interrupt is enabled (true).
      *  \return Returns false when not enabled.
      */
@@ -114,7 +114,7 @@ public:
     {
         return Bit<TXCIE0>::IsTrue(UsartRegisters<UsartId>::getUCSRB());
     }
-  
+
     /** Enables (true) or disables (false) the transmitter accept data interrupt.
      *  When turning on interrupts you also have to implement the `ISR(USARTn_UDRE_vect)` interrupt handler.
      *  \param enable indicates the state.
@@ -123,7 +123,7 @@ public:
     {
         Bit<UDRIE0>::Set(UsartRegisters<UsartId>::getUCSRB(), enable);
     }
-    
+
     /** Retrieves a value that indicates if the transmitter accept data interrupt is enabled (true).
      *  \return Returns false when not enabled.
      */
@@ -131,7 +131,7 @@ public:
     {
         return Bit<UDRIE0>::IsTrue(UsartRegisters<UsartId>::getUCSRB());
     }
-  
+
     /** Blocks execution until all data has been transmitted.
      *  See also `WaitAcceptData()`
      */
@@ -140,7 +140,7 @@ public:
         WaitAcceptData();
         // TODO: quicker way?
     }
-    
+
     /** Blocks until the transmitter accepts data and write data to the data register.
      *  \return Always returns `Success`.
      */
@@ -150,7 +150,7 @@ public:
         WriteInternal(data);
         return UsartTransmitResult::Success;
     }
-    
+
     /** Write the data to the data register when the transmitter accepts data.
      *  When the transmitter is not ready to accept data, false is returned and the outResult is set to `NotReady`.
      *  \param data is the data to send.
@@ -164,12 +164,12 @@ public:
             outResult = UsartTransmitResult::NotReady;
             return false;
         }
-        
+
         WriteInternal(data);
         outResult = UsartTransmitResult::Success;
         return true;
     }
-    
+
     /** Retrieves the Usart port identifier.
      *  \return Returns the UsartId template parameter.
      */
@@ -177,7 +177,7 @@ public:
     {
         return UsartId;
     }
-    
+
     /** Closes the Usart transmitter by disabling interrupts
      *  and the transmitter itself.
      */
@@ -199,7 +199,7 @@ protected:
         {
             Bit<TXB80>::Set(UsartRegisters<UsartId>::getUCSRB(), (data & 0x0100) > 0);
         }
-        
+
         UsartRegisters<UsartId>::getUDR() = (uint8_t)(data & 0xFF);
     }
 

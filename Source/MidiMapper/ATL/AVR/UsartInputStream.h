@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -69,7 +69,7 @@ public:
 
     /** Reads one byte from the stream.
      *  It turns on the receive interrupt when no data is available (first read is always -1).
-     *  \return Returns the byte read in the lsb (up to 9 bits). 
+     *  \return Returns the byte read in the lsb (up to 9 bits).
      *  If -1 is returned, no data was available or an error occurred.
      */
     inline int16_t Read()
@@ -78,11 +78,11 @@ public:
         {
             return _buffer.Read();
         }
-        
+
         BaseT::setEnableIsCompleteInterrupt(true);
         return -1;
     }
-    
+
 	inline bool TryRead(int16_t& outData)
 	{
 		if (!_buffer.getIsEmpty())
@@ -90,12 +90,12 @@ public:
 			outData = _buffer.Read();
 			return true;
 		}
-		
+
 		outData = 0;
 		BaseT::setEnableIsCompleteInterrupt(true);
 		return false;
 	}
-	
+
     /** Call this method from the `ISR(USARTn_RX_vect)` interrupt handler.
      *  Not meant to be called from regular code.
      */
@@ -103,11 +103,11 @@ public:
     {
         UsartReceiveResult result = BaseT::getResult();
         int16_t data = BaseT::ReadInternal();
-        
+
         if (result == UsartReceiveResult::Success)
             _buffer.Write((typename BufferT::ItemT)data);
     }
-    
+
     /** Retrieves the buffer size used for storing received data.
      *  \return Returns the size of the internal buffer.
      */
@@ -115,7 +115,7 @@ public:
     {
         return _buffer.getCapacity();
     }
-    
+
     /** Closes the input stream and receiver.
      *  Data still in the buffer is lost.
      */

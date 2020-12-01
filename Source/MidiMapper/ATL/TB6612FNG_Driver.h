@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -28,10 +28,10 @@ namespace ATL {
 
     /** This driver class writes to one port of a Toshiba TB6612FNG - a dual 1A motor driver/controller.
      *  Use two instances of this class to drive both channels of the chip.
-     *  The class implements the IO routines for direct connection onto an Arduino. 
+     *  The class implements the IO routines for direct connection onto an Arduino.
      *  \tparam In1_BoardPinNumber is the BoardPinNumber of an output that is connected to input 1 of the chip.
      *  \tparam In2_BoardPinNumber is the BoardPinNumber of an output that is connected to input 2 of the chip.
-     *  \tparam Pwm_BoardPinNumber is the BoardPinNumber of an output for the PWM input that controls speed. 
+     *  \tparam Pwm_BoardPinNumber is the BoardPinNumber of an output for the PWM input that controls speed.
      *  The Pwm_BoardPinNumber must be a PWM (~) pin.
      */
     template<const uint8_t In1_BoardPinNumber, const uint8_t In2_BoardPinNumber, const uint8_t Pwm_BoardPinNumber>

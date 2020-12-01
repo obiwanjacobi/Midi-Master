@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -33,7 +33,7 @@ namespace ATL {
     public:
         /** Constructs an instance.
          */
-        DigitalInput() 
+        DigitalInput()
             : _value(false)
         { }
 

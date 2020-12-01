@@ -1,5 +1,5 @@
-/*  
-Arduino Template Library http://atl.codeplex.com
+/*
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -30,7 +30,7 @@ namespace ATL {
 	ReturnT Delegate3(ClassT, Arg1T, Arg2T, Arg3T)
 	ReturnT Delegate4(ClassT, Arg1T, Arg2T, Arg3T, Arg4T)
 	ReturnT Delegate5(ClassT, Arg1T, Arg2T, Arg3T, Arg4T, Arg5T)
-	
+
 	void Delegate0(ClassT)
 	void Delegate01(ClassT, Arg1T)
 	void Delegate01(ClassT, Arg1T, Arg2T)

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -56,7 +56,7 @@ namespace ATL {
 
         /** Gets the item at the zero-based index position.
          *  If the specified index is invalid a default value for T is returned. See also Default<T>::DefaultOfT.
-         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems. 
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          *  \return Returns the item or a default value.
          */
         inline const T& GetAt(int16_t index) const
@@ -74,7 +74,7 @@ namespace ATL {
 
         /** Sets the item at the zero-based index position, possibly overwriting.
          *  If the specified index is invalid nothing is performed.
-         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems. 
+         *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          */
         inline void SetAt(int16_t index, T value)
         {
@@ -118,11 +118,11 @@ namespace ATL {
             return GetAt(index);
         }
 
-		inline operator const T* () const
-		{
-			return _arr;
-		}
-		
+        inline operator const T* () const
+        {
+            return _arr;
+        }
+
         /** Provides access to the internal buffer that stores the items in the array.
          *  Not recommended to use this because no bounds checking is performed.
          *  \return Returns the pointer to the buffer.

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -40,7 +40,7 @@ namespace ATL {
         inline static void Wait(uint32_t timeout);
     };
 
-        
+
 } // ATL
 
 #endif /* __DELAY_H__ */

@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -32,7 +32,7 @@ namespace ATL {
     {
     public:
         /** Common bases for displaying decimal numbers as text.
-         *  
+         *
          */
         enum BaseTypes
         {
@@ -60,7 +60,7 @@ namespace ATL {
         static uint8_t DefaultBase;
     };
 
-    
+
 
 } // ATL
 

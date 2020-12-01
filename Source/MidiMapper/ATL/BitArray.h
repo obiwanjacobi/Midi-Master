@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -54,7 +54,7 @@ namespace ATL {
             _bits = bitValues;
         }
 
-        /** Sets the bits from value starting at bit0 for bitCount bits 
+        /** Sets the bits from value starting at bit0 for bitCount bits
          *  in the BitArray starting at the bitIndex position.
          *  \param bitIndex is the zero-based index where the value bits are stored.
          *  \param value contains the bits to copy.
@@ -229,7 +229,7 @@ namespace ATL {
             return _bits;
         }
 
-        /** Shifts all bits up specified number of times. 
+        /** Shifts all bits up specified number of times.
          *  ...Losing the most significant bits and setting false for the least significant bits.
          *  \param shift indicates how many bit positions are shifted.
          */

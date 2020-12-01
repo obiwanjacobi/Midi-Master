@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -31,7 +31,7 @@ namespace ATL {
      *  Note that in 4-bit mode only the high data lines (4-7) of the display are used.
      *  See also: http://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
      *  The 3-wire serial connection can drive 74HC595 serial-in/parallel-out shift registers.
-     *  It uses a BitArray to store all the bits that are clocked out to the shift registers. 
+     *  It uses a BitArray to store all the bits that are clocked out to the shift registers.
      *  This BitArray is shared amongst all 'devices' that share the shift-registers (which can be chained to 'any' length).
      *  So it is important to call the setDataRegister method BEFORE calling Initialize on the controller.
      *  See also Serial3WireOutput.

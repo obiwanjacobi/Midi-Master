@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 
-    /** This class implements driver logic for the HD44780 LCD display. 
+    /** This class implements driver logic for the HD44780 LCD display.
      *  It assumes a write-only (5-R/W connected to GND) 4-bit mode (soft-mode).
      *  Note that in 4-bit mode only the high data lines (4-7) of the display are used.
      *  See also: http://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller
@@ -80,7 +80,7 @@ namespace ATL {
         {
             Write4(data >> 4);
             Write4(data);
-            
+
             TimingProfileT::WaitForCommand();
         }
 
@@ -91,12 +91,12 @@ namespace ATL {
         inline void Write4(uint8_t data)
         {
             _enable.Write(true);
-            
+
             _data04.Write(data & 0x01);
             _data15.Write(data & 0x02);
             _data26.Write(data & 0x04);
             _data37.Write(data & 0x08);
-            
+
             _enable.Write(false);
             TimingProfileT::WaitPulseEnable();
         }
@@ -121,10 +121,10 @@ namespace ATL {
             // * = don't care
             WriteCommand(0x28);
         }
-        
+
         inline void PulseEnable()
         {
-            
+
         }
     };
 

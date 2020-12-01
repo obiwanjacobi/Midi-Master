@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -84,7 +84,7 @@ public:
     {
         return _SFR_MEM8(0xC2 + (UsartId * 0x08));
     }
-    
+
     /** Usart Data Register
      *  \return Returns a reference to the register.
      */

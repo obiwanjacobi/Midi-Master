@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -56,7 +56,7 @@ namespace ATL {
         /** Constructs the instance.
          *  Zero's-out all vars.
          */
-        MidiMessage() 
+        MidiMessage()
         {
             Clear();
         }
@@ -116,7 +116,7 @@ namespace ATL {
             {
                 return MessageType;
             }
-            
+
             return (MessageType | Channel);
         }
 
@@ -174,8 +174,8 @@ namespace ATL {
                 // lsb
                 value = (Beats & MASK_7BIT_LO);
                 break;
-			default:
-				break;
+            default:
+                break;
             }
 
             return (value & MASK_DATABYTE);
@@ -216,8 +216,8 @@ namespace ATL {
                 // lsb
                 Beats = dataByte;
                 break;
-			default:
-				break;
+            default:
+                break;
             }
         }
 
@@ -247,8 +247,8 @@ namespace ATL {
                 // msb
                 value = (Beats & MASK_7BIT_HI) >> 7;
                 break;
-			default:
-				break;
+            default:
+                break;
             }
 
             return (value & MASK_DATABYTE);
@@ -278,8 +278,8 @@ namespace ATL {
                 // msb
                 Beats |= (dataByte << 7);
                 break;
-			default:
-				break;
+            default:
+                break;
             }
         }
 
@@ -293,11 +293,11 @@ namespace ATL {
 
             memcpy(target, this, sizeof(MidiMessage));
         }
-		
-		void Clear()
-		{
-			memset(this, 0, sizeof(MidiMessage));
-		}
+
+        void Clear()
+        {
+            memset(this, 0, sizeof(MidiMessage));
+        }
     };
 
 } // ATL
