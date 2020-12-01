@@ -4,6 +4,8 @@
 #include "ATL/FixedArray.h"
 #include "ATL/FixedString.h"
 #include "DataTypes.h"
+#include "MidiMapEntry.h"
+#include "MidiTransform.h"
 //#include "MidiStorage.h"
 
 typedef FixedString<PatchNameMaxLength> PatchNameString;

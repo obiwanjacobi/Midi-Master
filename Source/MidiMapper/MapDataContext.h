@@ -10,64 +10,27 @@ using namespace ATL;
 class MapDataContext
 {
 public:
-    enum DataField
+    typedef enum
     {
         None,
         MessageType,
         MessageChannel,
         MessageIdentifier,
         MessageValue,
-    };
+    } DataField;
 
 	MidiMessage* InputMessage;
 	MidiMessage* OutputMessage;
 
     inline int16_t Get(DataField source)
     {
-        int16_t value = 0;
-
-        switch (source)
-        {
-        case MessageType:
-            value = MessageManager::GetField(InputMessage, MessageField::MessageType);
-            break;
-        case MessageChannel:
-            value = MessageManager::GetField(InputMessage, MessageField::Channel);
-            break;
-        case MessageIdentifier:
-            value = MessageManager::GetField(InputMessage, MessageField::Identifier);
-            break;
-        case MessageValue:
-            value = MessageManager::GetField(InputMessage, MessageField::Value);
-            break;
-        default:
-            break;
-        }
-
-        return value;
+		return MessageManager::GetField(InputMessage, MessageField((MessageField::type)source));
     }
 
     inline void Set(DataField target, int16_t value)
     {
-        switch (target)
-        {
-        case MessageType:
-            MessageManager::SetField(OutputMessage, MessageField::MessageType, value);
-            break;
-        case MessageChannel:
-            MessageManager::SetField(OutputMessage, MessageField::Channel, value);
-            break;
-        case MessageIdentifier:
-            MessageManager::SetField(OutputMessage, MessageField::Identifier, value);
-            break;
-        case MessageValue:
-            MessageManager::SetField(OutputMessage, MessageField::Value, value);
-            break;
-        default:
-            break;
-        }
+		MessageManager::SetField(OutputMessage, MessageField((MessageField::type)target), value);
     }
-
 };
 
 #endif /* MAPDATACONTEXT_H_ */

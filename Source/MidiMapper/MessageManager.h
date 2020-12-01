@@ -4,18 +4,20 @@
 #include "ATL/MidiMessage.h"
 #include "MessageField.h"
 
+using namespace ATL;
+
 class MessageManager
 {
 public:
 	MessageManager(MidiMessage* midiMsg)
 		: _midiMsg(midiMsg)
 	{ }
-	
+
 	inline bool SetField(MessageField field, uint8_t value)
 	{
 		return SetField(_midiMsg, field, value);
 	}
-	
+
 	inline static bool SetField(MidiMessage* midiMsg, MessageField field, uint8_t value)
 	{
 		switch(field.value)
@@ -35,15 +37,15 @@ public:
 		default:
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	inline uint8_t GetField(MessageField field) const
 	{
 		return GetField(_midiMsg, field);
 	}
-	
+
 	inline static uint8_t GetField(MidiMessage* midiMsg, MessageField field)
 	{
 		switch(field.value)

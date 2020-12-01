@@ -62,7 +62,7 @@ NavigationCommands LastNavCmd = NavigationCommands::None;
 void Program::Run()
 {
     uint32_t deltaTime = TaskScheduler::Update();
-    
+
     // while() ensures that all midi bytes are processed as one message - as fast as possible
 	while(Globals::MidiInOutPort1.Receive.ReadByte());
 
@@ -70,10 +70,10 @@ void Program::Run()
     {
         Pages.RealtimeScreen.DisplayActivity(&Lcd);
     }
-    
+
     KeyMatrix.ScanButton();
     bool keyIsActive = KeyMatrix.getIsActive();
-	
+
     if (keyIsActive &&
 		LastNavCmd == NavigationCommands::None)
 	{
@@ -103,7 +103,7 @@ void Program::OpenLcd()
 	Lcd.SetCursor(1, 1);
 	temp.CopyFromProgMem(SplashLine2);
 	Lcd.WriteLine(temp);
-	
+
 	Lcd.ReturnHome();
 }
 
@@ -112,25 +112,25 @@ void Program::OpenLcd()
 	Globals::MemPatch[0].Clear();
 	Globals::MemPatch[1].Clear();
     TimerCounter::Start();
-    
+
     InitSpiTrace();
 
 	OpenLcd();
 	Globals::OpenMidiPorts();
-	
+
 	Interrupt::EnableAll(true);
-    
+
     // time to show the splash screen
     Delay<TimeResolution::Milliseconds>::Wait(2000);
-    
+
 
     // TEST
     //Globals::InitTest();
     // TEST
-    
+
     Lcd.ClearDisplay();
     Lcd.ReturnHome();
-    
+
     Pages.TrySetFirstPage();
     Pages.Display(&Lcd);
 }
@@ -159,7 +159,7 @@ NavigationCommands Program::TranslateKeyToCommand(uint8_t keyCode)
 int main(void)
 {
     program.Initialize();
-	
+
     while (1)
     {
 		program.Run();

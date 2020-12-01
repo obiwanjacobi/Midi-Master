@@ -3,6 +3,7 @@
 
 #include "DataTypes.h"
 #include "MapDataContext.h"
+#include "ValueSequence.h"
 
 typedef ValueSequence<MaxMapEntries> MidiMapEntrySequence;
 
@@ -23,7 +24,7 @@ public:
             if (Entries[i].Mode == MidiMapEntry::Mode::None) break;
 
             MessageMatchResult result = Entries[i].MatchMessage(midiMsg);
-            
+
             if (retVal == MessageMatchResult::None)
             {
                 retVal = result;
@@ -36,7 +37,7 @@ public:
                 break;
             }
         }
-        
+
         return retVal;
     }
     */
