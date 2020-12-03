@@ -98,8 +98,17 @@ namespace ATL {
         {
             return BaseT::SetPreviousInputControl();
         }
-    };
 
+    protected:
+        /** Navigates to the lines and controls of the current page.
+         *  \param navCmd is the navigation command.
+         *  \return Returns false when the navCmd was not handled.
+         */
+        bool OnNavigationCommandCurrentPage(NavigationCommands navCmd)
+        {
+            return BaseT::OnNavigationCommand(navCmd);
+        }
+    };
 
 } // ATL
 

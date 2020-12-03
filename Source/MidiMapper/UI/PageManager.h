@@ -4,50 +4,80 @@
 #include "../ATL/Singleton.h"
 #include "../ATL/PageController.h"
 #include "RealtimePage.h"
+#include "EditOutputMapPage.h"
+#include "TestPage.h"
 
 using namespace ATL;
 
-#define NumberOfPages	2
+#define NumberOfPages	3
 
-class PageManager : public Singleton<PageManager>, 
+class PageManager : public Singleton<PageManager>,
                     public PageController<LcdLines, NumberOfPages>
 {
     typedef PageController<LcdLines, NumberOfPages> BaseT;
 
 public:
     typedef Page<LcdLines> PageT;
-    
+
     PageManager()
-		: _nextPage(nullptr)
+		: _currentPage(nullptr)
     {
         BaseT::Add(&RealtimeScreen);
+        BaseT::Add(&EditOutputScreen);
+        BaseT::Add(&TestScreen);
     }
-    
+
     // pages
     RealtimePage<PageManager> RealtimeScreen;
-    
+    EditOutputMapPage<PageManager> EditOutputScreen;
+    TestPage<PageManager> TestScreen;
+
+
     inline bool IsCurrentScreen(PageT* screen)
     {
         return BaseT::getCurrentPage() == screen;
     }
-    
+
+    void Display(LCD* lcd)
+    {
+        if (_currentPage != BaseT::getCurrentPage())
+        {
+            lcd->ClearDisplay();
+            lcd->ReturnHome();
+            _currentPage = BaseT::getCurrentPage();
+        }
+
+        BaseT::Display(lcd);
+    }
+
     // navigate to the screen for editing the output map.
     inline bool EnterEditOutputMap(int outIndex)
     {
-        // queue navigation and execute on display.
-        _nextPage = &RealtimeScreen;    // test
-        
-        return false;
+        PresetManager* presetMgr = PresetManager::getCurrent();
+        presetMgr->SelectOutput(outIndex);
+
+        EditOutputScreen.Update();
+        BaseT::setCurrentControl(&EditOutputScreen);
+
+        return true;
     }
-    
-    inline virtual bool OnNavigationCommand(NavigationCommands navCmd)
+
+    inline bool OnNavigationCommand(NavigationCommands navCmd) override
     {
-        bool handled = BaseT::OnNavigationCommand(navCmd);
+        // bypass the next-page logic of PageController
+        bool handled = BaseT::OnNavigationCommandCurrentPage(navCmd);
+
+        if (!handled && navCmd == NavigationCommands::Enter)
+        {
+            PageT* page = BaseT::getCurrentPage();
+            page->OnNavigationCommand(NavigationCommands::Down);
+        }
+
         return handled;
     }
-    
+
 private:
-    PageT* _nextPage;
+    PageT* _currentPage;
 };
 
 

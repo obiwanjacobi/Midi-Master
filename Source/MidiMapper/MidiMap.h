@@ -5,9 +5,12 @@
 #include "DataTypes.h"
 #include "MidiMapEntry.h"
 
+typedef FixedString<OutputNameMaxLength> OutputNameString;
+
 class MidiMap
 {
 public:
+    OutputNameString Name;
     FixedArray<MidiMapEntry, MaxMapEntries> Entries;
 
     MessageTestResult TestMap(MidiMessage* midiMsg)
@@ -20,7 +23,7 @@ public:
             if (Entries[i].Mode == MidiMapEntry::Mode::None) break;
 
             MessageTestResult result = Entries[i].TestMessage(midiMsg);
-            
+
             if (retVal == MessageTestResult::None)
             {
                 retVal = result;
@@ -33,10 +36,10 @@ public:
                 break;
             }
         }
-        
+
         return retVal;
     }
-    
+
     inline void Clear()
     {
         memset(this, 0, sizeof(MidiMap));

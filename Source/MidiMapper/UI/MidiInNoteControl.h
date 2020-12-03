@@ -12,14 +12,18 @@ public:
     MidiInNoteControl(uint8_t pos = 0)
         : Control(pos)
     { }
-    
+
     inline void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
     {
         if (mode == ControlDisplayMode::Cursor) return;
-        
+
         if (MidiStatus::getCurrent()->getMidiInIsActive())
         {
             output->Display("!");
+        }
+        else if (PresetManager::getCurrent()->getIsDirty())
+        {
+            output->Display("*");
         }
         else
         {

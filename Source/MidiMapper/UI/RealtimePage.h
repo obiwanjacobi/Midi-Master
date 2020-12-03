@@ -19,7 +19,7 @@ using namespace ATL;
 typedef NameTextControl<PatchNameMaxLength> PatchNameTextControl;
 
 template<typename PageManagerT>
-class RealtimeLine1 : public Line<7>
+class RealtimeLine1 : public Line<3>
 {
     typedef Line<7> BaseT;
 
@@ -33,7 +33,7 @@ public:
 
 		PatchNameText.setString(PresetManager::getCurrent()->getPatchNameString());
     }
-    
+
     PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;
 	PatchNameTextControl PatchNameText;
     MidiInNoteControl InNoteLabel;
@@ -64,17 +64,18 @@ private:
 	inline void MoveToPatch(int8_t delta)
 	{
 		PresetManager* presetMgr = PresetManager::getCurrent();
-		presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + delta);
-
-		PatchNameText.setString(presetMgr->getPatchNameString());
+		if (presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + delta))
+        {
+		    PatchNameText.setString(presetMgr->getPatchNameString());
+        }
 	}
 };
 
 template<typename PageManagerT>
-class RealtimeLine2 : public Line<5>
+class RealtimeLine2 : public Line<4>
 {
-    typedef Line<5> BaseT;
-    
+    typedef Line<4> BaseT;
+
 public:
     RealtimeLine2()
         : Out1NoteLabel(0), Out2NoteLabel(6), Out3NoteLabel(12), Out4NoteLabel(18)
@@ -94,24 +95,24 @@ public:
 template<typename PageManagerT>
 class RealtimePage : public IdentifiableObject<Page<LcdLines> >
 {
-    typedef IdentifiableObject<Page<LcdLines> > BaseT;
-    
+    typedef IdentifiableObject<Page<LcdLines>> BaseT;
+
 public:
     RealtimePage()
     {
         Add(&Line1);
         Add(&Line2);
     }
-    
+
     RealtimeLine1<PageManagerT> Line1;
     RealtimeLine2<PageManagerT> Line2;
-    
+
     void PartialDisplay(DisplayWriter* output)
     {
 		output->GoTo(0, Line1.InNoteLabel.getPosition());
 		Line1.InNoteLabel.Display(output);
     }
-    
+
     Task_BeginWithParams(DisplayActivity, DisplayWriter* output)
     {
         if (MidiStatus::getCurrent()->getMidiIsActive())
@@ -122,7 +123,7 @@ public:
         }
     }
     Task_End
-    
+
 private:
     uint8_t _task;
 };

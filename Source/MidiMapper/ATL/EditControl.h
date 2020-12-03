@@ -69,7 +69,18 @@ namespace ATL {
          */
         void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
         {
-            BaseT::Display(output, mode);
+            //BaseT::Display(output, mode);
+            if (mode == ControlDisplayMode::Normal)
+            {
+                const char* text = getText();
+                output->Display(text);
+
+                // erase empty control space
+                for (uint8_t i = strlen(text); i <= CharacterLength(); i++)
+                {
+                    output->Display(" ");
+                }
+            }
 
             if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
             {
@@ -109,7 +120,7 @@ namespace ATL {
         {
             if (BaseT::getIsSelected())
             {
-                if (_editIndex + 1 < _str->getCapacity() - 1)
+                if (_editIndex + 1 < CharacterLength())
                 {
                     _editIndex++;
                     RepositionIterator();
@@ -196,6 +207,11 @@ namespace ATL {
         StringT* _str;
         CharacterIteratorT* _iterator;
         uint8_t _editIndex;
+
+        inline uint8_t CharacterLength() const
+        {
+            return _str->getCapacity() - 1;
+        }
     };
 
 } // ATL

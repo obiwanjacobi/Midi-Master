@@ -25,7 +25,7 @@ public:
 
 		// TEMP!
 		_currentPatch = _firstPatch + index;
-		_index = index;
+		_presetIndex = index;
 		return true;
 	}
 
@@ -36,14 +36,14 @@ public:
 
 	inline uint8_t getCurrentPresetIndex() const
 	{
-		return _index;
+		return _presetIndex;
 	}
 
     inline const char* getCurrentPresetName() const
     {
         return _currentPatch->Name;
     }
-    
+
 	inline void MarkDirty()
 	{
 		_isDirty = true;
@@ -53,15 +53,58 @@ public:
     {
         return _isDirty;
     }
-    
+
+    inline MidiPatch* getCurrentPreset()
+    {
+        return _currentPatch;
+    }
+
+    void SelectOutput(uint8_t outIndex)
+    {
+        _mapIndex = outIndex;
+    }
+
+    inline OutputNameString* getCurrentOutputNameString() const
+    {
+        return &_currentPatch->Maps[_mapIndex].Name;
+    }
+
+    inline const char* getCurrentOutputName() const
+    {
+        return _currentPatch->Maps[_mapIndex].Name;
+    }
+
+    MidiMap* getCurrentMap()
+    {
+        return &_currentPatch->Maps[_mapIndex];
+    }
+
+    uint8_t getCurrentEntryIndex() const
+    {
+        return _entryIndex;
+    }
+
+    void SelectMapEntry(uint8_t index)
+    {
+        _entryIndex = index;
+    }
+
+    MidiMapEntry* getCurrentMapEntry()
+    {
+        return &getCurrentMap()->Entries[_entryIndex];
+    }
+
+
 private:
 	MidiPatch* _firstPatch;
     MidiPatch* _currentPatch;
 
-	uint8_t _index;
+	uint8_t _presetIndex;
+    uint8_t _mapIndex;
+    uint8_t _entryIndex;
+
     bool _isDirty;
 };
-
 
 
 #endif /* PRESETMANAGER_H_ */

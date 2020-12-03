@@ -8,11 +8,12 @@
 
 // string lengths (incl. terminating zero)
 #define PatchNameMaxLength 15
+#define OutputNameMaxLength 6
 
 // memory layout definitions
 #define MaxPatches 32
 #define MaxFilters 3
-#define MaxMaps 2
+#define MaxMaps 4
 #define MaxMapEntries 8
 #define MaxTransforms 4
 
