@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -159,7 +159,7 @@ namespace ATL {
 		{
 			InputControl* currentCtrl = getCurrentInputControl();
 
-			if (currentCtrl != nullptr && 
+			if (currentCtrl != nullptr &&
 				currentCtrl->getIsFocussed())
 			{
 				BaseT::setCurrentControl(nullptr);
@@ -242,18 +242,18 @@ namespace ATL {
         {
             InputControl* ctrl = getCurrentInputControl();
 
-            if (ctrl != nullptr && 
+            if (ctrl != nullptr &&
 				ctrl->getIsActive())
             {
                 Panel* line = getCurrentLine();
                 output->EnableCursor(line->getPosition(), ctrl->getPosition(), ctrl->getIsSelected());
-				
+
 				ctrl->Display(output, ControlDisplayMode::Cursor);
             }
             else
             {
                 // cursor off
-                output->EnableCursor(DisplayWriter::DontCare, DisplayWriter::DontCare, false);
+                output->EnableCursor(DisplayWriter::CurrentPos, DisplayWriter::CurrentPos, false);
             }
         }
 

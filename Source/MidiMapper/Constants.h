@@ -6,9 +6,9 @@
 #define F_CPU 20000000UL
 #endif
 
-// string lengths (incl. terminating zero)
-#define PatchNameMaxLength 15
-#define OutputNameMaxLength 6
+// string lengths
+#define PatchNameMaxLength 14
+#define OutputNameMaxLength 5
 
 // memory layout definitions
 #define MaxPatches 32

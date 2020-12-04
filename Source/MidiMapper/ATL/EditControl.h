@@ -84,7 +84,7 @@ namespace ATL {
 
             if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
             {
-                output->GoTo(DisplayWriter::DontCare, BaseT::getPosition() + _editIndex);
+                output->GoTo(DisplayWriter::CurrentPos, BaseT::getPosition() + _editIndex);
             }
         }
 
@@ -210,7 +210,7 @@ namespace ATL {
 
         inline uint8_t CharacterLength() const
         {
-            return _str->getCapacity() - 1;
+            return  - 1;
         }
     };
 

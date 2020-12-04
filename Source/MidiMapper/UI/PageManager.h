@@ -24,13 +24,13 @@ public:
     {
         BaseT::Add(&RealtimeScreen);
         BaseT::Add(&EditOutputScreen);
-        BaseT::Add(&TestScreen);
+        //BaseT::Add(&TestScreen);
     }
 
     // pages
     RealtimePage<PageManager> RealtimeScreen;
     EditOutputMapPage<PageManager> EditOutputScreen;
-    TestPage<PageManager> TestScreen;
+    //TestPage<PageManager> TestScreen;
 
 
     inline bool IsCurrentScreen(PageT* screen)

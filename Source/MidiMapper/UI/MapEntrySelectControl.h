@@ -17,7 +17,7 @@ public:
     {
         if (mode == ControlDisplayMode::Cursor && BaseT::getIsActive())
         {
-            output->GoTo(DisplayWriter::DontCare, BaseT::getPosition() + 1);
+            output->GoTo(DisplayWriter::CurrentPos, BaseT::getPosition() + 1);
         }
 
         BaseT::Display(output, mode);

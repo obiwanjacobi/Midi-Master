@@ -1,5 +1,5 @@
 /*
-Arduino Template Library http://atl.codeplex.com
+Arduino Template Library https://github.com/obiwanjacobi/atl
 Written by Marc Jacobi
 Copyright 2012-2015 All Rights Reserved
 
@@ -35,7 +35,7 @@ namespace ATL {
     {
     public:
         /** This value can be passed to the `GoTo()` and `EnableCursor()` methods. */
-        static const uint8_t DontCare = 0xFF;
+        static const uint8_t CurrentPos = 0xFF;
 
         /** Writes the text to the current (cursor) position on the display.
          *  \param text points to a NULL terminated string.

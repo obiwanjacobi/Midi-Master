@@ -4,6 +4,7 @@
 #include "../ATL/PageController.h"
 #include "NameTextControl.h"
 #include "MapEntrySelectControl.h"
+#include "../StringExtensions.h"
 
 using namespace ATL;
 
@@ -32,9 +33,7 @@ public:
     {
         uint8_t val = PresetManager::getCurrent()->getCurrentEntryIndex() + 1;
 
-        _str.Clear();
-        _str.Write(val, 2);
-        return (const char*)_str;
+        return ToString::Integer<2>(val);
     }
 
     inline void IncrementValue()
@@ -48,8 +47,6 @@ public:
     }
 
 private:
-    StringWriter<2> _str;
-
     inline void MoveToMapEntry(int8_t delta)
     {
         PresetManager* presetMgr = PresetManager::getCurrent();
@@ -62,6 +59,17 @@ private:
             //MidiMapEntry* entry = presetMgr->getCurrentMapEntry();
             // TODO: init lines
         }
+    }
+};
+
+template<typename PageManagerT>
+class EditOutputMapLine2 : public Line<2>
+{
+    typedef Line<2> BaseT;
+
+public:
+    EditOutputMapLine2()
+    {
     }
 };
 

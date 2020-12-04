@@ -9,6 +9,7 @@
 #include "../ATL/LabelControl.h"
 #include "../ATL/UpDownControl.h"
 #include "../PresetManager.h"
+#include "../StringExtensions.h"
 #include "MidiOutNoteNavigationControl.h"
 #include "MidiInNoteControl.h"
 #include "PatchSelectControl.h"
@@ -30,8 +31,6 @@ public:
         Add(&PatchNumber);
 		Add(&PatchNameText);
         Add(&InNoteLabel);
-
-		PatchNameText.setString(PresetManager::getCurrent()->getPatchNameString());
     }
 
     PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;
@@ -43,9 +42,7 @@ public:
 	{
 		uint8_t val = PresetManager::getCurrent()->getCurrentPresetIndex() + 1;
 
-		_str.Clear();
-		_str.Write(val, 2);
-		return (const char*)_str;
+        return ToString::Integer<2>(val);
 	}
 
 	inline void IncrementValue()
@@ -59,8 +56,6 @@ public:
 	}
 
 private:
-	StringWriter<2> _str;
-
 	inline void MoveToPatch(int8_t delta)
 	{
 		PresetManager* presetMgr = PresetManager::getCurrent();
