@@ -30,7 +30,7 @@ namespace MCU {
 
 
 /*
-    Initializes a BoardPinNumber to output.
+    Initializes a PinId on a PortId to output.
  */
 template<const Ports PortId, const Pins PinId>
 class DigitalOutputPin
@@ -42,11 +42,10 @@ public:
     DigitalOutputPin()
     {
         Port<PortId>::SetDirection(PinId, Output);
-        //Write(false);
     }
 
     /*
-        The ctor sets the pinMode and initialValue.
+        The ctor sets the Pin on the Port to Output and writes the initialValue.
      */
     DigitalOutputPin(bool initialValue)
     {
@@ -55,11 +54,19 @@ public:
     }
 
     /*
-        Writes the value to the BoardPinNumder.
+        Writes the value to the Port/Pin.
      */
     inline void Write(bool value) const
     {
         Port<PortId>::Write(PinId, value);
+    }
+
+	/*
+        Returns the value of the Port/Pin.
+     */
+    inline bool getValue() const
+    {
+        return Port<PortId>::Read(PinId);
     }
 
     /*

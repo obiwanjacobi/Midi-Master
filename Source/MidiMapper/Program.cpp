@@ -4,6 +4,7 @@
 #include "PresetManager.h"
 #include "MidiStatus.h"
 #include "UI/PageManager.h"
+#include "Debug.h"
 
 #include "ATL/Debug.h"
 #include "ATL/Time.h"
@@ -24,32 +25,8 @@ PresetManager PresetManagerInstance(Globals::MemPatch);
 MidiStatus CurrentMidiStatus;
 PageManager Pages;
 
-uint8_t DebugCol = 0;
-
-void ATL::AtlDebugWrite(const char* message)
-{
-	uint8_t c = program.Lcd.getCursorCol();
-	uint8_t r = program.Lcd.getCursorRow();
-
-    program.Lcd.SetCursor(1, DebugCol);
-    program.Lcd.Write(message);
-
-	DebugCol = program.Lcd.getCursorCol();
-	if (DebugCol > 24)
-		DebugCol = 0;
-
-	// restore position
-	program.Lcd.SetCursor(r, c);
-}
-
-//bool ATL::AtlDebugLevel(uint8_t componentId, DebugLevel level)
-//{
-////return Bit<7>::IsTrue(componentId);
-//return true;
-//}
-
 static const char SplashLine1[] PROGMEM = "MIDI Master v0.1";
-static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2020";
+static const char SplashLine2[] PROGMEM = "(C) Canned Bytes 2021";
 
 // char code 246 >
 // char code 247 <
@@ -61,12 +38,12 @@ void Program::Run()
     uint32_t deltaTime = TaskScheduler::Update();
 
     // while() ensures that all midi bytes are processed as one message - as fast as possible
-	while(Globals::MidiInOutPort1.Receive.ReadByte());
-
-    if (Pages.IsCurrentScreen(&Pages.RealtimeScreen))
-    {
-        Pages.RealtimeScreen.DisplayActivity(&Lcd);
-    }
+	//while(Globals::MidiInOutPort1.Receive.ReadByte());
+//
+    //if (Pages.IsCurrentScreen(&Pages.RealtimeScreen))
+    //{
+        //Pages.RealtimeScreen.DisplayActivity(&Lcd);
+    //}
 
     KeyMatrix.ScanButton();
     auto isActive = KeyMatrix.getIsActive();
@@ -118,15 +95,14 @@ void Program::OpenLcd()
     // time to show the splash screen
     Delay<TimeResolution::Milliseconds>::Wait(2000);
 
-
     // TEST
     Globals::InitTest();
-
 
     Lcd.ClearDisplay();
     Lcd.ReturnHome();
 
     Pages.TrySetFirstPage();
+
     Pages.Display(&Lcd);
 }
 
@@ -154,7 +130,7 @@ NavigationCommands Program::TranslateKeyToCommand(uint8_t keyCode)
 int main(void)
 {
     program.Initialize();
-
+	
     while (1)
     {
 		program.Run();

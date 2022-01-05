@@ -84,7 +84,7 @@ public:
         MemPatch[0].Maps[2].Name = "U-110";
         MemPatch[0].Maps[2].Entries[0].Mode = MidiMapEntry::Mode::None;
 
-        MemPatch[0].Maps[3].Name = "A-220";
+        MemPatch[0].Maps[3].Name = "R-8";
         MemPatch[0].Maps[3].Entries[0].Mode = MidiMapEntry::Mode::None;
 
 		MemPatch[1].Name = "My other Patch";
@@ -102,7 +102,7 @@ public:
 		MemPatch[1].Maps[1].Entries[0].Identifier.SetAny();
 		MemPatch[1].Maps[1].Entries[0].Value.SetRange(64, 127);
 
-        MemPatch[1].Maps[2].Name = "U-110";
+        MemPatch[1].Maps[2].Name = "GP-8";
         MemPatch[1].Maps[2].Entries[0].Mode = MidiMapEntry::Mode::None;
 
         MemPatch[1].Maps[3].Name = "A-220";

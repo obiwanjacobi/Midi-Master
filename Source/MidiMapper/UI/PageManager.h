@@ -9,7 +9,7 @@
 
 using namespace ATL;
 
-#define NumberOfPages	3
+#define NumberOfPages	5
 
 class PageManager : public Singleton<PageManager>,
                     public PageController<LcdLines, NumberOfPages>

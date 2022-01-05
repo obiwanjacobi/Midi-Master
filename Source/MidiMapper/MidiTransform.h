@@ -28,8 +28,6 @@ public:
 	}
 	EndEnum(Mode)
 
-	
-
 	MidiTransform()
 		: Mode(Mode::None), SourceField(MessageField::None), TargetField(MessageField::None)
 	{ }

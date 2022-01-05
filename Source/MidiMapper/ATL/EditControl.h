@@ -210,7 +210,7 @@ namespace ATL {
 
         inline uint8_t CharacterLength() const
         {
-            return  - 1;
+            return _str->getCapacity() - 1;
         }
     };
 

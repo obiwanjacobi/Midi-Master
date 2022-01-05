@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #ifndef __DELAY_MCU_H__
 #define __DELAY_MCU_H__
 
-#define __DELAY_BACKWARD_COMPATIBLE__ 
+//#define __DELAY_BACKWARD_COMPATIBLE__ 
 #include <util/delay.h>
 #include "../Delay.h"
 
