@@ -22,7 +22,7 @@ typedef NameTextControl<PatchNameMaxLength> PatchNameTextControl;
 template<typename PageManagerT>
 class RealtimeLine1 : public Line<3>
 {
-    typedef Line<7> BaseT;
+    typedef Line<3> BaseT;
 
 public:
     RealtimeLine1()
@@ -31,6 +31,8 @@ public:
         Add(&PatchNumber);
 		Add(&PatchNameText);
         Add(&InNoteLabel);
+		
+		MoveToPatch(0);
     }
 
     PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;

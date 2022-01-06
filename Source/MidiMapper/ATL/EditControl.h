@@ -73,16 +73,16 @@ namespace ATL {
             if (mode == ControlDisplayMode::Normal)
             {
                 const char* text = getText();
-                output->Display(text);
+				if (text != nullptr)
+					output->Display(text);
 
                 // erase empty control space
-                for (uint8_t i = strlen(text); i <= CharacterLength(); i++)
-                {
-                    output->Display(" ");
-                }
+                //for (uint8_t i = strlen(text); i <= CharacterLength(); i++)
+                //{
+                    //output->Display(" ");
+                //}
             }
-
-            if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
+            else if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
             {
                 output->GoTo(DisplayWriter::CurrentPos, BaseT::getPosition() + _editIndex);
             }
