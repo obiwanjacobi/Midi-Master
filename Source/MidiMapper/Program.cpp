@@ -38,7 +38,7 @@ void Program::Run()
     uint32_t deltaTime = TaskScheduler::Update();
 
     // while() ensures that all midi bytes are processed as one message - as fast as possible
-	//while(Globals::MidiInOutPort1.Receive.ReadByte());
+    //while(Globals::MidiInOutPort1.Receive.ReadByte());
 //
     //if (Pages.IsCurrentScreen(&Pages.RealtimeScreen))
     //{
@@ -48,49 +48,49 @@ void Program::Run()
     KeyMatrix.ScanButton();
     auto isActive = KeyMatrix.getIsActive();
 
-	if (isActive &&
-		LastNavCmd == NavigationCommands::None)
-	{
-		LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
+    if (isActive &&
+        LastNavCmd == NavigationCommands::None)
+    {
+        LastNavCmd = TranslateKeyToCommand(KeyMatrix.getKeyCode());
 
-		if (Pages.OnNavigationCommand(LastNavCmd))
-		{
-			Pages.Display(&Lcd);
-		}
-	}
-	else if (!isActive)
-	{
-		LastNavCmd = NavigationCommands::None;
-	}
+        if (Pages.OnNavigationCommand(LastNavCmd))
+        {
+            Pages.Display(&Lcd);
+        }
+    }
+    else if (!isActive)
+    {
+        LastNavCmd = NavigationCommands::None;
+    }
 }
 
 void Program::OpenLcd()
 {
-	Lcd.Initialize(true);
-	Lcd.setEnableDisplay(true);
+    Lcd.Initialize(true);
+    Lcd.setEnableDisplay(true);
 
-	FixedString<LcdColumns> temp;
-	temp.CopyFromProgMem(SplashLine1);
-	Lcd.SetCursor(0, 4);
-	Lcd.WriteLine(temp);
+    FixedString<LcdColumns> temp;
+    temp.CopyFromProgMem(SplashLine1);
+    Lcd.SetCursor(0, 4);
+    Lcd.WriteLine(temp);
 
-	Lcd.SetCursor(1, 1);
-	temp.CopyFromProgMem(SplashLine2);
-	Lcd.WriteLine(temp);
+    Lcd.SetCursor(1, 1);
+    temp.CopyFromProgMem(SplashLine2);
+    Lcd.WriteLine(temp);
 
-	Lcd.ReturnHome();
+    Lcd.ReturnHome();
 }
 
  void Program::Initialize()
 {
-	Globals::MemPatch[0].Clear();
-	Globals::MemPatch[1].Clear();
+    Globals::MemPatch[0].Clear();
+    Globals::MemPatch[1].Clear();
     TimerCounter::Start();
 
-	OpenLcd();
-	Globals::OpenMidiPorts();
+    OpenLcd();
+    Globals::OpenMidiPorts();
 
-	Interrupt::EnableAll(true);
+    Interrupt::EnableAll(true);
 
     // time to show the splash screen
     Delay<TimeResolution::Milliseconds>::Wait(2000);
@@ -130,10 +130,10 @@ NavigationCommands Program::TranslateKeyToCommand(uint8_t keyCode)
 int main(void)
 {
     program.Initialize();
-	
+    
     while (1)
     {
-		program.Run();
+        program.Run();
     }
 }
 

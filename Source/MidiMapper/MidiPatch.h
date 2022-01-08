@@ -11,13 +11,13 @@ typedef FixedString<PatchNameMaxLength> PatchNameString;
 class MidiPatch
 {
 public:
-	PatchNameString Name;
-	FixedArray<MidiMap, MaxMaps> Maps;
+    PatchNameString Name;
+    FixedArray<MidiMap, MaxMaps> Maps;
 
-	inline void Clear()
-	{
-		memset(this, 0, sizeof(MidiPatch));
-	}
+    inline void Clear()
+    {
+        memset(this, 0, sizeof(MidiPatch));
+    }
 };
 
 #endif //__MIDIPATCH_H__

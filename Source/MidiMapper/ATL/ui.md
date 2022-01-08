@@ -30,6 +30,16 @@ Control Class Hierarchy:
                     - `Page`
                 - `PageController`
 
+A typical LCD Page layout (2 lines):
+
+- `Page: VerticalPanel: PanelControlContainer: Panel: InputControl: Control`
+	- `Line: HorizonatalPanel: PanelControlContainer: Panel: InputControl: Control`
+		- `LabelControl`
+		- `TextControl: EditControl: UpDownControl: InputControl: Control`
+	- `Line: HorizonatalPanel: PanelControlContainer: Panel: InputControl: Control`
+		- `LabelControl`
+		- `TextControl: EditControl: UpDownControl: InputControl: Control`
+
 ## `Control` (class)
 
 A base class for all controls.
@@ -57,7 +67,7 @@ An abstraction to decouple drawing controls and UI in general onto any display.
 
 Implements text editing in a control using a character provider (iterator).
 
-## `HorizontalPanel` extends `PanelControlContainer' (template)
+## `HorizontalPanel` extends `PanelControlContainer` (template)
 
 A control container that lays out the control horizontally.
 
@@ -65,7 +75,7 @@ A control container that lays out the control horizontally.
 
 A base class for all controls that use the `NavigationCommands` to allow editing their content.
 
-## `LabelControl' extends 'Control' (class)
+## `LabelControl` extends `Control` (class)
 
 A read-only display text for labelling other controls.
 
@@ -81,7 +91,7 @@ Interface for acting on navigation commands as they are routed through the contr
 
 A fixed-sized `Line` containter for laying out an entire display page.
 
-## `PageController` extends `PanelControlContainer (template)
+## `PageController` extends `PanelControlContainer` (template)
 
 A fixed-size container of pages that manages page transitions.
 
@@ -101,6 +111,6 @@ Manages editing a fixes-size string.
 
 Manages changing a value with the Up/Down navigation Commands.
 
-## `VerticalPanel` extends `PanelCotnrolContainer` (template)
+## `VerticalPanel` extends `PanelControlContainer` (template)
 
 A fixed-size control panel that are layed out vertically.

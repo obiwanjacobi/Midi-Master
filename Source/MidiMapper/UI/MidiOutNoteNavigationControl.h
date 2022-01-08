@@ -23,8 +23,8 @@ public:
 
         PresetManager* presetMgr = PresetManager::getCurrent();
         MidiMap* map = &presetMgr->getCurrentPreset()->Maps[OutputIndex];
-		
-		FixedString<OutputNameMaxLength, ' '> buf(map->Name);
+        
+        FixedString<OutputNameMaxLength, ' '> buf(map->Name);
         if (MidiStatus::getCurrent()->getMidiOutIsActive(OutputIndex))
         {
             buf[OutputNameMaxLength - 1] = 0;    // chop off last char

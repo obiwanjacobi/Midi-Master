@@ -35,7 +35,7 @@ namespace ATL {
      *  \tparam MaxItems is the maximum number of Controls in the Panel.
      */
     template<const uint8_t MaxItems>
-    class VerticalPanel : public PanelControlContainer < MaxItems >
+    class VerticalPanel : public PanelControlContainer<MaxItems>
     {
         typedef PanelControlContainer<MaxItems> BaseT;
 
@@ -48,29 +48,33 @@ namespace ATL {
         { }
 
         /** The Panel adjusts the current (selected) control on the `Up` and `Down` commands,
-		 *  otherwise routed to the BaseT navigation handler.
+         *  if the BaseT (Panel) did not handle it.
          *  \param navCmd is the navigation command.
          *  \return Returns true when the command was handled, otherwise false.
          */
         virtual bool OnNavigationCommand(NavigationCommands navCmd)
         {
-            switch (navCmd.value)
+            bool handled = BaseT::OnNavigationCommand(navCmd);
+            if (!handled)
             {
-            case NavigationCommands::Up:
-                return BaseT::SetPreviousInputControl();
-            case NavigationCommands::Down:
-                return BaseT::SetNextInputControl();
-            default:
-                break;
+                switch (navCmd.value)
+                {
+                case NavigationCommands::Up:
+                    return BaseT::SetPreviousInputControl();
+                case NavigationCommands::Down:
+                    return BaseT::SetNextInputControl();
+                default:
+                    return false;
+                }
             }
-
-            return BaseT::OnNavigationCommand(navCmd);
+            
+            return handled;
         }
 
         /** Displays all the visible controls in the Panel.
          *  If the mode is Control::modeCursor it is routed to the BaseT implementation -
          *  where Panel will route it to the current (selected) control.
-         *  For normal display mode the BaseT is not called and all (visible) controls will be called after their positions have be set.
+         *  For normal display mode the BaseT is not called and all (visible) controls will be displayed at their positions.
          *  \param output is a pointer to the display writer that can be used to output and position text.
          *  \param mode is the display mode and results in different behavior.
          */

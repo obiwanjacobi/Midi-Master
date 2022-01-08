@@ -87,20 +87,20 @@ public:
         MemPatch[0].Maps[3].Name = "R-8";
         MemPatch[0].Maps[3].Entries[0].Mode = MidiMapEntry::Mode::None;
 
-		MemPatch[1].Name = "My other Patch";
+        MemPatch[1].Name = "My other Patch";
         MemPatch[1].Maps[0].Name = "VG-99";
-		MemPatch[1].Maps[0].Entries[0].Mode = MidiMapEntry::Mode::Normal;
-		MemPatch[1].Maps[0].Entries[0].Category = Midi::MessageCategory::ControlChange;
-		MemPatch[1].Maps[0].Entries[0].Channel.SetAny();
-		MemPatch[1].Maps[0].Entries[0].Identifier.SetAny();
-		MemPatch[1].Maps[0].Entries[0].Value.SetRange(0, 63);
+        MemPatch[1].Maps[0].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+        MemPatch[1].Maps[0].Entries[0].Category = Midi::MessageCategory::ControlChange;
+        MemPatch[1].Maps[0].Entries[0].Channel.SetAny();
+        MemPatch[1].Maps[0].Entries[0].Identifier.SetAny();
+        MemPatch[1].Maps[0].Entries[0].Value.SetRange(0, 63);
 
         MemPatch[1].Maps[1].Name = "GX700";
-		MemPatch[1].Maps[1].Entries[0].Mode = MidiMapEntry::Mode::Normal;
-		MemPatch[1].Maps[1].Entries[0].Category = Midi::MessageCategory::ControlChange;
-		MemPatch[1].Maps[1].Entries[0].Channel.SetAny();
-		MemPatch[1].Maps[1].Entries[0].Identifier.SetAny();
-		MemPatch[1].Maps[1].Entries[0].Value.SetRange(64, 127);
+        MemPatch[1].Maps[1].Entries[0].Mode = MidiMapEntry::Mode::Normal;
+        MemPatch[1].Maps[1].Entries[0].Category = Midi::MessageCategory::ControlChange;
+        MemPatch[1].Maps[1].Entries[0].Channel.SetAny();
+        MemPatch[1].Maps[1].Entries[0].Identifier.SetAny();
+        MemPatch[1].Maps[1].Entries[0].Value.SetRange(64, 127);
 
         MemPatch[1].Maps[2].Name = "GP-8";
         MemPatch[1].Maps[2].Entries[0].Mode = MidiMapEntry::Mode::None;
@@ -110,7 +110,7 @@ public:
     }
 
 private:
-	Globals();
+    Globals();
 
 };
 

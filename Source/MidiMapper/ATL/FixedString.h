@@ -30,8 +30,8 @@ namespace ATL {
     /** FixedString is a specialized FixedArray for character strings.
      *  \tparam MaxChars indicates the maximum number of characters in the string. 
      *  The underlying array has one extra byte for the terminating zero.
-	 *  \tparam FillChar the character used for filling out the capacity. 
-	 *  Default is 0 which is no filling.
+     *  \tparam FillChar the character used for filling out the capacity. 
+     *  Default is 0 which is no filling.
      */
     template<const uint8_t MaxChars, const char FillChar = 0>
     class FixedString : public FixedArray<char, MaxChars + 1>
@@ -55,7 +55,7 @@ namespace ATL {
          */
         FixedString(const char* text)
         {
-			BaseT::Clear();
+            BaseT::Clear();
             CopyFrom(text);
         }
 
@@ -81,13 +81,13 @@ namespace ATL {
          */
         inline void CopyFrom(const char* text)
         {
-			auto len = strlen(text);
-			auto buffer = BaseT::getBuffer();
+            auto len = strlen(text);
+            auto buffer = BaseT::getBuffer();
             
-			strncpy(buffer, text, MaxChars);
-			
-			if (len < MaxChars)
-				memset(buffer + len, FillChar, MaxChars - len);
+            strncpy(buffer, text, MaxChars);
+            
+            if (len < MaxChars)
+                memset(buffer + len, FillChar, MaxChars - len);
         }
 
         /** Copy's in the specified text from PROGMEM.
@@ -96,13 +96,13 @@ namespace ATL {
          */
         inline void CopyFromProgMem(const char* text)
         {
-			auto len = strlen(text);
-			auto buffer = BaseT::getBuffer();
-			
-			strncpy_P(buffer, text, MaxChars);
-			
-			if (len < MaxChars)
-				memset(buffer + len, FillChar, MaxChars - len);
+            auto len = strlen(text);
+            auto buffer = BaseT::getBuffer();
+            
+            strncpy_P(buffer, text, MaxChars);
+            
+            if (len < MaxChars)
+                memset(buffer + len, FillChar, MaxChars - len);
         }
         
         /** Copy's in the specified text.

@@ -6,10 +6,10 @@
 class MessageReference
 {
 public:
-	inline MidiMessage* ToMessage()
-	{
-		
-	}
+    inline MidiMessage* ToMessage()
+    {
+        
+    }
 private:
 };
 

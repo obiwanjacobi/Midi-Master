@@ -41,14 +41,14 @@ public:
     }
 
 private:
-	inline bool ReadAndClear(uint8_t index)
-	{
-		 bool value = Globals::MidiStatus.Get(index);
-		 // clear on read
-		 Globals::MidiStatus.Reset(index);
+    inline bool ReadAndClear(uint8_t index)
+    {
+         bool value = Globals::MidiStatus.Get(index);
+         // clear on read
+         Globals::MidiStatus.Reset(index);
 
-		 return value;
-	}
+         return value;
+    }
 
 };
 

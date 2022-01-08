@@ -5,16 +5,16 @@
 
 BeginEnum(MessageField)
 {
-	// not set
-	None,
-	// Message Type Midi Message field.
-	MessageType,
-	// Channel Midi Message field.
-	Channel,
-	// Identifier Midi Message field.
-	Identifier,
-	// Value Midi Message field.
-	Value,
+    // not set
+    None,
+    // Message Type Midi Message field.
+    MessageType,
+    // Channel Midi Message field.
+    Channel,
+    // Identifier Midi Message field.
+    Identifier,
+    // Value Midi Message field.
+    Value,
 }
 EndEnum(MessageField)
 
