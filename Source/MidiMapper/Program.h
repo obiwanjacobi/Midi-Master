@@ -16,14 +16,14 @@ using namespace ATL;
 class Program : public Singleton<Program>
 {
 public:
-	void Initialize();
-	void Run();
+    void Initialize();
+    void Run();
 
-	LCD Lcd;
+    LCD Lcd;
     PushButton<IdentifiableObject<KeyboardMatrix>, TaskScheduler, 30, 350> KeyMatrix;
-	
+    
 private:
-	void OpenLcd();
+    void OpenLcd();
     
     #define KeyLeft 8
     #define KeyRight 128

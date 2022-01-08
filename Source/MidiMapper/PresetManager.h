@@ -12,42 +12,42 @@ public:
     PresetManager(MidiPatch* memPatch)
         : _isDirty(false)
     {
-		_firstPatch = memPatch;
+        _firstPatch = memPatch;
         _currentPatch = memPatch;
     }
 
-	inline bool LoadPreset(uint8_t index)
-	{
-		if (index > 1)
-		{
-			return false;
-		}
+    inline bool LoadPreset(uint8_t index)
+    {
+        if (index > 1)
+        {
+            return false;
+        }
 
-		// TEMP!
-		_currentPatch = _firstPatch + index;
-		_presetIndex = index;
-		return true;
-	}
+        // TEMP!
+        _currentPatch = _firstPatch + index;
+        _presetIndex = index;
+        return true;
+    }
 
-	inline PatchNameString* getPatchNameString() const
-	{
-		return &_currentPatch->Name;
-	}
+    inline PatchNameString* getPatchNameString() const
+    {
+        return &_currentPatch->Name;
+    }
 
-	inline uint8_t getCurrentPresetIndex() const
-	{
-		return _presetIndex;
-	}
+    inline uint8_t getCurrentPresetIndex() const
+    {
+        return _presetIndex;
+    }
 
     inline const char* getCurrentPresetName() const
     {
         return _currentPatch->Name;
     }
 
-	inline void MarkDirty()
-	{
-		_isDirty = true;
-	}
+    inline void MarkDirty()
+    {
+        _isDirty = true;
+    }
 
     inline bool getIsDirty() const
     {
@@ -96,10 +96,10 @@ public:
 
 
 private:
-	MidiPatch* _firstPatch;
+    MidiPatch* _firstPatch;
     MidiPatch* _currentPatch;
 
-	uint8_t _presetIndex;
+    uint8_t _presetIndex;
     uint8_t _mapIndex;
     uint8_t _entryIndex;
 

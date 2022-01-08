@@ -9,7 +9,7 @@
 
 using namespace ATL;
 
-#define NumberOfPages	3
+#define NumberOfPages	5
 
 class PageManager : public Singleton<PageManager>,
                     public PageController<LcdLines, NumberOfPages>
@@ -20,7 +20,7 @@ public:
     typedef Page<LcdLines> PageT;
 
     PageManager()
-		: _currentPage(nullptr)
+        : _currentPage(nullptr)
     {
         BaseT::Add(&RealtimeScreen);
         BaseT::Add(&EditOutputScreen);
@@ -67,11 +67,13 @@ public:
         // bypass the next-page logic of PageController
         bool handled = BaseT::OnNavigationCommandCurrentPage(navCmd);
 
-        if (!handled && navCmd == NavigationCommands::Enter)
-        {
-            PageT* page = BaseT::getCurrentPage();
-            page->OnNavigationCommand(NavigationCommands::Down);
-        }
+        // Can't remember why I did this exactly: probably to enter the page into focus-mode when enter is pressed.
+        // It causes a bug when in edit mode and enter is pressed...
+        //if (!handled && navCmd == NavigationCommands::Enter)
+        //{
+            //PageT* page = BaseT::getCurrentPage();
+            //page->OnNavigationCommand(NavigationCommands::Down);
+        //}
 
         return handled;
     }

@@ -23,16 +23,16 @@ public:
 
         PresetManager* presetMgr = PresetManager::getCurrent();
         MidiMap* map = &presetMgr->getCurrentPreset()->Maps[OutputIndex];
-
+        
+        FixedString<OutputNameMaxLength, ' '> buf(map->Name);
         if (MidiStatus::getCurrent()->getMidiOutIsActive(OutputIndex))
         {
-            FixedString<OutputNameMaxLength> buf(map->Name);
             buf[OutputNameMaxLength - 1] = 0;    // chop off last char
             output->Display(buf);
             output->Display(ActivityChar);
         }
         else
-            output->Display(map->Name);
+            output->Display(buf);
     }
 
     inline virtual bool OnNavigationCommand(NavigationCommands navCmd)

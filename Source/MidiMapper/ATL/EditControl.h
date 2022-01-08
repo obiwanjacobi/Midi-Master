@@ -18,11 +18,11 @@ namespace ATL {
      *  `bool MoveBack()` (Iterator)
      *  `bool MoveTo(char)` (Iterator)
      *  `char getCurrent() const` (Iterator).
-	 *	\tparam ValueT is the type used to receive the UpDownControl<ValueT> calls and implements:
-	 *  `const char* getText()`
-	 *  `void IncrmentValue()`
-	 *  `void DecrmentValue()`.
-	 *  These methods are implemented on EditControl itself.
+     *	\tparam ValueT is the type used to receive the UpDownControl<ValueT> calls and implements:
+     *  `const char* getText()`
+     *  `void IncrmentValue()`
+     *  `void DecrmentValue()`.
+     *  These methods are implemented on EditControl itself.
      */
     template<class StringT, class CharacterIteratorT, class ValueT>
     class EditControl : public UpDownControl<ValueT>
@@ -34,17 +34,17 @@ namespace ATL {
         /** Constructs an initialized instance.
          *  \param str points to the string buffer of the FixedString that is being edited.
          *  \param iterator points to the Iterator that provides the characters during editing.
-		 *  \param valueThis is used by the UpDownControl to callback value manipulation on.
+         *  \param valueThis is used by the UpDownControl to callback value manipulation on.
          *  \param pos is an optional position relative to its siblings.
          */
         EditControl(StringT* str, CharacterIteratorT* iterator, ValueT* valueThis, uint8_t pos = 0)
             : BaseT(valueThis, pos), _iterator(iterator)
         {
-			setString(str);
-		}
+            setString(str);
+        }
 
-		/** Retrieves the text the TextControl displays.
-		 *  Called by the UpDownControl to retrieve the 'value' to display.
+        /** Retrieves the text the TextControl displays.
+         *  Called by the UpDownControl to retrieve the 'value' to display.
          *  \return Returns the pointer to the text. Can be NULL.
          */
         inline const char* getText() const
@@ -54,13 +54,13 @@ namespace ATL {
 
         /** Assigns the String the TextControl displays.
          *  \param text points to a string instance.
-		 *  The string is NOT copied and the same buffer is used for editing.
+         *  The string is NOT copied and the same buffer is used for editing.
          */
         inline void setString(StringT* str)
         {
             _str = str;
-			_editIndex = _str == nullptr ? -1 : 0;
-			RepositionIterator();
+            _editIndex = _str == nullptr ? -1 : 0;
+            RepositionIterator();
         }
 
         /** Overridden to display the cursor on the character position that is being edited.
@@ -73,16 +73,16 @@ namespace ATL {
             if (mode == ControlDisplayMode::Normal)
             {
                 const char* text = getText();
-                output->Display(text);
+                if (text != nullptr)
+                    output->Display(text);
 
                 // erase empty control space
-                for (uint8_t i = strlen(text); i <= CharacterLength(); i++)
-                {
-                    output->Display(" ");
-                }
+                //for (uint8_t i = strlen(text); i <= CharacterLength(); i++)
+                //{
+                    //output->Display(" ");
+                //}
             }
-
-            if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
+            else if (mode == ControlDisplayMode::Cursor && BaseT::getIsSelected())
             {
                 output->GoTo(DisplayWriter::CurrentPos, BaseT::getPosition() + _editIndex);
             }
@@ -149,35 +149,35 @@ namespace ATL {
             return false;
         }
 
-	protected:
+    protected:
         /** Called by the UpDownControl to increment the 'value' - char at edit position.
          */
         inline void IncrementValue()
         {
             if (_str != nullptr && _iterator->MoveNext())
-			{
-				_str->SetAt(_editIndex, _iterator->getCurrent());
-			}
+            {
+                _str->SetAt(_editIndex, _iterator->getCurrent());
+            }
         }
 
         /** Called by the UpDownControl to decrement the 'value' - char at edit position.
          */
         inline void DecrementValue()
         {
-			if (_str != nullptr && _iterator->MoveBack())
-			{
-				_str->SetAt(_editIndex, _iterator->getCurrent());
-			}
+            if (_str != nullptr && _iterator->MoveBack())
+            {
+                _str->SetAt(_editIndex, _iterator->getCurrent());
+            }
         }
 
         /** Helper method that sets the CharacterIteratorT at the character at the current edit position.
          */
         inline void RepositionIterator()
         {
-			if (_str != nullptr && _editIndex >= 0)
-			{
-				_iterator->MoveTo(_str->GetAt(_editIndex));
-			}
+            if (_str != nullptr && _editIndex >= 0)
+            {
+                _iterator->MoveTo(_str->GetAt(_editIndex));
+            }
         }
 
         /** Overridden to manage the character edit position when going in/out of `Focused` and `Selected`.
@@ -210,7 +210,7 @@ namespace ATL {
 
         inline uint8_t CharacterLength() const
         {
-            return  - 1;
+            return _str->getCapacity() - 1;
         }
     };
 

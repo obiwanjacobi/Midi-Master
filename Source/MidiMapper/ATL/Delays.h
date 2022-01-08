@@ -170,17 +170,17 @@ namespace ATL {
         Delays() {}
     };
 
-    template<class TimeT, const uint8_t MaxItems> 
-    TimeT Delays<TimeT, MaxItems>::_time;
+	template<class TimeT, const uint8_t MaxItems>
+	TimeT Delays<TimeT, MaxItems>::_time;
 
-    template<class TimeT, const uint8_t MaxItems> 
-    uint32_t Delays<TimeT, MaxItems>::_delta = 0;
+	template<class TimeT, const uint8_t MaxItems>
+	uint32_t Delays<TimeT, MaxItems>::_delta = 0;
 
-    template<class TimeT, const uint8_t MaxItems> 
-    uint16_t Delays<TimeT, MaxItems>::_ids[] = {};
+	template<class TimeT, const uint8_t MaxItems>
+	uint16_t Delays<TimeT, MaxItems>::_ids[] = {};
 
-    template<class TimeT, const uint8_t MaxItems> 
-    uint32_t Delays<TimeT, MaxItems>::_delays[] = {};
+	template<class TimeT, const uint8_t MaxItems>
+	uint32_t Delays<TimeT, MaxItems>::_delays[] = {};
 
 } // ATL
 

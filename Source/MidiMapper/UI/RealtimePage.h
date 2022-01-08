@@ -22,48 +22,50 @@ typedef NameTextControl<PatchNameMaxLength> PatchNameTextControl;
 template<typename PageManagerT>
 class RealtimeLine1 : public Line<3>
 {
-    typedef Line<7> BaseT;
+    typedef Line<3> BaseT;
 
 public:
     RealtimeLine1()
         : PatchNumber(this, 0), PatchNameText(3), InNoteLabel(23)
     {
         Add(&PatchNumber);
-		Add(&PatchNameText);
+        Add(&PatchNameText);
         Add(&InNoteLabel);
+        
+        MoveToPatch(0);
     }
 
     PatchSelectControl<RealtimeLine1<PageManagerT> > PatchNumber;
-	PatchNameTextControl PatchNameText;
+    PatchNameTextControl PatchNameText;
     MidiInNoteControl InNoteLabel;
 
-	// PatchSelectControl callbacks
-	inline const char* getText()
-	{
-		uint8_t val = PresetManager::getCurrent()->getCurrentPresetIndex() + 1;
+    // PatchSelectControl callbacks
+    inline const char* getText()
+    {
+        uint8_t val = PresetManager::getCurrent()->getCurrentPresetIndex() + 1;
 
         return ToString::Integer<2>(val);
-	}
+    }
 
-	inline void IncrementValue()
-	{
-		MoveToPatch(1);
-	}
+    inline void IncrementValue()
+    {
+        MoveToPatch(1);
+    }
 
-	inline void DecrementValue()
-	{
-		MoveToPatch(-1);
-	}
+    inline void DecrementValue()
+    {
+        MoveToPatch(-1);
+    }
 
 private:
-	inline void MoveToPatch(int8_t delta)
-	{
-		PresetManager* presetMgr = PresetManager::getCurrent();
-		if (presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + delta))
+    inline void MoveToPatch(int8_t delta)
+    {
+        PresetManager* presetMgr = PresetManager::getCurrent();
+        if (presetMgr->LoadPreset(presetMgr->getCurrentPresetIndex() + delta))
         {
-		    PatchNameText.setString(presetMgr->getPatchNameString());
+            PatchNameText.setString(presetMgr->getPatchNameString());
         }
-	}
+    }
 };
 
 template<typename PageManagerT>
@@ -75,14 +77,14 @@ public:
     RealtimeLine2()
         : Out1NoteLabel(0), Out2NoteLabel(6), Out3NoteLabel(12), Out4NoteLabel(18)
     {
-		Add(&Out1NoteLabel);
-		Add(&Out2NoteLabel);
+        Add(&Out1NoteLabel);
+        Add(&Out2NoteLabel);
         Add(&Out3NoteLabel);
         Add(&Out4NoteLabel);
     }
 
-	MidiOutNoteNavigationControl<PageManagerT, 0> Out1NoteLabel;
-	MidiOutNoteNavigationControl<PageManagerT, 1> Out2NoteLabel;
+    MidiOutNoteNavigationControl<PageManagerT, 0> Out1NoteLabel;
+    MidiOutNoteNavigationControl<PageManagerT, 1> Out2NoteLabel;
     MidiOutNoteNavigationControl<PageManagerT, 2> Out3NoteLabel;
     MidiOutNoteNavigationControl<PageManagerT, 3> Out4NoteLabel;
 };
@@ -104,17 +106,17 @@ public:
 
     void PartialDisplay(DisplayWriter* output)
     {
-		output->GoTo(0, Line1.InNoteLabel.getPosition());
-		Line1.InNoteLabel.Display(output);
+        output->GoTo(0, Line1.InNoteLabel.getPosition());
+        Line1.InNoteLabel.Display(output);
     }
 
     Task_BeginWithParams(DisplayActivity, DisplayWriter* output)
     {
         if (MidiStatus::getCurrent()->getMidiIsActive())
         {
-			PartialDisplay(output);
+            PartialDisplay(output);
             Task_YieldUntil(TaskScheduler::Wait(getId(), 30));
-			PartialDisplay(output);
+            PartialDisplay(output);
         }
     }
     Task_End

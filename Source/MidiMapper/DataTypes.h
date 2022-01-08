@@ -46,19 +46,19 @@ typedef Usart<UsartIds::UsartId1, MidiOutPort<UsartIds::UsartId1> > MidiOutPort2
 
 typedef HD44780_DisplayWriter<
             TextWriter< 
-			    HD44780_View<
-				    HD44780_Controller<
-					    HD44780_Driver<
-						    DigitalOutputPin<PortA, Pin6>,  // RS
-						    DigitalOutputPin<PortA, Pin7>,  // E
-						    DigitalOutputPin<PortB, Pin0>,  // D0/4
-						    DigitalOutputPin<PortB, Pin1>,  // D1/5
-						    DigitalOutputPin<PortB, Pin2>,  // D2/6
-						    DigitalOutputPin<PortB, Pin3>   // D3/7
-					    >
-				    >, LcdLines, LcdColumns
-			    >
-		    > 
+                HD44780_View<
+                    HD44780_Controller<
+                        HD44780_Driver<
+                            DigitalOutputPin<PortA, Pin6>,  // RS
+                            DigitalOutputPin<PortA, Pin7>,  // E
+                            DigitalOutputPin<PortB, Pin0>,  // D0/4
+                            DigitalOutputPin<PortB, Pin1>,  // D1/5
+                            DigitalOutputPin<PortB, Pin2>,  // D2/6
+                            DigitalOutputPin<PortB, Pin3>   // D3/7
+                        >
+                    >, LcdLines, LcdColumns
+                >
+            > 
         > LCD;
 
 template <const uint8_t MaxSize>

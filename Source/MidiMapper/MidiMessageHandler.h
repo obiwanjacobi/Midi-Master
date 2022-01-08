@@ -13,7 +13,7 @@ using namespace ATL;
 using namespace ATL::MCU;
 
 /*
-	This class is designed to be a base class to the [ATL]MidiReader class.
+    This class is designed to be a base class to the [ATL]MidiReader class.
 */
 template<typename StateT>
 class MidiMessageHandler : public UsartInputStream<UsartReceive<UsartIds::UsartId0>, RingBufferFast<uint8_t, MidiReceiveBufferSize> >
@@ -31,85 +31,85 @@ public:
     }
     
 protected:
-	// MidiReader methods
-	void OnMessage(MidiMessage* midiMsg)
-	{
-		if (midiMsg == nullptr) return;
-		
-		for (uint8_t i = 0; i < MaxMaps; i++)
-		{
-			MessageTestResult result = StateT::MemPatch[0].Maps[i].TestMap(midiMsg);
+    // MidiReader methods
+    void OnMessage(MidiMessage* midiMsg)
+    {
+        if (midiMsg == nullptr) return;
+        
+        for (uint8_t i = 0; i < MaxMaps; i++)
+        {
+            MessageTestResult result = StateT::MemPatch[0].Maps[i].TestMap(midiMsg);
 
-			switch (result.value)
-			{
-			case MessageTestResult::Through:
-				StateT::MidiOutSend(i, midiMsg);
-				break;
-			case MessageTestResult::None:
-			case MessageTestResult::Passed:
-				ExecuteMap(i, midiMsg);
-				break;
-			default:
-				break;
-			}
-		}
-	}
+            switch (result.value)
+            {
+            case MessageTestResult::Through:
+                StateT::MidiOutSend(i, midiMsg);
+                break;
+            case MessageTestResult::None:
+            case MessageTestResult::Passed:
+                ExecuteMap(i, midiMsg);
+                break;
+            default:
+                break;
+            }
+        }
+    }
 
-	void OnRealtime(Midi::MessageTypes msgType)
-	{
-		/*for (uint8_t i = 0; i < MaxMaps; i++)
-		{
-			TestResult result = StateT::MemPatch.Maps[i].TestMap(msgType);
+    void OnRealtime(Midi::MessageTypes msgType)
+    {
+        /*for (uint8_t i = 0; i < MaxMaps; i++)
+        {
+            TestResult result = StateT::MemPatch.Maps[i].TestMap(msgType);
 
-			switch (result)
-			{
-			case resultThrough:
-				StateT::MidiOutSend(i, msgType);
-				break;
-			case resultNone:
-			case resultPassed:
-				ExecuteMap(i, msgType);
-				break;
-			default:
-				break;
-			}
-		}*/
-	}
+            switch (result)
+            {
+            case resultThrough:
+                StateT::MidiOutSend(i, msgType);
+                break;
+            case resultNone:
+            case resultPassed:
+                ExecuteMap(i, msgType);
+                break;
+            default:
+                break;
+            }
+        }*/
+    }
 
-	void OnSysEx(MidiMessageHandler* unused)
-	{ }
+    void OnSysEx(MidiMessageHandler* unused)
+    { }
 
 private:
-	void ExecuteMap(uint8_t mapIndex, MidiMessage* inputMsg)
-	{
-		MidiMap map = StateT::MemPatch[0].Maps[mapIndex];
-		MidiMessage outputMsg;
+    void ExecuteMap(uint8_t mapIndex, MidiMessage* inputMsg)
+    {
+        MidiMap map = StateT::MemPatch[0].Maps[mapIndex];
+        MidiMessage outputMsg;
 
-		for (uint8_t i = 0; i < MaxMapEntries; i++)
-		{
-			if (map.Entries[i].Mode == MidiMapEntry::Mode::None) break;
+        for (uint8_t i = 0; i < MaxMapEntries; i++)
+        {
+            if (map.Entries[i].Mode == MidiMapEntry::Mode::None) break;
 
-			inputMsg->CopyTo(&outputMsg);
-			map.Entries[i].ExecuteMapEntry(inputMsg, &outputMsg);
-			StateT::MidiOutSend(mapIndex, &outputMsg);
-		}
-	}
+            inputMsg->CopyTo(&outputMsg);
+            map.Entries[i].ExecuteMapEntry(inputMsg, &outputMsg);
+            StateT::MidiOutSend(mapIndex, &outputMsg);
+        }
+    }
 
-	/*void ExecuteMap(uint8_t mapIndex, Midi::MessageTypes msgType)
-	{
-		MidiMap map = StateT::MemPatch.Maps[mapIndex];
-		for (uint8_t i = 0; i < MaxMapEntries; i++)
-		{
-			if (map.Entries[i].Mode == MidiMapEntry::Mode::None) break;
+    /*void ExecuteMap(uint8_t mapIndex, Midi::MessageTypes msgType)
+    {
+        MidiMap map = StateT::MemPatch.Maps[mapIndex];
+        for (uint8_t i = 0; i < MaxMapEntries; i++)
+        {
+            if (map.Entries[i].Mode == MidiMapEntry::Mode::None) break;
 
-			Midi::MessageTypes mappedType = map.Entries[i].ExecuteMapEntry(msgType);
+            Midi::MessageTypes mappedType = map.Entries[i].ExecuteMapEntry(msgType);
 
-			if (mappedType != Midi::InvalidType)
-			{
-				StateT::MidiOutSend(mapIndex, mappedType);
-			}
-		}
-	}*/
+            if (mappedType != Midi::InvalidType)
+            {
+                StateT::MidiOutSend(mapIndex, mappedType);
+            }
+        }
+    }*/
 };
 
 

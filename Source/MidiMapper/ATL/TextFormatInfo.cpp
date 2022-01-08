@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 namespace ATL {
 	
-char TextFormatInfo::NewLine[] = { '\n', '\r', '\0' };
+char TextFormatInfo::NewLine[] = { '\r', '\n', '\0' };
 uint8_t TextFormatInfo::DecimalDigits = (uint8_t )2;
 char TextFormatInfo::NegativeSign = { '-' };
 char TextFormatInfo::DecimalSeparator = { '.' } ;

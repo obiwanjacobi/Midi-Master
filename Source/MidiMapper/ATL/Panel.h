@@ -45,7 +45,7 @@ namespace ATL {
         /** Assigns the current control to ctrl.
          *  The old current control (if any) will be set to `Normal`.
          *  The new current control (ctrl - if not NULL) will be set to `Focused`.
-		 *  The state of the Panel will reflect the state of the current control.
+         *  The state of the Panel will reflect the state of the current control.
          *  \param ctrl is the control make current. Can be NULL.
          */
         inline void setCurrentControl(InputControl* ctrl)
@@ -53,7 +53,7 @@ namespace ATL {
             if (_currentControl != nullptr)
             {
                 _currentControl->setState(ControlState::Normal);
-				setState(ControlState::Normal);
+                setState(ControlState::Normal);
             }
 
             _currentControl = ctrl;
