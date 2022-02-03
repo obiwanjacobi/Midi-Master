@@ -17,12 +17,12 @@ public:
     {
         MessageTestResult retVal = MessageTestResult::None;
 
-        for(uint8_t i = 0; i < Entries.getCount(); i++)
+        for(int16_t i = 0; i < Entries.getCount(); i++)
         {
             // break on first entry that is off
-            if (Entries[i].Mode == MidiMapEntry::Mode::None) break;
+            if (Entries[i]->Mode == MidiMapEntry::Mode::None) break;
 
-            MessageTestResult result = Entries[i].TestMessage(midiMsg);
+            MessageTestResult result = Entries[i]->TestMessage(midiMsg);
 
             if (retVal == MessageTestResult::None)
             {

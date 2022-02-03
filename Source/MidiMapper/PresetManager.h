@@ -66,17 +66,17 @@ public:
 
     inline OutputNameString* getCurrentOutputNameString() const
     {
-        return &_currentPatch->Maps[_mapIndex].Name;
+        return &_currentPatch->Maps[(int16_t)_mapIndex]->Name;
     }
 
     inline const char* getCurrentOutputName() const
     {
-        return _currentPatch->Maps[_mapIndex].Name;
+        return _currentPatch->Maps[(int16_t)_mapIndex]->Name;
     }
 
     MidiMap* getCurrentMap()
     {
-        return &_currentPatch->Maps[_mapIndex];
+        return _currentPatch->Maps[(int16_t)_mapIndex];
     }
 
     uint8_t getCurrentEntryIndex() const
@@ -91,7 +91,7 @@ public:
 
     MidiMapEntry* getCurrentMapEntry()
     {
-        return &getCurrentMap()->Entries[_entryIndex];
+        return getCurrentMap()->Entries[(int16_t)_entryIndex];
     }
 
 

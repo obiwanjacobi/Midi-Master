@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "avr.h"
 #include "..\MidiMapper\ATL\RingBufferFast.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;

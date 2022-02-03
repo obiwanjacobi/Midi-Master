@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "NavigationController.h"
 #include "Control.h"
 #include "PanelControlContainer.h"
-
+#include "..\Debug.h"
 
 namespace ATL {
 
@@ -60,14 +60,16 @@ namespace ATL {
                 switch (navCmd.value)
                 {
                 case NavigationCommands::Up:
-                    return BaseT::SetPreviousInputControl();
+                    handled = BaseT::SetPreviousInputControl();
                 case NavigationCommands::Down:
-                    return BaseT::SetNextInputControl();
+                    handled = BaseT::SetNextInputControl();
                 default:
-                    return false;
+                    break;
                 }
             }
-            
+
+            //if (handled) ToggleDebugPin();
+
             return handled;
         }
 

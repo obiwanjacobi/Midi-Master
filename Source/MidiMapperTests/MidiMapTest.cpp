@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "avr.h"
 #include "..\MidiMapper\MidiPatch.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
@@ -8,6 +8,8 @@ namespace MidiMapperTests2
     [TestClass]
     public ref class MidiMapTest
     {
+        static int16_t Zero = 0;
+
     public: 
         [TestMethod]
         void TestMap_NotSet_ControlChange_Passed()
@@ -31,7 +33,7 @@ namespace MidiMapperTests2
         {
             MidiMap tested;
             InitMidiMap(tested);
-            tested.Entries[0].Category = Midi::MessageCategory::ControlChange;
+            tested.Entries[Zero]->Category = Midi::MessageCategory::ControlChange;
 
             MidiMessage msg;
             msg.MessageType = Midi::MessageTypes::ControlChange;
@@ -49,7 +51,7 @@ namespace MidiMapperTests2
         {
             MidiMap tested;
             InitMidiMap(tested);
-            tested.Entries[0].Category = Midi::MessageCategory::Note;
+            tested.Entries[Zero]->Category = Midi::MessageCategory::Note;
 
             MidiMessage msg;
             msg.MessageType = Midi::MessageTypes::ControlChange;
@@ -65,16 +67,16 @@ namespace MidiMapperTests2
     private:
         void InitMidiMap(MidiMap& midiMap)
         {
-            midiMap.Entries[0].Mode = MidiMapEntry::Mode::Normal;
-            midiMap.Entries[0].Category = Midi::MessageCategory::NotSet;
-            midiMap.Entries[0].Channel.SetAny();
-            midiMap.Entries[0].Identifier.SetAny();
-            midiMap.Entries[0].Value.SetAny();
+            midiMap.Entries[Zero]->Mode = MidiMapEntry::Mode::Normal;
+            midiMap.Entries[Zero]->Category = Midi::MessageCategory::NotSet;
+            midiMap.Entries[Zero]->Channel.SetAny();
+            midiMap.Entries[Zero]->Identifier.SetAny();
+            midiMap.Entries[Zero]->Value.SetAny();
             
-            midiMap.Entries[0].Transforms[0].Mode = MidiTransform::Mode::None;
-            midiMap.Entries[0].Transforms[0].SourceField = MessageField::None;
-            midiMap.Entries[0].Transforms[0].TargetField = MessageField::None;
-            midiMap.Entries[0].Transforms[0].Value.SetAny();
+            midiMap.Entries[Zero]->Transforms[Zero]->Mode = MidiTransform::Mode::None;
+            midiMap.Entries[Zero]->Transforms[Zero]->SourceField = MessageField::None;
+            midiMap.Entries[Zero]->Transforms[Zero]->TargetField = MessageField::None;
+            midiMap.Entries[Zero]->Transforms[Zero]->Value.SetAny();
         }
     };
 }

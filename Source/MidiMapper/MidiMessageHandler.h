@@ -87,10 +87,10 @@ private:
 
         for (uint8_t i = 0; i < MaxMapEntries; i++)
         {
-            if (map.Entries[i].Mode == MidiMapEntry::Mode::None) break;
+            if (map.Entries[i]->Mode == MidiMapEntry::Mode::None) break;
 
             inputMsg->CopyTo(&outputMsg);
-            map.Entries[i].ExecuteMapEntry(inputMsg, &outputMsg);
+            map.Entries[i]->ExecuteMapEntry(inputMsg, &outputMsg);
             StateT::MidiOutSend(mapIndex, &outputMsg);
         }
     }

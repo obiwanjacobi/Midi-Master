@@ -19,7 +19,6 @@ public:
     
 private:
     static T* _instance;
-
 };
 
 template<typename T>

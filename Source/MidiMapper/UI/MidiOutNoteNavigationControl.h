@@ -22,12 +22,12 @@ public:
         if (mode == ControlDisplayMode::Cursor) return;
 
         PresetManager* presetMgr = PresetManager::getCurrent();
-        MidiMap* map = &presetMgr->getCurrentPreset()->Maps[OutputIndex];
+        MidiMap* map = presetMgr->getCurrentPreset()->Maps[(int16_t)OutputIndex];
         
         FixedString<OutputNameMaxLength, ' '> buf(map->Name);
         if (MidiStatus::getCurrent()->getMidiOutIsActive(OutputIndex))
         {
-            buf[OutputNameMaxLength - 1] = 0;    // chop off last char
+            *buf[(int16_t)(OutputNameMaxLength - 1)] = 0;    // chop off last char
             output->Display(buf);
             output->Display(ActivityChar);
         }

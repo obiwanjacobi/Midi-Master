@@ -64,11 +64,13 @@ namespace ATL {
 
 #ifdef DEBUG
 
+#define _ATTR_WEAK __attribute__((weak))
+
     // Implement this method in your own code and route the message to the desired output.
-    void AtlDebugWrite(const char* message) __attribute__((weak));
+    void AtlDebugWrite(const char* message) _ATTR_WEAK;
 
     // Optionally implement this method in your own code and determine what debug level and components are debugged.
-    bool AtlDebugLevel(const uint8_t componentId, DebugLevel debugLevel) __attribute__((weak));
+    bool AtlDebugLevel(const uint8_t componentId, DebugLevel debugLevel) _ATTR_WEAK;
 
     /** The Debug class allows conditionally writing messages from code to an unspecified target.
      *  The Debug class is a static class and cannot be instantiated.

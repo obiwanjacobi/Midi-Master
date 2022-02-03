@@ -42,26 +42,19 @@ namespace ATL {
     public:
         /** Retrieves the Control that is next to the currentCtrl.
          *  \param currentCtrl is a pointer to the Control to use as reference.
+         *      If NULL the first control is returned if any.
          *  \param type is the type of Control to look for. Uses Control::DynamicCast.
          *  \return Returns NULL if no suitable Control (type) could be found.
          */
         Control* getNext(Control* currentCtrl, ControlTypes type = ControlTypes::Control) const
         {
             int16_t index = BaseT::IndexOf(currentCtrl);
-
-            if (index != -1)
-            {
-                index++;
-            }
-            else if (BaseT::getCount() > 0)
-            {
-                index = 0;
-            }
+            if (index != -1) index++;
+            else index = 0;
 
             while (index >= 0 && index < BaseT::getCount())
             {
                 Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
-
                 if (ctrl != nullptr) return ctrl;
 
                 index++;
@@ -72,26 +65,19 @@ namespace ATL {
 
         /** Retrieves the Control that is before the currentCtrl.
          *  \param currentCtrl is a pointer to the Control to use as reference.
+         *      If NULL the last control is returned if any.
          *  \param type is the type of Control to look for. Uses Control::DynamicCast.
          *  \return Returns NULL if no suitable Control (type) could be found.
          */
         Control* getPrevious(Control* currentCtrl, ControlTypes type = ControlTypes::Control) const
         {
-            int8_t index = BaseT::IndexOf(currentCtrl);
-
-            if (index != -1)
-            {
-                index--;
-            }
-            else if (BaseT::getCount() > 0)
-            {
-                index = BaseT::getCount() - 1;
-            }
+            int16_t index = BaseT::IndexOf(currentCtrl);
+            if (index != -1) index--;
+            else index = BaseT::getCount() - 1;
 
             while (index >= 0 && index < BaseT::getCount())
             {
                 Control* ctrl = Control::DynamicCast(BaseT::GetAt(index), type);
-
                 if (ctrl != nullptr) return ctrl;
 
                 index--;

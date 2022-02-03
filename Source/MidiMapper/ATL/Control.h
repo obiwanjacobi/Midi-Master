@@ -199,6 +199,15 @@ namespace ATL {
             return (type.value & ControlTypes::Control) == ControlTypes::Control;
         }
 
+        /** Dynamically casts this Control instance to the specified type.
+         *  \param type is the Control type to cast ctrl to.
+         *  \return Returns NULL if this is NULL or this Control is not of the same type. Otherwise the this pointer is returned.
+         */
+        inline Control* DynamicCast(ControlTypes type)
+        {
+            return DynamicCast(this, type);
+        }
+
         /** Dynamically casts a Control pointer to the specified type.
          *  \param ctrl is the pointer to the Control. Can be NULL.
          *  \param type is the Control type to cast ctrl to.

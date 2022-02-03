@@ -54,16 +54,16 @@ namespace ATL {
             BaseT::getBuffer()[index] = item;
         }
 
-        /** Retrieves the (writable) item (reference) for the specified position (index).
-         *  Does nothing when the index is invalid.
+        /** Retrieves the (writable) item (pointer) for the specified position (index).
+         *  Returns NULL when the index is invalid.
          *  \param index is a zero-based index that has to be greater or equal to 0 (zero) and smaller than MaxItems.
          *  \return Returns the item value for the position indicated by index. The return value for an invalid index is undetermined.
          */
-        inline T& operator[](int16_t index)
+        inline T* operator[](int16_t index)
         {
-            if (!BaseT::IsValidIndex(index)) return DummyOfT;
+            if (!BaseT::IsValidIndex(index)) return nullptr;
 
-            return BaseT::getBuffer()[index];
+            return &BaseT::getBuffer()[index];
         }
 
         /** Clears the memory occupied by the array.
@@ -73,14 +73,7 @@ namespace ATL {
         {
             memset(BaseT::getBuffer(), 0, MaxItems);
         }
-
-    protected:
-        static T DummyOfT;
-
     };
-
-    template<typename T, const int16_t MaxItems>
-    T FixedArray<T, MaxItems>::DummyOfT;
 
 
 } // ATL

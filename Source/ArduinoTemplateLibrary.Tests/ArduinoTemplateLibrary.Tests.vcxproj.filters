@@ -58,6 +58,9 @@
     <ClCompile Include="HorizontalPanelTest.cpp" />
     <ClCompile Include="VerticalPanelTest.cpp" />
     <ClCompile Include="PanelControlContainerTest.cpp" />
+    <ClCompile Include="StreamInputStreamTest.cpp" />
+    <ClCompile Include="StreamOutputStreamTest.cpp" />
+    <ClCompile Include="TimeTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

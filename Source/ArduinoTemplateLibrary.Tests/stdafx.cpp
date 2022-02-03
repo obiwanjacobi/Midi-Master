@@ -9,7 +9,7 @@
 // from TextFormatInfo.cpp
 namespace ATL {
 
-	char TextFormatInfo::NewLine[] = { '\n', '\r', '\0' };
+	char TextFormatInfo::NewLine[] = { '\r', '\n', '\0' };
 	uint8_t TextFormatInfo::DecimalDigits = (uint8_t)2;
 	char TextFormatInfo::NegativeSign = { '-' };
 	char TextFormatInfo::DecimalSeparator = { '.' };

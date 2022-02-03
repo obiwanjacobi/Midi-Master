@@ -42,7 +42,36 @@ namespace ATL {
             return _currentControl;
         }
 
-        /** Assigns the current control to ctrl.
+        /** A predicate callback function to test InputControls.
+         * \param currentControl is the control to be tested.
+         * \param callerState is a (pointer to a) caller defined state object.
+         * \return Returns true if the currentControl matches the predicate.
+         */
+        typedef bool (*ControlPredicate)(const InputControl* currentControl, void* callerState);
+
+        /** Retrieves the current control that passes the predicate.
+         * If the predicate returns false, the current control cast to a Panel and if successful
+         * that panel is asked for its current control, drilling into a panel hierarchy until the predicate returns true.
+         * \param predicate is a callback function to determine what currentControl to return. If NULL the return value is simply the currentControl.
+         * \param callerState is a caller defined state object that is passed to the predicate when called. Can be used as a this pointer.
+         * \return Returns the currentControl that passed the predicate or NULL if none was matched or no currentControl was set.
+         */
+        inline InputControl* getCurrentControl(ControlPredicate predicate, void* callerState = nullptr) const
+        {
+            if (_currentControl != nullptr && predicate != nullptr && 
+                !predicate(_currentControl, callerState))
+            {
+                Panel* panel = (Panel*)_currentControl->DynamicCast(ControlTypes::Panel);
+                if (panel != nullptr)
+                    return panel->getCurrentControl(predicate);
+                    
+                return nullptr;
+            }
+
+            return _currentControl;
+        }
+
+        /** Assigns ctrl to the current control.
          *  The old current control (if any) will be set to `Normal`.
          *  The new current control (ctrl - if not NULL) will be set to `Focused`.
          *  The state of the Panel will reflect the state of the current control.

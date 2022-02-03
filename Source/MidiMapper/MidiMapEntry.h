@@ -28,13 +28,13 @@ public:
 
     void ExecuteMapEntry(MidiMessage* inputMsg, MidiMessage* outputMsg)
     {
-        for (uint8_t i = 0; i < Transforms.getCapacity(); i++)
+        for (int16_t i = 0; i < Transforms.getCapacity(); i++)
         {
-            if (Transforms[i].Mode == MidiTransform::Mode::None) break;
+            if (Transforms[i]->Mode == MidiTransform::Mode::None) break;
 
-            uint8_t value = Transforms[i].Transform(inputMsg);
+            uint8_t value = Transforms[i]->Transform(inputMsg);
 
-            Insert(outputMsg, Transforms[i].TargetField, value);
+            Insert(outputMsg, Transforms[i]->TargetField, value);
         }
     }
 

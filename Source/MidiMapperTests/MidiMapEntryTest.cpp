@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "avr.h"
 #include "..\MidiMapper\MidiPatch.h"
 
 using namespace	Microsoft::VisualStudio::TestTools::UnitTesting;
@@ -19,7 +19,7 @@ namespace MidiMapperTests
             tested.Channel.SetAny();
             tested.Identifier.SetAny();
             tested.Value.SetAny();
-            tested.Transforms[0].Mode = MidiTransform::Mode::None;
+            tested.Transforms[(int16_t)0]->Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
             msg.MessageType = Midi::ControlChange;
@@ -41,7 +41,7 @@ namespace MidiMapperTests
             tested.Channel.SetAny();
             tested.Identifier.SetAny();
             tested.Value.SetAny();
-            tested.Transforms[0].Mode = MidiTransform::Mode::None;
+            tested.Transforms[(int16_t)0]->Mode = MidiTransform::Mode::None;
 
             MidiMessage msg;
             msg.MessageType = Midi::ControlChange;

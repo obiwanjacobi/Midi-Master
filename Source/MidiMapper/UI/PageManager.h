@@ -49,6 +49,11 @@ public:
 
         BaseT::Display(lcd);
     }
+    
+    void Display(DisplayWriter* output, ControlDisplayMode mode = ControlDisplayMode::Normal) override
+    {
+        BaseT::Display(output, mode);
+    }        
 
     // navigate to the screen for editing the output map.
     inline bool EnterEditOutputMap(int outIndex)

@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "VerticalPanel.h"
 
 #include "Debug.h"
-#include <assert.h>
+//#include <assert.h>
 
 namespace ATL {
 
@@ -57,7 +57,7 @@ namespace ATL {
          */
         Page(Panel* line1)
         {
-            assert(MaxLines >= 1);
+            //assert(MaxLines >= 1);
             Add(line1);
         }
 
@@ -68,7 +68,7 @@ namespace ATL {
          */
         Page(Panel* line1, Panel* line2)
         {
-            assert(MaxLines >= 2);
+            //assert(MaxLines >= 2);
             Add(line1);
             Add(line2);
         }
@@ -82,7 +82,7 @@ namespace ATL {
          */
         Page(Panel* line1, Panel* line2, Panel* line3, Panel* line4)
         {
-            assert(MaxLines >= 4);
+            //assert(MaxLines >= 4);
             Add(line1);
             Add(line2);
             Add(line3);
@@ -121,31 +121,31 @@ namespace ATL {
          *  the current line.
          *  \param navCmd is the navigation command.
          */
-        bool OnNavigationCommand(NavigationCommands navCmd) override
-        {
-            bool handled = false;
-
-            switch (navCmd.value)
-            {
-            case NavigationCommands::Up:
-                handled = TrySelectPreviousLine();
-                break;
-            case NavigationCommands::Down:
-                handled = TrySelectNextLine();
-                break;
-            case NavigationCommands::Exit:
-                handled = TryUnselectCurrentControl();
-                break;
-            default:
-                break;
-            }
-
-            if (handled) { return true; }
-
-            // Skip VerticalPanel because we reimplemented line navigation (up/down) here.
-            handled = PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
-            return handled;
-        }
+        //bool OnNavigationCommand(NavigationCommands navCmd) override
+        //{
+            //bool handled = false;
+//
+            //switch (navCmd.value)
+            //{
+            //case NavigationCommands::Up:
+                //handled = TrySelectPreviousLine();
+                //break;
+            //case NavigationCommands::Down:
+                //handled = TrySelectNextLine();
+                //break;
+            //case NavigationCommands::Exit:
+                //handled = TryUnselectCurrentControl();
+                //break;
+            //default:
+                //break;
+            //}
+//
+            //if (handled) { return true; }
+//
+            //// Skip VerticalPanel because we reimplemented line navigation (up/down) here.
+            //handled = PanelControlContainer<MaxLines>::OnNavigationCommand(navCmd);
+            //return handled;
+        //}
 
         /** Overridden to implement the typePage type flag.
          *  \param type indicates the requested type.

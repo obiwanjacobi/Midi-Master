@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include "InputControl.h"
 #include "Panel.h"
 
+#include "..\Debug.h"
+
 namespace ATL {
 
 
@@ -78,6 +80,7 @@ namespace ATL {
             InputControl* ctrl = (InputControl*)BaseT::getPrevious(getCurrentControl(), ControlTypes::InputControl);
             if (ctrl != nullptr)
             {
+                ToggleDebugPin();
                 setCurrentControl(ctrl);
                 return true;
             }
